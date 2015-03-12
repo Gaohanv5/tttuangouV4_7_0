@@ -1,0 +1,50 @@
+<!--{template @admin/header}--> <script type="text/javascript">
+var __Global_OID = "{$order['orderid']}";
+</script> <div class="header">
+物流信息 
+</div> <table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tbody> <tr> <td class="tr_nav tr_center" colspan="4">
+配送信息
+</td> </tr> <tr> <td class="td_title">产品名称：</td> <td>{$order['product']['flag']}</td> <td class="td_title">购买数量：</td> <td><b>{$order['productnum']}</b></td> </tr> <tr> <td class="td_title">订单编号：</td> <td>{$order['orderid']}</td> <td class="td_title">下单会员：</td> <td>{echo app('ucard')->load($user['id'])}</td> </tr>
+{if $order['attrs']}
+<tr> <td class="td_title">商品标签：</td> <td colspan="3">
+{loop $order['attrs']['dsp'] $dsp}
+{$dsp['name']} - &yen;{$dsp['price']}<br/>
+{/loop}
+</td> </tr>
+{/if}
+<tr> <td class="td_title">支付方式：</td> <td>{$payment['name']}</td> <td class="td_title">支付金额：</td> <td>{$order['paymoney']}</td> </tr> <tr> <td class="td_title">配送方式：</td> <td>{$express['name']}&nbsp;&nbsp;&nbsp;&nbsp;<font color="#cccccc">( {echo logic('express')->CID2Name($express['express'])} )</font></td> <td class="td_title">运费：</td> <td>{$order['expressprice']}</td> </tr> <tr> <td class="td_title">收货地址：</td> <td>{$address['region']} {$address['address']}</td> <td class="td_title">邮编：</td> <td>{$address['zip']}</td> </tr> <tr> <td class="td_title">收货人：</td> <td>{$address['name']}</td> <td class="td_title">联系电话：</td> <td>{$address['phone']}</td> </tr> <tr> <td class="td_title">买家附言：</td> <td colspan="3">
+{$order['extmsg']}
+</td> </tr> <tr> <td class="td_title">订单备注：</td> <td colspan="3">
+{$order['remark']}
+</td> </tr> <tr> <td class="tr_nav tr_center" colspan="4">
+物流信息
+</td> </tr> <tr> <td class="td_title">快递单号：</td> <td colspan="3">
+{if $order['process'] != 'TRADE_FINISHED'}
+<input id="trackingno" type="text" size="20" value="{$order['invoice']}" />
+&nbsp;&nbsp;&nbsp;
+<input id="submiter" type="button" value="{echo $order['invoice']==''?'填写':'修改'}快递单号" />
+{else}
+{$order['invoice']}
+{/if}
+</td> </tr> <tr id="cdpService"> <td class="td_title">快递单打印：</td> <td>
+{eval $addresses = logic('express')->cdp()->AddressList()}
+{eval $lastADDR = meta('cdp_service_lastADDR')}
+{if $addresses}
+<select id="cdpAddressID">
+{loop $addresses $address}
+<option value="{$address['id']}"{if $lastADDR==$address['id']} selected="selected"{/if}>{$address['name']} - {$address['phone']}</option>
+{/loop}
+</select>
+{else}
+您还没有填写寄件人信息，请先 <a href="?mod=express&code=address&op=list">点击此处</a> 进行添加
+{/if}
+&nbsp;&nbsp;&nbsp;
+{eval $printed = logic('express')->cdp()->Printed($order['orderid'])}
+<input id="cdpServiceButton" type="button" value="打印快递单" style="border-color:{echo $printed?'#ccc':'#019400'};" />&nbsp;&nbsp;<font color="#999">{echo $printed?'已打印':'未打印'}</font> </td> </tr>
+{if $order['invoice'] != '' && false}
+<tr> <td class="td_title">物流跟踪：</td> <td colspan="3">
+正在开发中
+</td> </tr>
+{/if}
+</tbody> </table> <a href="#back" onclick="javascript:history.go(-1);return false;" class="back1">返回 </a>
+{template @admin/footer}

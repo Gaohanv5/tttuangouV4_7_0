@@ -1,0 +1,13 @@
+<!--{template @admin/header}--> <div class="header"> <a href="?mod=prize&code=nums&op=list&pid={$pid}">抽奖号码列表</a> / 产品编号：{$pid}
+</div> <table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <thead> <tr class="tr_nav"> <td width="20%">系统编号</td> <td width="20%">用户信息</td> <td width="20%">抽奖号码</td> <td width="20%">生成说明</td> <td>生成时间</td> </tr> </thead> <tbody> <!--{loop $prizes $one}--> <tr> <td>
+{$one['id']}
+</td> <td>
+{echo app('ucard')->load($one['uid'])}
+</td> <td>
+{$one['number']}
+</td> <td>
+{$one['remark']}
+</td> <td>
+{echo date('Y-m-d H:i:s', $one['upstime'])}
+</td> </tr> <!--{/loop}--> </tbody> <tfoot> <tr> <td colspan="5">{~page_moyo()}</td> </tr> </tfoot> </table>
+{template @admin/footer}

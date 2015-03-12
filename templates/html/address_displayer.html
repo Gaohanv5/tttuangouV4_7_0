@@ -1,0 +1,8 @@
+<p class="P_dist">收货地址</p>
+{loop $addressID $one}
+{eval $address = logic('address')->GetOne($one)}
+<p class="P_disl">姓名：{$address['name']}</p>
+<p class="P_disl">地址：{$address['region']} {$address['address']}</p>
+<p class="P_disl">邮政编码：{$address['zip']}</p>
+<p class="P_disl">手机号码：{$address['phone']}</p>
+{/loop}

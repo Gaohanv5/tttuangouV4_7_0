@@ -1,0 +1,44 @@
+<!--{template @admin/header}-->
+{~ui('loader')->addon('editor.kind')}
+<form id="main_form" action="?mod=html&code=save" method="post" enctype="multipart/form-data" onsubmit="return submitCheck();"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">静态页面编辑 / [ <a href="?mod=html&code=front">返回</a> ]</td> </tr> <tr> <td class="td_title" width="60">文件标记：</td> <td>
+{if $html['name']}<input type="hidden" name="name" value="{$html['name']}" />{$html['name']}{else}<input id="page_flag" type="text" name="name" size="32" />&nbsp;&nbsp;&nbsp;<font id="check_status"></font>{/if}
+</td> </tr> <tr> <td class="td_title">页面标题：</td> <td> <input type="text" name="title" value="{$html['title']}" size="64" /> </td> </tr> <tr> <td class="td_title">详情：</td> <td> <textarea id="editor" name="content" style="height:300px;width:100%;">{echo thtmlspecialchars($html['content'])}</textarea> </td> </tr> </table> <br/> <center> <input type="submit" name="addsubmit" value="提 交" class="button" /> </center> </form> <script type="text/javascript">
+var flag_passd = {echo $html['name'] ? 'true' : 'null'};
+$(document).ready(function(){
+KindEditor.ready(function(K) {K.create('#editor');});
+$('#page_flag').bind('blur', function(){page_flag_check(false)});
+});
+function page_flag_check(autoSubmit)
+{
+flag_passd = null;
+$('#check_status').html('正在检查标记是否可用...').css('color', '#999');
+$.get('?mod=html&code=check&op=flag&flag='+$('#page_flag').val()+$.rnd.stamp(), function(data){
+if (data == 'true')
+{
+flag_passd = true;
+$('#check_status').html('此标记可以使用！').css('color', 'green');
+if (autoSubmit)
+{
+$('#main_form').submit();
+}
+}
+else
+{
+flag_passd = false;
+$('#check_status').html(data).css('color', 'red');
+}
+});
+}
+function submitCheck()
+{
+if (flag_passd)
+{
+return true;
+}
+if (flag_passd == null)
+{
+page_flag_check(true);
+}
+return false;
+}
+</script> <!--{template @admin/footer}-->

@@ -1,0 +1,10 @@
+<!--{template @wap/header}-->
+{if $errmsg}
+{$errmsg}<hr/>
+{/if}
+<form action="?mod=wap&code=account&op=logcheck" method="post">
+账号：<input type="text" name="username" /><br/>
+密码：<input type="password" name="password" /><br/>
+<input type="submit" value="登录" /> <a href="?mod=wap&code=get_password">忘记密码？</a>
+</form>
+<!--{template @wap/footer}-->

@@ -1,0 +1,10 @@
+<!--{template @admin/header}-->
+{~ui('loader')->css('#admin/css/widget.area.blocks.sort')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header1" > <td> <a class="nav_a selected" href="?mod=widget">布局管理</a> <a class="nav_a" href="?mod=widget&code=block">模块管理</a></td> </tr> <tr class="header"> <td>
+{echo ini('widget.'.$area_name.'.name')}
+- 
+[ <font style="color: blue;">排序模式</font> ]
+</td> </tr> <tr><td><ul id="wablist"> <!--{loop $list $flag $one}--> <!--{if !$one['enabled']}{eval continue}{/if}--> <li id="{$flag}"> <div>{$blocks[$flag]['name']}</div> </li> <!--{/loop}--> </ul></td></tr> <tr class="footer"> <td> <input type="button" value="保存" onclick="javascript:area_block_sort_save('{$area_name}');" class="button" /> <a href="?mod=widget&code=config&flag={$area_name}" class="back1">返回</a> </td> </tr> </table>
+{~ui('loader')->js('@jquery.dragsort')}
+{~ui('loader')->js('#admin/js/widget.area.blocks.sort')}
+{template @admin/footer}

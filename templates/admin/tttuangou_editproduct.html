@@ -1,0 +1,91 @@
+<!--{template @admin/header}--> <script src="js/DatePicker/WdatePicker.js"></script> <script src="static/js/jquery.js"></script> <script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script> <script type="text/javascript">
+KE.show({
+id : 'content'
+});
+KE.show({
+id : 'cue'
+});
+KE.show({
+id : 'theysay'
+});
+KE.show({
+id : 'wesay'
+});
+</script> <form action="{$action}" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">修改产品</td> </tr> <tr> <td width="23%" bgcolor="#F4F8FC">产品名称：</td> <td width="77%" align="right"> <input name="name" type="text" id="name" size="80" value="{$product['name']}"></td> </tr> <tr> <td bgcolor="#F4F8FC">{TUANGOU_STR}城市：</td> <td align="right"><label> <select name="city" id="city">
+{loop $city $i $value}
+<option value="{$value['cityid']}" {if $product['city']==$value['cityid']}selected{/if}>{$value['cityname']}</option>
+{/loop}
+</select> </label></td> </tr> <tr> <td bgcolor="#F4F8FC">合作商家：</td> <td align="right"> <select name="sellerid" id="sellerid">
+{loop $seller $i $value}
+<option value="{$value['id']}" {if $product['sellerid']==$value['id']}selected{/if}>{$value['sellername']}</option>
+{/loop}
+</select> <input type="hidden" name="sellerid_old" value="{$product['sellerid']}" /> </td></tr> <tr> <td bgcolor="#F4F8FC">原价：</td> <td align="right"><input name="price" type="text" id="price" size="6" value="{$product['price']}"/>&nbsp;&nbsp;元</td> </tr> <tr> <td bgcolor="#F4F8FC">现价：</td> <td align="right"><input name="nowprice" type="text" id="nowprice" size="6" value="{$product['nowprice']}" />&nbsp;&nbsp;元</td> </tr><tr> <td bgcolor="#F4F8FC">产品图片：</td> <td align="right">
+{eval $imgs = explode('|', $product['img']);}
+{eval $IMG_BASE = IMAGE_PATH.'product/';}
+{loop $imgs $i $img}
+{if $img != ''}
+{eval $id = rand(1, 999999);}
+<font id="oig_{$id}"> <a href="{$IMG_BASE}{$img}" target="_blank"><img src="{$IMG_BASE}s-{$img}" width="100" height="50" /></a> - <a href="javascript:imgs_old_remove('{$id}', '{$img}');">移除此图</a><br/> </font>
+{/if}
+{/loop}
+<input name="img_database" type="hidden" value="{$product['img']}" /> <input id="img_removes" name="img_removes" type="hidden" value="" /> <div id="product_imgs_area"> </div> <script type="text/javascript">
+function imgs_up_append()
+{
+var i = document.createElement('input');
+i.setAttribute('name', 'img[]');
+i.setAttribute('type', 'file');
+var rnd = Math.round(Math.random()*10000000).toString();
+i.setAttribute('id', 'ig_'+rnd);
+var a = document.createElement('a');
+a.setAttribute('id', 'ig_a_'+rnd);
+a.setAttribute('href', 'javascript:imgs_up_remove("'+rnd+'");');
+a.innerHTML = ' - 移除此图';
+var br = document.createElement('br');
+br.setAttribute('id', 'ig_br_'+rnd);
+var area = document.getElementById('product_imgs_area');
+area.appendChild(i);
+area.appendChild(a);
+area.appendChild(br);
+}
+function imgs_up_remove(id)
+{
+var i = document.getElementById('ig_'+id);
+var a = document.getElementById('ig_a_'+id);
+var br = document.getElementById('ig_br_'+id);
+var area = document.getElementById('product_imgs_area');
+area.removeChild(i);
+area.removeChild(a);
+area.removeChild(br);
+}
+function imgs_old_remove(aid, img)
+{
+document.getElementById('oig_'+aid).innerHTML = '';
+document.getElementById('img_removes').value += img + '|';
+}
+</script> <a href="javascript:imgs_up_append();">再添加一张图片</a> </td> </tr><tr> <td bgcolor="#F4F8FC">简介：</td> <td align="right"><textarea name="intro" cols="40" rows="5" id="intro">{$product['intro']}</textarea></td> </tr><tr> <td bgcolor="#F4F8FC">产品数量上限：</td> <td align="right"><input name="maxnum" type="text" id="maxnum" value="{$product['maxnum']}" /></td> </tr><tr> <td bgcolor="#F4F8FC">{TUANGOU_STR}开始时间：</td> <td align="right"> <input type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy年MM月dd日 HH时mm分ss秒',startDate:'{echo date('Y-m-d H:i:s', {$product['begintime']});}',vel:'begintime'})" size="35" class="Wdate" value="{echo date('Y年m月d日 H时i分s秒', {$product['begintime']});}" /> <input name="begintime" type="hidden" id="begintime" value="{echo date('Y-m-d H:i:s', {$product['begintime']});}" /> </td> </tr><tr> <td bgcolor="#F4F8FC">{TUANGOU_STR}结束时间：</td> <td align="right"> <input type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy年MM月dd日 HH时mm分ss秒',startDate:'{echo date('Y-m-d H:i:s', {$product['overtime']});}',vel:'overtime'})" size="35" class="Wdate" value="{echo date('Y年m月d日 H时i分s秒', {$product['overtime']});}" /> <input name="overtime" type="hidden" id="overtime" value="{echo date('Y-m-d H:i:s', {$product['overtime']});}" /> </td> </tr> <tr> <td bgcolor="#F4F8FC">{TUANGOU_STR}类型：</td> <td align="right"> <select id="product_type_list" name="type" onchange="product_type_show(this)"> <option value="ticket" {if $product['type'] == 'ticket' || $product['type'] == ''}selected="selected"{/if}>{TUANGOU_STR}券</option> <option value="stuff" {if $product['type'] == 'stuff'}selected="selected"{/if}>实物</option> </select> </td> </tr> <script type="text/javascript">
+function product_type_show(sel)
+{
+var type = sel.options[sel.options.selectedIndex].value;
+if (type == 'ticket')
+{
+$('.displayer_of_ticket').fadeIn();
+$('.displayer_of_stuff').fadeOut();
+}
+else if (type == 'stuff')
+{
+$('.displayer_of_ticket').fadeOut();
+$('.displayer_of_stuff').fadeIn();
+}
+}
+window.onload = function()
+{
+product_type_show(document.getElementById('product_type_list'));
+};
+</script> <tr class="displayer_of_ticket"> <td bgcolor="#F4F8FC">{TUANGOU_STR}券有效期的截止日期：</td> <td align="right"> <input type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy年MM月dd日 HH时mm分ss秒',startDate:'{echo date('Y-m-d H:i:s', {$product['perioddate']});}',vel:'perioddate'})" size="35" class="Wdate" value="{echo date('Y年m月d日 H时i分s秒', {$product['perioddate']});}" /> <input name="perioddate" type="hidden" id="perioddate" value="{echo date('Y-m-d H:i:s', {$product['perioddate']});}" /> </td> </tr> <tr class="displayer_of_ticket"> <td bgcolor="#F4F8FC">多券合一：</td> <td align="right"> <label><input name="allinone" type="radio" value="true" {if $product['allinone']=='true'}checked="checked"{/if} /> 是</label> <label><input name="allinone" type="radio" value="false" {if $product['allinone']=='false'}checked="checked"{/if} /> 否</label> </td> </tr> <tr class="displayer_of_stuff" style="{if $product['type'] == 'ticket' || $product['type'] == ''}display:none;{/if}"> <td bgcolor="#F4F8FC">单个重量：</td> <td align="right"> <input name="weight" type="text" value="{$product['weight']}" /> <select name="weightunit"> <option value="g" {if $product['weightunit']=='g'}selected="selected"{/if}>克</option> <option value="kg" {if $product['weightunit']=='kg'}selected="selected"{/if}>千克</option> </select> </td> </tr> <tr> <td bgcolor="#F4F8FC">最少需要多少人购买才算{TUANGOU_STR}成功：</td> <td align="right"><input name="successnum" type="text" id="successnum" value="{$product['successnum']}" /></td> </tr><tr> <td bgcolor="#F4F8FC">虚拟购买人数：</td> <td align="right"><input name="virtualnum" type="text" id="virtualnum" value="{$product['virtualnum']}" /></td> </tr><tr> <td bgcolor="#F4F8FC">一次最多买多少产品：</td> <td align="right"><input name="oncemax" type="text" id="oncemax" value="{$product['oncemax']}" /></td> </tr><tr> <td bgcolor="#F4F8FC">一次最少买多少产品：</td> <td align="right"><input name="oncemin" type="text" id="oncemin" value="{$product['oncemin']}" /></td> </tr><tr> <td bgcolor="#F4F8FC">是否允许多次购买：</td> <td align="right"> <label><input name="mutibuy" type="radio" value="true" {if $product['mutibuy']=='true'}checked="checked"{/if} /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input name="mutibuy" type="radio" value="false" {if $product['mutibuy']=='false' || $product['mutibuy']==''}checked="checked"{/if} /> 否</label> </td> </tr><tr> <td bgcolor="#F4F8FC">显示设定：</td> <td align="right"> <label><input name="display" type="radio" id="display" value="0" {if $product['display']==0}checked="checked"{/if} /> 不在前台显示</label>
+&nbsp;&nbsp;&nbsp;
+<label><input name="display" type="radio" id="display" value="1" {if $product['display']==1}checked="checked"{/if} /> 限定城市显示</label>
+&nbsp;&nbsp;&nbsp;
+<label><input name="display" type="radio" id="display" value="2" {if $product['display']==2}checked="checked"{/if} /> 全局城市显示</label> </td> </tr><tr> <td bgcolor="#F4F8FC">显示优先级：</td> <td align="right"> <input name="order" type="text" size="3" value="{$product['order']}"/> </td> </tr><tr> <td bgcolor="#F4F8FC">详细信息：</td> <td align="right"> <div style="clear:both;"> <textarea name="content" style="width:540px; height:200px;" id="content">{$product['content']}</textarea> </div> </td> </tr> <tr> <td bgcolor="#F4F8FC">特别提示：</td> <td align="right"> <div style="clear:both;"> <textarea name="cue" style="width:540px; height:200px;" id="content">{$product['cue']}</textarea> </div> </td> </tr> <tr> <td bgcolor="#F4F8FC">他们说：</td> <td align="right"> <div style="clear:both;"> <textarea name="theysay" style="width:540px; height:200px;" id="content">{$product['theysay']}</textarea> </div> </td> </tr> <tr> <td bgcolor="#F4F8FC">天天团购说：</td> <td align="right"> <div style="clear:both;"> <textarea name="wesay" style="width:540px; height:200px;" id="content">{$product['wesay']}</textarea> </div> </td> </tr> </table> <br> <center><input type="hidden" name="id" value="{$product['id']}"><input type="submit" class="button" name="addsubmit" value="提 交"></center> </form>
+{template @admin/footer}

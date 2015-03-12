@@ -1,0 +1,90 @@
+<!--{template header}-->
+{~ui('loader')->js('@jquery.hook')}
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<!--{if $order_list}-->
+<p class="cur_title">充值记录</p>
+<ul class="cont">
+<div style="float: right;">
+<li>分类:</li>
+<li class="liL_{$tabcssall}"><a href="?mod=recharge&code=order">全部</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssyes}"><a href="?mod=recharge&code=order&pay=yes">充值成功</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssno}"><a href="?mod=recharge&code=order&pay=no">等待付款</a></li>
+</div>
+</ul>
+<div class="cont">
+<table id="report">
+<tr>
+<th style="text-align:left">充值记录流水号号</th>
+<th style="text-align:left">充值金额</th>
+<th>支付方式/支付时间</th>
+<th style="text-align:center">充值状态</th>
+</tr>  
+<!--{loop $list $one}-->
+<tr>
+<td width="40%" style="padding-left:7px;">{$one['orderid']}</td>
+<td width="20%" style="padding-left:7px;">{$one['money']}</td>
+<td width="20%" style="padding-left:7px;text-align: center;">
+{if $one['payment'] > 0}
+{echo logic('pay')->misc()->ID2Name($one['payment'])}<br/>
+{/if}
+{if $one['paytime'] > 0}
+支付时间：{echo date('Y-m-d H:i:s', $one['paytime'])}
+{else}
+等待付款
+{/if}
+</td>
+<td width="20%" style="text-align:center">
+{if $one['paytime']==0}
+{if $one['payment']==0}
+<a href="?mod=recharge&code=order&id={$one['orderid']}">去付款</a>
+{else}
+<a href="?mod=recharge&code=pay&id={$one['orderid']}&ibank=">去付款</a>
+{/if}
+&nbsp;|&nbsp;<a href="?mod=recharge&code=del&id={$one['orderid']}">取消充值</a>
+{else}
+充值成功
+{if $one['add_money'] > 0}
+<br>返现:{$one['add_money']}元
+{/if}
+{/if}
+</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+<!--{else}-->
+<p class="cur_title" >充值方式</p>
+<div class="sect"  >
+<div class="cont" >
+<form action="?mod=recharge&code=payment&op=save&id={$order['orderid']}" method="post">
+<div class="field">
+<label>订单编号：</label>
+<span style=" display:block;">{$order['orderid']}</span>
+</div>
+<div class="field">
+<label>充值金额：</label>
+<span style=" display:block;">{$order['money']}</span>
+</div>
+<div class="field">
+<!--{eval logic('pay')->html($order)}-->
+</div>
+<div class="field">
+<input type="submit" class="btn btn-primary"  value="下一步" />
+</div>
+</form>
+</div>
+</div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

@@ -1,0 +1,61 @@
+/* CSS Document */
+html, body {
+	background: #e2e2e2;
+	color: #FFFFFF;
+	font: 14px Arial, Helvetica, sans-serif;
+
+}
+.logintable {
+	border: 1px solid #296C89;
+	background: #159BD0;
+	margin-left: auto;
+	margin-right: auto;
+}
+.loginheader td {
+	height: 40px;
+	background: url(login_header.gif) repeat-x;
+	}
+input {
+	border: 1px solid #6699CC;
+	background: #FFFFFF;
+	line-height:1.5em;
+	}
+td.line1 {
+	border-bottom: 1px solid #3C8DB1;
+	}
+td.line2 {
+	border-top: 1px solid #81CDEF;
+	}
+a {
+	color: #FFFF66;
+	}
+form {
+	margin: 0px;
+}
+a:hover {
+	color: #FFFF66;
+	}
+.button {
+    margin-top:10px;
+	cursor:pointer;
+	font: 12px Arial, Helvetica, sans-serif;
+	padding: 0 6px;
+	color: #000000;
+	background: #bedeff url(bg_button.gif) repeat-x;
+
+	/*for Mozilla*/
+ 	outline: 1px solid #296c89 ;
+	border: 1px solid #FFFFFF !important;
+	height: 24px !important;
+	line-height: 22px !important;
+
+	/*for IE7*/
+	> border: 1px solid #296C89 !important;
+	> height: 26px !important;
+	> line-height: 20px !important;
+
+	/*for IE*/
+	border: 1px solid #296C89 ;
+	height: 26px;
+	line-height: 20px;
+}

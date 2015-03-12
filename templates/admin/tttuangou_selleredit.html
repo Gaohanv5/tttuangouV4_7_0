@@ -1,0 +1,117 @@
+<!--{template @admin/header}--> <script language="javascript">
+function getxy(i)
+{
+$('#update').html('商家地图位置已经修改，请提交保存');
+$('#map').val(i);
+}
+function addSellerHelper()
+{
+art.dialog({
+title: '帮助手册',
+icon: 'question',
+lock: true,
+content: document.getElementById('helper_of_addSeller'),
+yesText: '知道了',
+yesFn: true
+});
+}
+function showMapAPI()
+{
+var mapLoc = "{$seller['sellermap']}";
+if(mapLoc==""){
+var mapObj = document.getElementById('area');
+var city = mapObj.options[mapObj.selectedIndex].text;
+var url = "?mod=tttuangou&code=addmap&city="+city;
+}else{
+var url = "?mod=tttuangou&code=addmap&id="+mapLoc;
+}
+art.dialog({
+title: '您只需要点击地图上的标签到指定的地方，关闭该窗口即可，系统会自己收集您的坐标！',
+content: '<iframe src="'+url+'" width="600" height="500"></iframe>',
+padding: '0',
+fixed: true,
+resize: false,
+drag: false
+});
+}
+function map_location_translate()
+{
+art.dialog({
+title: '确认转换？',
+icon: 'question',
+lock: true,
+content: '转换前请确认您的商家坐标存在偏差（坐标转换会破坏原有坐标）',
+yesText: '开始转换',
+yesFn: map_location_translate_begin,
+noFn: true
+});
+}
+function map_location_translate_begin()
+{
+$.notify.loading('正在转换...');
+$.getJSON('?mod=lgc&code=get&path={$seller["id"]}~maplocation4google2sogou@seller', function(data){
+if (data == 'ok')
+{
+$.notify.success('转换成功！（2秒后自动刷新此页面）');
+setTimeout(function(){window.location = window.location;}, 2000);
+}
+else if(data == 'false')
+{
+$.notify.failed('转换失败！（您已经转换过，或者您的服务器无法连接到外部网络）');
+}
+else
+{
+$.notify.alert(data);
+}
+$.notify.loading(false);
+});
+}
+function ModaMoney()
+{
+art.dialog({
+title: '修改可结算金额',
+content: document.getElementById('OPBox_addMoney'),
+button: [
+{
+name: '保存',
+callback: function(){
+$.notify.loading('正在修改...');
+var money = $('#opb_value').val();
+var moneyz = $('#opb_valuez').val();
+var sid = $('#opb_sid').val();
+var opener = this;
+$.get('admin.php?mod=fund&code=money&op=save&id='+encodeURIComponent(sid)+'&money='+encodeURIComponent(money)+'&moneyz='+encodeURIComponent(moneyz), function(data){
+$.notify.loading(false);
+if (!isNaN(data))
+{
+opener.close();
+$('#account_money').html(money);$('#total_money').html(moneyz);
+}
+else
+{
+$.notify.failed(data);
+}
+});
+return false;
+}
+},
+{
+name: '关闭',
+callback: function(){
+this.close();
+}
+}
+]
+});
+}
+</script> <form action="{$action}" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">修改商家</td> </tr> <tr> <td width="20%" bgcolor="#F4F8FC">当前商家对应的管理用户：</td> <td align="right"> <a href="admin.php?mod=member&code=modify&id={$value[userid]}">{echo app('ucard')->load($seller[userid])}</a> <font style="margin-left:30px;">（<a title="如果希望该用户可进入后台添加商品等，请点此给该用户分配相应的权限" href="admin.php?mod=privs&code=edit&uid={$seller[userid]}" target="_blank">分配后台权限</a>）</font> </td> </tr> <tr><td>所在城市：</td><td><select name="area" id="area">
+{loop $city $i $value}	  
+<option value="{$value['cityid']}" {if $value['cityid']==$seller['area']}selected{/if}>{$value['cityname']}</option>
+{/loop}
+</select></td></tr> <tr> <td bgcolor="#F4F8FC">商家名称:</td> <td align="right"> <input name="sellername" type="text" value="{$seller['sellername']}" id="sellername" size="40"></td> </tr> <tr> <td bgcolor="#F4F8FC">商家地址:</td> <td align="right"> <input name="selleraddress" type="text" value="{$seller['selleraddress']}" id="selleraddress" size="90"></td> </tr> <tr> <td bgcolor="#F4F8FC">商家电话:</td> <td align="right"><input name="sellerphone" value="{$seller['sellerphone']}" type="text" id="sellerphone" size="50" /></td> </tr> <tr> <td bgcolor="#F4F8FC">审核状态:</td> <td align="right"> <select name="enabled" class="isearcher_filter_list"> <option value="true" {if 'true'==$seller['enabled']}selected{/if}>已通过</option> <option value="false" {if 'false'==$seller['enabled']}selected{/if}>未通过</option> </select> </td> </tr> <tr> <td bgcolor="#F4F8FC">与站长分成比例：</td> <td align="right"> <!--{template select_rebate}--> <input type="text" name="profit_pre" value="{$profit_pre}" id="profit_pre" /> %&nbsp;（当在具体的商品中未设置“商家结算价”时，将按此处设置的比例给站长分成。填写0或留空，则按照<a href="?mod=rebate_setting&code=show">默认的结算比例进行结算</a>）
+</td> </tr> <!--{if $seller['id_card']}--> <tr> <td bgcolor="#F4F8FC" >身份证:</td> <td align="right"><a href="{$seller['id_card']}" target="_blank"><img src="{$seller['id_card']}" width="250" height="160"></a>
+（单击图片，可以<a href="{$seller['id_card']}" target="_blank">查看原图</a>）</td> </tr> <!--{/if}--> <!--{if $seller['zhizhao']}--> <tr> <td bgcolor="#F4F8FC" >营业执照:</td> <td align="right"><a href="{$seller['zhizhao']}" target="_blank"><img src="{$seller['zhizhao']}" width="250" height="160"></a>
+（单击图片，可以<a href="{$seller['zhizhao']}" target="_blank">查看原图</a>）</td> </tr> <!--{/if}--> <tr> <td bgcolor="#F4F8FC" >累计销售额:</td> <td align="right">{$seller['money']} 元（是指该商家所有卖出产品的总计销售额=各产品单价*卖出的产品数量的总和；注意因为用户购买了可能没去消费，所以此值>=用户实际确认消费过的金额>=总结算金额）</td> </tr> <tr> <td bgcolor="#F4F8FC">商家总结算金额:</td> <td align="right"><span id="total_money">{$seller['total_money']}</span> 元（是指商家的实际销售收入=用户实际确认消费过的总金额-给站长分成后的金额）</td> </tr> <tr> <td bgcolor="#F4F8FC">商家可结算金额:</td> <td align="right"><span id="account_money">{$seller['account_money']}</span> 元 <input type="button" class="button" value="修改" onclick="ModaMoney();return false;">（即商家剩余的待结算的金额=总结算金额-已结算过的金额）
+<div id="OPBox_addMoney" style="display: none;">商家总结算金额：<input id="opb_valuez" type="text" value="{$seller['total_money']}"/><br>商家可结算金额：<input id="opb_value" type="text" value="{$seller['account_money']}"/> <input id="opb_sid" type="hidden" value="{$seller['id']}"/></div> </td> </tr> <tr> <td bgcolor="#F4F8FC">商家网站:</td> <td align="right"><input name="sellerurl" value="{$seller['sellerurl']}" type="text" id="sellerurl" size="50" /> <br />请以http://开头，例如 <a href="http://www.biniu.com" target="_blank">http://www.biniu.com</a> </td> </tr> <tr> <td bgcolor="#F4F8FC">地图位置:</td> <td align="right"> <a href="#" onclick="showMapAPI();return false;"><span id='update'>更新(将标记放到具体的位置关闭弹出窗口，然后提交保存)</span></a> <br/>如果您发现商家坐标不准确，请先<a href="#location_translate" onclick="map_location_translate();return false;">点击这里进行坐标转换</a>（Google到Sogou）
+</td> </tr> </table> <br> <center><input type="hidden" id="id" name="id" value="{$seller['id']}" /><input type="hidden" id="map" name="map" /><input type="submit" class="button" name="addsubmit" value="提 交"></center> </form>
+{template @admin/footer}

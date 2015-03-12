@@ -1,0 +1,33 @@
+<!--{template header}-->
+<div class="site-ms__left"> 
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" style="width:660px;">文章列表</p>
+<div class="sect">
+<ul class="article_detail">
+<li class="article_title">标题</li>
+<li class="article_author">来源</li>
+<li class="article_time">时间</li>
+</ul>
+<ul style="display:block; overflow:hidden;clear: both;">
+{loop $articles $article}
+<li class="article">
+<ul class="article_list">
+<li class="article_ltitle"><a href="?mod=article&code=view&id=<?=$article['id']?>">{$article['title']}</a></li>
+<li class="article_lauthor">{$article['writer']}</li>
+<li class="article_ltime">{echo date('Y-m-d H:i:s', $article['timestamp_create'])}</li>
+</ul>
+</li>
+{/loop}
+</ul>
+<div style="clear:both;"></div>
+<div class="pagem">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

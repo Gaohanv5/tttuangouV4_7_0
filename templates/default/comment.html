@@ -1,0 +1,41 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">        
+{~ui('widget')->load()}
+</div>
+<!--{~ui('loader')->css('comment')}-->
+<!--{~ui('loader')->js('@comment.ops')}-->   
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">产品评价</p>
+<div class="sect">
+<p style="font-size:16px; font-weight:600;">{$product['name']}</p>
+<p>{$product['intro']}</p>
+<p><img src="{echo imager($product['imgs'][0], IMG_Normal)}"></p>
+</div>
+<div class="cont">
+<div class="comment-form">
+<form id="comment-form" action="index.php?mod=comment&code=submit&oid={$order_id}" method="post" enctype="multipart/form-data">
+<p class="p-sbox">
+评分：
+<ul class="comment-rating comment-rating-current">
+<li id="comment-score-displayer" style="z-index:0; display: list-item; width:0%;"></li>
+<li id="comment-score-selector" class="comment-score-selector"></li>
+</ul>
+<input id="i-comment-score" type="hidden" name="score"/>
+</p>
+<p class="p-title">内容：</p>
+<textarea name="content"></textarea>
+<p class="p-sbox">晒图：<input type="file" name="commentimg"/></p>
+<div class="comm_btn_area">
+<label for="anonymous"><input type="checkbox" value="1" id="anonymous" name="anonymous"> 匿名</label>	<input type="submit" class="btn btn-primary" value="发布" style="_margin-left:0;" />
+</div>
+</form>
+<div id="comment-form-loading" class="comment-form-loading"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

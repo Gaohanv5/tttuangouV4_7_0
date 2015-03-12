@@ -1,0 +1,25 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('@jquery.hook')}
+{~ui('loader')->js('#admin/js/sdb.parser')}
+{~ui('loader')->js('#admin/js/cplace.mgr.ajax')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="5">城市区域管理 / 当前城市：<font color="red">{$city['cityname']}</font></td> </tr> <tr class="banner"> <td colspan="5">
+区域名称可直接编辑，编辑完成后系统会自动保存
+</td> </tr> <tr class="tr_nav"> <td width="6%">编号</td> <td width="36%">区域名称</td> <td width="20%">更新时间</td> <td width="6%" title=点击可设置该区域为热门商圈>热门商圈</td> <td width="6%">管理</td> </tr> <!--{loop $places $i $topclass}-->
+{eval
+$mclass = $topclass;
+unset($mclass['streets']);
+$topclass['streets'] || $topclass['streets'] = array();
+array_unshift($topclass['streets'], $mclass);
+$topclass['streets'][0]['master'] = true;
+$parentID = $mclass['id'];
+$parent = $mclass['name'];
+}
+<!--{loop $topclass['streets'] $i $class}--> <tr> <td>{$class['id']}</td> <td>{echo $class['master'] ? '' : $parent.' / '}<font class="dbf" src="id:{$class['id']}@city_place/name">{$class['name']}</font>{echo $class['master'] ? ' / <a href="javascript:;" onclick="__cplace_add(\'region\', '.$parentID.')">添加街道</a>' : ''}</td> <td>{echo date('Y-m-d H:i:s', $class['timestamp_update'])}</td> <td><a href="javascript:;" onclick="__cplace_hot('{$class[id]}');">{if $class[hot]}<img id="__cplace_hot_img_{$class[id]}" src="templates/admin/images/btn_enable.png" title="已启用，点击可设置和关闭；当前热门排序 {$class[hotorder]}" />{else}<img id="__cplace_hot_img_{$class[id]}" src="templates/admin/images/btn_disable.gif" title="未启用，点击可开启和设置" />{/if}</a></td> <td><a href="javascript:;" onclick="__cplace_del($class['id'], after_cplace_delete)">删除</a></td> </tr> <!--{/loop}--> <!--{/loop}--> <tr class="tips"> <td colspan="5"> <a href="javascript:;" onclick="__cplace_add('city', $cityId)">添加地区</a> </td> </tr> </table> <script type="text/javascript">
+$.hook.add('cplace.add.finish', function(id){
+location.href = location.href;
+});
+function after_cplace_delete(id)
+{
+location.href = location.href;
+}
+</script> <!--{template @admin/footer}-->

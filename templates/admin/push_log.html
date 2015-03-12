@@ -1,0 +1,61 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('@jquery.thickbox')}
+{~ui('loader')->css('@jquery.thickbox')}
+{~ui('loader')->js('#admin/js/push.mgr')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="7"> <b>推送日志</b> - <a href="?mod=push&code=queue">[ 返回队列 ]</a> </td> </tr> <tr> <td colspan="7">
+{if $path}
+<div class="is_button"> <a href="?mod=push&code=log&type=sms">全部日志</a> </div> <div class="is_current">
+{$path}
+</div>
+{else}
+<div class="{echo $type == '' ? 'is_current' : 'is_button'}">
+{echo $type == '' ? '全部日志' : '<a href="?mod=push&code=log">全部日志</a>'}
+</div> <div class="{echo $type == 'sms' ? 'is_current' : 'is_button'}">
+{echo ($type == 'sms' && $status != 'failed') ? '短信日志' : '<a href="?mod=push&code=log&type=sms">短信日志</a>'}
+</div> <div class="{echo $type == 'mail' ? 'is_current' : 'is_button'}">
+{echo $type == 'mail' ? '邮件日志' : '<a href="?mod=push&code=log&type=mail">邮件日志</a>'}
+</div> <div class="is_button"> <a href="?mod=push&code=log&op=clear" onclick="return confirm('确认删除吗？');">删除一周前的邮件日志</a> </div> <div class="{echo $status == 'failed' ? 'is_current' : 'is_button'}">
+{echo $status == 'failed' ? '查看最近发送失败的短信' : '<a href="?mod=push&code=log&type=sms&status=failed">查看最近发送失败的短信</a>'}
+</div>
+{/if}
+</td> </tr> <tr class="tr_nav"> <td width="10%">类型</td> <td width="10%">目标</td> <td>数据</td> <td width="16%">原始结果</td> <td width="16%">发送时间</td> <td width="8%">管理</td> </tr> <!--{loop $list $one}-->
+{eval $packexps = ($one['type']=='sms'&&substr($one['target'],0,1)=='@')?true:false}
+{eval $broadcast = ($one['type']=='sms'&&strstr($one['target'],';'))?true:false}
+<tr id="tr_of_{$one['id']}"> <td>{$one['type']}/{$one['driver']}</td> <td>
+{if $packexps}
+群发拆包
+{elseif $broadcast}
+群发模式
+{else}
+{$one['target']}
+{/if}
+</td> <td>
+{eval
+$data = $one['data'];
+if ($one['type']=='mail')
+echo $data['subject'].' [<a href="admin.php?mod=push&code=manage&op=preview&table=log&id='.$one['id'].'&keepThis=true&TB_iframe=true&height=300&width=500" title="'.$data['subject'].'" class="thickbox">查看邮件内容</a>]';
+else
+echo $data['content'];
+}
+</td> <td>
+{if $one['status'] == 'failed'}
+{echo ifaq($one['result'])}
+{else}
+{$one['result']}
+{/if}
+</td> <td>{echo date('Y-m-d H:i:s', $one['update'])}</td> <td>
+{if $packexps}
+{else}
+[ <a href="javascript:;" onclick="push_resend({$one['id']})" title="重发确认">重发</a> ]
+{/if}
+{if $one['type'] == 'mail'}
+{if time() - $one['update'] > 604800}
+[ <a href="javascript:;" onclick="push_data_delete(this, 'log', '{$one['id']}')">删除</a> ]
+{else}
+[ <font color="#cccccc" title="不可以删除发送时间在一周之内的邮件">删除</font> ]
+{/if}
+{/if}
+</td> </tr> <!--{/loop}--> <tr class="footer"> <td colspan="7">
+{~page_moyo()}
+</td> </tr> </table>
+{template @admin/footer}

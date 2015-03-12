@@ -1,0 +1,44 @@
+<!--{template tttuangou_header}-->
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">账户充值</p>
+<div class="sect">
+<div class="cont"><span class="B R">充值金额：{$this->Post['money']}元</span>（充值后可在我的{TUANGOU_STR}：我的余额中看到）<BR>
+<span class="B">充值编号：{$pay['orderid']}</span></div>
+<div class="sect">
+<ul class="typelist">
+{if $this->Post['paytype']==1 }
+<li><img src="images/alipay.gif" /></li>
+{elseif $this->Post['paytype']==2}
+<li><img src="images/tenpay.gif" /></li>
+{elseif $this->Post['paytype']==4}
+<li><img src="images/kuaiqian.bmp" /></li>
+{else}
+<li><img src="images/chinabank.gif" /></li>
+{/if}
+</ul>
+<div class="clear"></div>
+<p class="check_act">
+{if $pay['is_cod']==1}
+{$pay['pay_desc']}
+{else}
+{$bottom}
+{/if}
+<a style="margin-left:1em;" href="?mod=me&code=addmoney"> 或返回修改充值金额、支付方式</a> 
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+<!--{template "tttuangou_myfinder"}-->
+<div class="t_area_out">
+<h1>常见问题</h1>
+<div class="t_area_in">
+</div>
+</div>
+</div>
+</div>
+<!--{template tttuangou_footer}-->

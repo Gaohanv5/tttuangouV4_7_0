@@ -1,0 +1,65 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name pay.selector.css * @date 2014-09-01 17:24:23 */ .paytype_list {
+	margin: 10px auto;
+	padding: 10px 20px 15px 20px;
+	border: 0;
+	background: #f9f9f9;
+}
+.paytype_list .title {
+	padding: 7px 0;
+	font-weight: 600;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+	font-weight: 600;
+	padding-bottom: 5px;
+	color: #333;
+	margin: 0 0 10px;
+}
+#payment_clear {
+	height: 20px;
+}
+#payment_total_money {
+	position: absolute;
+	font-weight: 600;
+}
+#payment_remain_money {
+	position: absolute;
+	display: none;
+	font-weight: 600;
+}
+.P_diso {
+	border-bottom: 1px #eee solid;
+	padding-bottom: 13px;
+	margin-bottom: 15px;
+}
+.pay_tr b {
+	font-weight: 500;
+}
+.pay_tr em {
+	background: #fff;
+	background: #fff;
+	width: 135px;
+	float: left;
+	padding: 2px;
+	border: 1px solid #eee;
+	padding-left: 10px;
+	height: 40px;
+	line-height: 40px;
+	vertical-align: middle;
+}
+.pay_tr em img {
+	vertical-align: middle;
+}
+.submit_div {
+	margin: 10px 0 20px;
+	float: right;
+}
+.submit_div .back_rem {
+	text-align: right;
+	padding: 10px 0;
+}
+#timeLimit {
+	text-align: right;
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+}

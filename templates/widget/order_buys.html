@@ -1,0 +1,28 @@
+<SCRIPT type=text/javascript>
+function AutoScroll(obj){
+$(obj).find("ul:first").animate({
+marginTop:"-39px"
+},500,function(){
+$(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+});
+}
+$(document).ready(function(){
+setInterval('AutoScroll("#buyer_scroll")',3000);
+});
+</SCRIPT>
+<div class="t_area_out ">
+<h1>最近购买</h1>
+<div class="t_area_in">
+{eval $buys = logic('order')->recent_buys()}
+<div id="buyer_scroll">
+<ul >
+{loop $buys $buy}
+<li>
+{$buy['user_name']} [{$buy['user_phone']}] 购买了
+<a href="?view={$buy['product_id']}">{$buy['product_name']}</a>
+</li>
+{/loop}
+</ul>
+</div>
+</div>
+</div>

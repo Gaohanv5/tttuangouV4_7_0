@@ -1,0 +1,29 @@
+<!--{if 'true' == $cfg['dsp']['displayAll'] || true === INDEX_DEFAULT || empty($_GET) || (1 == count($_GET) && 'index' == $_GET['mod']) || empty($_SERVER['QUERY_STRING'])}-->
+{~ui('loader')->css('@jquery.smallslider')}
+{~ui('loader')->js('@jquery.smallslider')}
+<div id="smallslider_top" class="smallslider smallslider_top">
+{if 'true' == $cfg['dsp']['canClose']}<em class="smallslider_top_close" title="关闭">关闭</em>{/if}
+<ul>
+{loop $cfg['list'] $id $one}
+<li><a href="{$one['link']}" target="{$one['target']}"><img {echo 'sr'.'c="'.ini('settings.site_url').'/'.$one['image']}" alt="{$one['text']}" width="1200" height="60" /></a></li>
+{/loop}
+<em class="smallslider_top_close">关闭显示</em>
+</ul>
+<script>$(".smallslider_top_close").click(function(){$(".smallslider_top").hide();});</script>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#smallslider_top').smallslider({
+time: {echo intval($cfg["dsp"]["time"])*1500},
+onImageStop: true,
+switchEffect: 'fadeOut',
+switchPath: '{$cfg["dsp"]["switchPath"]}',
+switchEase: 'easeOutSine',
+showText: {$cfg["dsp"]["showText"]},
+showButtons: {$cfg["dsp"]["showButtons"]},
+textSwitch: 2,
+textAlign: 'left'
+});
+});
+</script>
+<!--{/if}-->

@@ -1,0 +1,37 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">
+日志中心 &gt;&gt; 清理
+</td> </tr> <tr> <td width="10%" class="td_title">手动清理：</td> <td>
+清理 <b>一周以前</b> ，类型为
+<select id="mc_type">
+{loop $hooks $hFlag $hName}
+<option value="{$hFlag}">{$hName}</option>
+{/loop}
+</select>的系统日志
+<input type="button" class="wbutton" value="开始清理" onclick="clear_manual()" /> </td> </tr> <tr style="display: none;"> <td class="td_title">自动清理：</td> <td>
+清理 <b>一周以前</b> ，类型为
+<select name="type">
+{loop $hooks $hFlag $hName}
+<option value="{$hFlag}">{$hName}</option>
+{/loop}
+</select>的系统日志
+<input type="button" class="wbutton" value="保存设定" /> </td> </tr> </table> <script type="text/javascript">
+function clear_manual()
+{
+if (!confirm('确认删除吗？操作不可恢复！')) return;
+var mc_type = $('#mc_type').val();
+$.notify.loading('正在清理中...');
+$.get('?mod=zlog&code=clear&op=manual&type='+mc_type+$.rnd.stamp(), function(data){
+$.notify.loading(false);
+var eff = parseInt(data);
+if (isNaN(eff))
+{
+$.notify.failed('清理失败！<hr/>'+data);
+}
+else
+{
+$.notify.success('清理完成！已经删除 '+eff.toString()+' 条记录');
+}
+});
+}
+</script>
+{template @admin/footer}

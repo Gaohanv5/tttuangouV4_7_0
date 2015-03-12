@@ -1,0 +1,39 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('@jquery.thickbox')}
+{~ui('loader')->css('@jquery.thickbox')}
+{~ui('loader')->js('#admin/js/push.mgr')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="6"> <b>推送队列</b> - <b style="color:#FF0000">{if $rund == 'true'}已发送的{else}未发送的{/if}</b> </td> </tr> <tr class="tr_nav"> <td width="8%" bgcolor="#F4F8FC">类型</td> <td width="10%" bgcolor="#F4F8FC">目标</td> <td bgcolor="#F4F8FC"> <div class="tr_select">
+数据 [
+<form style="display:inline;" action="?mod=push&code=queue&op=clear&rund={$rund}" method="post" onsubmit="return confirm('确认要删除吗？')">
+删除 - <input name="clear_time" type="text" size="2" /> <select name="clear_unit" class="isearcher_select_list"> <option value="s">秒</option> <option value="m">分钟</option> <option value="h">小时</option> <option value="d">天</option> </select> <select name="clear_type" class="isearcher_select_list"> <option value="out">前</option> <option value="in">内</option> </select>
+的内容
+<input type="submit" value="确定" class="is_submit_button" /> </form>
+]
+</div> </td> <td width="12%" bgcolor="#F4F8FC">
+状态 [
+{if $rund == 'true'}
+<a href="?mod=push&code=queue&rund=false">切换</a>
+{else}
+<a href="?mod=push&code=queue&rund=true">切换</a>
+{/if}
+]
+</td> <td width="12%" bgcolor="#F4F8FC">结果</td> <td width="8%" bgcolor="#F4F8FC">管理</td> </tr> <!--{loop $list $one}--> <tr id="tr_of_{$one['id']}"> <td>{$one['type']}</td> <td>{echo ($one['type']=='sms'&&strlen($one['target'])>11)?'群发模式':$one['target']}</td> <td>
+{eval
+$data = $one['data'];
+if ($one['type']=='mail')
+echo $data['subject'].' [<a href="admin.php?mod=push&code=manage&op=preview&table=queue&id='.$one['id'].'&keepThis=true&TB_iframe=true&height=300&width=500" title="'.$data['subject'].'" class="thickbox">查看邮件内容</a>]';
+else
+echo $data['content'];
+}
+</td> <td>
+{if $one['rund'] == 'true'}
+已经发送<br/><font title="发送于 {echo timebefore($one['update'])}">{echo date('Y-m-d H:i:s', $one['update'])}</font>
+{else}
+等待发送
+{/if}
+</td> <td>{$one['result']}</td> <td>
+[ <a href="javascript:;" onclick="push_data_delete(this, 'queue', '{$one['id']}')">删除</a> ]
+</td> </tr> <!--{/loop}--> <tr class="footer"> <td colspan="6">
+{~page_moyo()}
+</td> </tr> </table> <a href="?mod=push&code=log" class="back1 back2">查看日志 </a>
+{template @admin/footer}

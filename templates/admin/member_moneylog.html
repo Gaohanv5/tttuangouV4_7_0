@@ -1,0 +1,13 @@
+<!--{template @admin/header}-->
+{~ui('isearcher')->load('admin.member_moneylog')}
+<table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <thead> <tr class="header"> <td colspan="5">用户消费明细</td> </tr> <tr class="tr_nav"> <td width="15%">用户名</td> <td width="15%">项目</td> <td width="15%">金额</td> <td width="15%">时间</td> <td>详细</td> </tr> </thead> <tbody> <!--{loop $list $one}--> <tr id="ro_on_{$one['id']}"> <td>
+{echo app('ucard')->load($one['userid'])}
+</td> <td>
+{$one['name']}
+</td> <td> <font style="font-size:12pt;font-weight:bold;color:{if $one['type']=='plus'}blue;">+{else}red;">-{/if}</font> {$one['money']}
+</td> <td>
+{eval echo date('Y-m-d H:i:s',$one['time']);}
+</td> <td>
+{$one[intro]}
+</td> </tr> <!--{eval $tmoney = ('plus' == $one['type'] ? $tmoney + $one['money'] : $tmoney - $one['money']);}--> <!--{/loop}--> </tbody> <tfoot> <tr><td colspan="5">本页金额合计：{$tmoney}</td></tr> <tr> <td colspan="5">{~page_moyo()}</td> </tr> </tfoot> </table>
+{template @admin/footer}

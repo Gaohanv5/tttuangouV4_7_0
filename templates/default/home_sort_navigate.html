@@ -1,0 +1,12 @@
+{if $sorts}
+<div class="site-fs__sort_w" >
+<div class="site-fs__sort">
+<div class="site-fs__sort-s ">
+{loop $sorts $key $sort}
+<a href="{$sort['url']}" class="{if $sort['selected']}selected{/if}" title="{$sort['title']}">{$sort['name']}</a>
+{/loop}
+</div>
+<div style="clear: both;  height:0px; overflow:hidden;"></div>
+</div>
+</div>
+{/if}

@@ -1,0 +1,171 @@
+<!--{template header}-->
+{~ui('loader')->css('@jquery.tipTip')}
+{~ui('loader')->css('@buy.checkout')}
+{~ui('loader')->css('@jquery.validationEngine')}
+{~ui('loader')->js('@jquery.tipTip')}
+{~ui('loader')->js('@jquery.hook')}
+{~ui('loader')->js('@jquery.cache')}
+{~ui('loader')->js('@jquery.form')}
+{~ui('loader')->js('@jquery.validationEngine.cn')}
+{~ui('loader')->js('@jquery.validationEngine')}
+<script type="text/javascript">
+	var product_array = new Array();
+	<!--{loop $cartItems $product}-->
+		product_array.push({'productid':{$product['id']},
+		'price':{$product['nowprice']},
+		'oncemax':{$product['oncemax']},
+		'oncemin':{$product['oncemin']},
+		'surplus':{$product['surplus']},
+		{if $product['type'] == 'stuff'}
+		'weight':{$product['weight']}
+		{/if}
+		});
+	<!--{/loop}-->
+	function order_finish(id)
+	{
+		window.location = '{~rewrite("?mod=buy&code=order&id=")}'+id;
+	}
+</script>
+{~ui('loader')->js('@buy.checkout', UI_LOADER_ONCE)}
+<div class="site-ms__left">
+	<div class="t_area_out">
+		<div class="t_area_in">
+			<p class="cur_title">
+				我的购物车
+			</p>
+			<div class="sect" style="display:block">
+				<table id="report" style="border:1px solid #eee;">
+				<tr>
+					<th style="text-align:left">
+						{TUANGOU_STR}项目
+					</th>
+					<th>
+						价格
+					</th>
+					<th>
+						&nbsp;
+					</th>
+					<th>
+						数量/类型
+					</th>
+					<th>
+						小计
+					</th>
+					<th>
+						操作
+					</th>
+				</tr>
+				<style>
+#report th{border-bottom:1px solid #d2d2d2;}
+				</style>
+				<!--{loop $cartItems $product}-->
+				<tr class="list_tr">
+					<td width="35%" style="padding-left: 10px;">
+						<a href="?view=$product['id']" target="_blank">
+						<img class="order_img2" src="{$product[img_url]}" title="{$product[flag]}">
+{$product['flag']}								
+						</a>
+					</td>
+					<td width="10%" style="text-align:center;">
+						&yen; {$product['nowprice']}
+					</td>
+					<td width="1%" style="text-align:center;">
+						&nbsp;
+					</td>
+					<td width="10%" style="text-align:center;">
+						<input type="text" name="num_buys[{$product['id']}]" id="num_buys[{$product['id']}]" productid="{$product['id']}" oncemin="{$product['oncemin']}" value="{$product['num']}" maxlength="4" class="input_text f_input2">
+{eval $isExitAttr = logic('attrs')->get($product['id']);}
+{if $isExitAttr}
+						<p id="product_attrs_{$product['id']}" onclick="javascript:$('#product_attrs_list_{$product['id']}').fadeIn(100); $('#product_attrs_list_{$product['id']}').show();">
+							<b class="product_attrs_b">选择商品类型</b>
+						</p>
+						<div id="product_attrs_list_{$product['id']}" class="pro-attrs-popover" style="display:none;">
+							<!--{eval logic('attrs')->html($product)}-->
+						</div>
+						<p id="product_attrs_text_{$product['id']}" style="font-size:12px;">
+						</p>
+						<div class="product-attrs-popover">
+						</div>
+{/if}
+					</td>
+					<td width="14%" style="text-align:center;">
+						<span class="B R">&yen; 
+						<span id="price_product_{$product['id']}">{eval echo $product['nowprice']*$product['oncemin']}</span>
+						</span>
+						<p id="product_weight_{$product['id']}" style="color:#999;">
+							{$product['weight']}
+						</p>
+					</td>
+					<td width="10%" style="text-align:center;">
+						<a href="{eval echo $this->Config[site_url]; }/index.php?mod=mycart&code=delCart&id={$product[id]}">删除</a>
+					</td>
+				</tr>
+				<tr class="wig_tr">
+					<td colspan="6">
+						<!--{eval logic('express')->html($product)}-->
+					</td>
+				</tr>
+				<!--{/loop}-->
+				<tr class="wig_tr">
+					<td colspan="6">
+						<!--{eval logic('notify' )->html($product)}-->
+						<!--{eval logic('address')->html($cartItems)}-->
+						<script>								
+						//express_display(28,91);
+						//express_display(28,17);
+						</script>
+					</td>
+				</tr>
+				</table>
+			</div>
+			<p class="cur_title" style="display:none">
+				提交订单
+			</p>
+			<div class="sect">
+				<table class="price_calc">
+				<tr id="tr_card_price">
+					<td class="left">
+						&nbsp;
+					</td>
+					<td class="right" style="margin:0; padding:0; text-align:right;">
+							代金券减免:
+						<span class="R" style="margin:0px; padding:0px; margin-left:10px;">	&yen;-</span>
+						<font id="card_price" class="price" style="margin:0px; padding:0px;">0.00</font>
+					</td>
+				</tr>
+				<tr id="tr_price_total">
+					<td class="left">
+						&nbsp;
+					</td>
+					<td class="right" style="margin:0; padding:0; text-align:right;">
+							应付总额:
+						<span class="R" style="margin:0px; padding:0px; margin-left:10px;">	&yen;</span><font id="price_total" class="price" style="margin:0px; padding:0px;">
+{echo $product['nowprice']*$product['oncemin']}
+						</font>
+					</td>
+				</tr>
+				</table>
+				<div class="submit_div">
+					<form id="checkout_submit" action="?mod=buy&code=checkout&op=save" method="post">
+						<input id="product_id" name="product_id" type="hidden" value="200"/>
+						<!--{loop $cartItems $product}-->
+						<input id="product_id[{$product['id']}]" type="hidden" name="product_id[{$product['id']}]" value="{$product['id']}"/>
+						<!--{/loop}-->
+订单附言：
+						<br/><textarea class="extmsg" name="extmsg"></textarea><br/><br/>
+						<input id="checkout_submit_button" type="submit" value="确认无误，下订单" name="buy" class="btn btn-primary" style="margin-right:0;"/>
+						<font id="submit_status"></font>
+					</form>
+				</div>
+				<div class="pro-attrs-cat-tips">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">fizinit();</script>
+<div class="site-ms__right">
+<!--{~ui('widget')->load()}-->
+</div>
+</div>
+<!--{template footer}-->

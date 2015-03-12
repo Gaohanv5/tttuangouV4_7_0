@@ -1,0 +1,3 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/recharge.card.generate')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">生成充值卡 / <a href="?mod=recharge&code=card">[ 返回 ]</a></td> </tr> <tr> <td class="td_title">充值卡面额</td> <td> <input id="card_price" type="text" value="10.00" /> </td> </tr> <tr> <td class="td_title">生成份数</td> <td> <input id="card_nums" type="text" value="1" /> </td> </tr> <tr> <td class="td_title">状态</td> <td> <font id="generate_result">等待生成</font> </td> </tr> <tr> <td class="tr_nav tr_center" colspan="2"> <input id="btn_create" type="button" class="button" name="submit" value=" 生 成 " /> </td> </tr> </table> <!--{template @admin/footer}-->

@@ -1,0 +1,85 @@
+{if $product['name'] != ''}
+{eval
+$imageurl = imager($product['img'], IMG_Normal);
+$producturl = ini('settings.site_url').'/?view='.$product['id'];
+$saves = $product['price']-$product['nowprice'];
+}
+var tuan_data = {
+'name': '{$product['name']}',
+'flag': '{$product['flag']}',
+'price': '&yen;{$product['price']}',
+'nowprice': '&yen;{$product['nowprice']}',
+'discount': '{$product['discount']}折',
+'saves': '&yen;{$saves}',
+'buyers': {$product['succ_buyers']},
+'total': {$product['maxnum']},
+'sell': {$product['sells_count']},
+'surplus': {$product['surplus']}
+};
+var tuan_product_url = '{$producturl}';
+var tuan_product_image = '{$imageurl}';
+var tuan_time_life = {$product['time_remain']};
+{else}
+var tuan_data = {
+'name': '暂无{TUANGOU_STR}',
+'price': '&yen;0',
+'nowprice': '&yen;0',
+'discount': '0折',
+'saves': '&yen;0',
+'buyers': 0,
+'total': 0,
+'sell': 0,
+'surplus': 0
+};
+var tuan_product_url = '/';
+var tuan_product_image = '';
+var tuan_time_life = 0;
+{/if}
+var hour;
+var minute;
+var second;
+var msecond=9;
+var str;
+function tuan_showtime()
+{
+if (tuan_time_life<0) return;
+var fillM = '';
+var fillS = '';
+hour = Math.floor(tuan_time_life/3600);
+iless = tuan_time_life%3600;
+minute = Math.floor(iless/60);
+if (minute<10) fillM = '0';
+second = iless%60;
+if (second<10) fillS = '0';
+if (msecond>0)
+{
+msecond --;
+}
+else
+{
+msecond = 9;
+tuan_time_life --;
+}
+if(tuan_time_life<=0)
+{
+$('#tuan_time_life').html('{TUANGOU_STR}结束');
+return;
+}
+str = '';
+if(hour!=0) str+='<b id="hour_index">'+hour+'</b>小时';
+if(minute!=0 || hour!=0) str+='<b id="min_index">'+fillM+''+minute+'</b>分';
+str+='<b id="second_index">'+fillS+''+second+'.'+msecond+'</b>秒';
+$('#tuan_time_life').html(str);
+}
+$(document).ready(function()
+{
+tuan_showtime();
+setInterval(tuan_showtime,100);
+// data
+for (key in tuan_data)
+{
+try{$('#tuan_'+key).html(tuan_data[key]);}catch(e){}
+}
+$('.tuan_product_url').attr('href', tuan_product_url);
+$('#tuan_product_image').attr('src', tuan_product_image);
+});

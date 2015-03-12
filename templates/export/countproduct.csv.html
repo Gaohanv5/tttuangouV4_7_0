@@ -1,0 +1,5 @@
+交易时间:{$ltime}{echo "\n"}
+产品ID,产品名称,商家帐号,商家名称,购买人数,售出份数,交易总额{echo "\n"}
+{loop $list $i $data}
+{$data['id']},{$data['productname']},{$data['username']},{$data['sellername']},{$data['ordercount']},{$data['productcount']},￥{$data['moneycount']}{echo "\n"}
+{/loop}

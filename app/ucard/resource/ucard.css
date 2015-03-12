@@ -1,0 +1,51 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name ucard.css * @date 2011-12-07 13:42:08 */ .ucard {
+	background: url(bg_card.png) no-repeat;
+	padding-left: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.ucard:hover {
+	background: url(bg_card_hover.png) no-repeat;
+}
+
+.ucard_box {
+	position: absolute;
+	background: #fff;
+	border: 2px solid #C7C7C7;
+	z-index: 10001;
+	padding: 6px 12px;
+	white-space: nowrap;
+}
+.ucard_box_loading {
+	width: 16px;
+	height: 16px;
+	background: url(loading_card.gif) no-repeat;
+}
+
+.ucard_table {
+	
+}
+.ucard_table a {
+	color: #4195E2;
+	text-decoration: none;
+}
+.ucard_table td {
+	padding: 5px 8px;
+	border-bottom: 1px solid #A0CDFA;
+}
+.ucard_td_left {
+	text-align: right;
+	background: #A0CDFA;
+	border-bottom: 1px solid #FFF !important;
+}
+.ucard_td_center {
+	text-align: center;
+}
+
+.ucard_input_text {
+	width: 300px;
+}
+.ucard_input_textarea {
+	width: 300px;
+	height: 100px;
+}

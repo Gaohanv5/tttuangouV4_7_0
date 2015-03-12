@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>升级记录</title>
+	<style>
+		a {color: #336699;text-decoration: none;}
+		a:hover {text-decoration: underline;}
+	</style>
+</head>
+  <body>
+	<div style="padding:10px">
+	<h2 style="margin:0px">更新内容</h2>
+    <h4 style="color:red;margin-bottom:-20px;">商业用户可在第一时间享受升级服务，试用版用户需在2个月后才能升级最新版，具体升级时间以官方公布为准--<a target=_blank href="http://www.tttuangou.net/price.html">试用版用户点此直接升级为商业授权版，享受最新服务</a></h4>
+    <h4 style="margin-bottom:-10px;"> <a target=_blank href="http://www.tttuangou.net/price.html">购买客户端</a> | 升级客户端请联系QQ客服：&nbsp;<a onclick="javascript:window.open('http://bizapp.qq.com/webc.htm?new=0&amp;sid=800058566&amp;o=ijuhe.net&amp;q=7', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" href="javascript:void(0)"><img src="http://www.tttuangou.net/images/qq.jpg">800058566</a></h4>
+	<div style="width:40%;float:left;padding-right:5px">				
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.7.0 build201412** --</h4>
+		<p style="font-size: 12px;">	
+			新增内容：<br>
+			<br>1 增加微信端打开3G页面显示“继续访问电脑版”链接
+			<br>2 新增购物车功能和可在后台关闭购物车的设置选项 -- <a href="/admin.php?mod=tttuangou&code=varshow">点此设置</a>
+			<br>3 商品详情页面加上商家营业时间
+			<br>4 新增微信扫一扫下载客户端二维码出现提示信息页面 -- <a target=_blank href="/?mod=downapp">点此查看</a>
+			<br>5 增加后台编辑用户时扣费/充值权限的控制 -- 在权限/用户管理中设置
+			<br>6 新增开团提醒功能，未开始的团购可以提前展示，用户可以通过短信或邮件关注即将开团的产品 -- <a target=_blank href="/?mod=about_to_begin">点此查看</a>
+			<br>7 右侧新增最新资讯板块 -- <a href="/admin.php?mod=widget&code=block">点此查看</a>
+			<br>8 增加QQ首次登录后跳转到密码修改的页面 -- <a target=_blank href="/?mod=account&code=login">点此查看</a>
+			<br>9 新增用户消费明细记录，可以集中显示网站给用户充值/扣费的信息 -- <a href="/admin.php?mod=member&code=moneylog">点此查看</a>
+			<br>10 批量验证时提示总共选择了多少张券 -- <a target=_blank href="/?mod=list&code=ckticket">点此查看</a>
+			<br>11 新增分类图标删除功能 -- <a href="/admin.php?mod=catalog">点此查看</a>
+            <br>12 新增热门产品推荐权限控制 -- 在权限/购物管理
+            <br>
+			<br>
+			修复内容：<br>
+			<br>1 修复多分类图标在编辑时不做任何操作会被删除的问题 -- <a href="/admin.php?mod=catalog">点此查看</a>	
+			<br>2 修复轮播图片和手机下载二维码图片显示层级的问题
+			<br>3 修复使用邮件找回密码是提示用户名为空的问题 -- <a target=_blank href="/?mod=get_password">点此查看</a>
+			<br>4 修复导出订单时显示未支付的问题
+			<br>5 修复400电话验证后不能评论的问题（400电话验证开通直接联系天天客服QQ）
+			<br>6 修复400电话验证后没有返现和积分的问题（400电话验证开通直接联系天天客服QQ）
+			<br>7 修复限时抢购列表没有分页的问题 -- <a target=_blank href="/?mod=countdown">点此查看</a>
+			<br>8 修复后台操作订单为交易完成时，无法评论订单的问题
+			<br>9 修复某些情况下的实物交易完成之后，无法进行评价的问题
+			<br>10 修复后台修改zuitu导过来的用户密码后不能正常登录的问题
+			<br>11 修复手机端支付帮助中{TUANGOU_STR}字样
+			<br>12 修复皮肤切换时重复跳转的问题
+			<br>13 修复美团模板首页热门团购中“团购”字样不随后台修改而改变的问题 -- <a href="/admin.php?mod=setting&code=modify_normal">点此查看</a>	
+			<br>14 修复切换城市后不跳转到首页的问题 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>15 修复后台用户提现列表中的时间筛选问题 -- <a href="/admin.php?mod=setting&code=modify_normal">点此查看</a>
+			<br>16 修复网站顶部滚动广告是无法去除关闭按钮的问题 -- <a href="/admin.php?mod=ad&code=config&flag=howdow">点此设置</a>
+			<br>17 修复限时抢购商品的库存问题
+			<br>18 修复使用手机浏览器访问客户端下载页面时，点击继续访问电脑版跳转出错的问题
+			<br>19 修复商家评论 图片悬浮放大显示不全的问题
+            <br>
+			<br>
+			优化内容：<br>
+			<br>1 清理缓存的时候将API的字段缓存也清理掉
+			<br>2 团购券查询页面，相关团购券显示修正 -- <a target=_blank href="/?mod=list&code=ckticket">点此查看</a>
+			<br>3 分成金额计算方式改为“4舍5入”并保留小数点后3位
+			<br>4 多分类添加图片logo后显示样式的调整 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>5 后台“产品添加页面”使用新标签页打开时的显示样式调整
+			<br>6 优化本单详情部分图片，改为父级最大宽度
+			<br>7 优化评论页面图片展示方式调整
+			<br>8 调整后台商家结算时确认结算后直接跳转到结算页面 -- <a href="/admin.php?mod=fund&code=order">点此查看</a>	
+			<br>9 分类下的数量统计加上缓存，提高性能
+			<br>10 支付宝移动支付的配置页面不允许公钥的修改 -- <a href="/admin.php?mod=payment&code=config&flag=alipaymobile">点此查看</a>
+			<br>11 增加账户低于1元提现时的无法提现原因提示 -- <a target=_blank href="/?mod=cash">点此查看</a>
+			<br>12 下单时默认选择第一个地址为收货地址
+            <br>13 新增商品图片宽度控制，可以防止用户上传的图片不规范而导致图片轮播显示是的问题
+            <br>14 新增后台产品列表中未开团的产品运行状态中显示开团时间
+            <br>15 优化美团模板显示抢购计时器位置
+			<br>
+			<br>
+			其他内容：<br> 
+			<br>1 老版的数据库操作库中也加上SQL安全检测，防止注入
+			<br>2 订单操作记录时加上process字段
+			<br>3 重新调整了产品结算报表统计方式 -- <a href="/admin.php?mod=salecount&code=fund">点此查看</a>
+			<br>4 删除导航中的天天团购字样，防止搜索引擎收录有关“天天团购”的描述
+			<br>5 加强了API和底层对购买数量和订单总价的校验，防止出现数字为负的情况
+			<br>6 解决双核浏览器切换核心后登录状态丢失的问题
+			<br>7 支付前加强订单金额的校验
+			<br>8 银行卡号位数限定最少16位调整为8位
+			<br>9 后台支付设置页面添加当前服务器环境对支付时需要使用到的一些函数的支持情况
+			<br>10 后台导航设置页面增加“即将开团”的链接提示 -- <a href="/admin.php?mod=tttuangou&code=indexnav">点此查看</a>
+			<br>11 后台文件校验增加 setting/ 目录的校验
+			<br>12 后台文件校验增加 UTF-8 + BOM 头的检测和去除（需要创始人的权限）
+			<br>13 修正了前台提现地址引导路径不准确的问题
+            <br>14 后台升级时的登录校验兼容处理
+            
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.6.1 build20141104 --</h4>
+		<p style="font-size: 12px;">	
+			新增内容：<br>
+			<br>1 新增使用手机浏览器访问时跳转到手机端的下载页面 -- 使用手机浏览器访问时，会提示下载客户端（没有客户端则不会提示），使用微信打开下载客户端时，会引导用户打开手机浏览器下载客户端
+			<br>
+			<br>
+			修复内容：<br>
+			<br>1 修复商家管理后台团购卷时间段筛选结果的问题
+			<br>2 修复修复老版本的客户端通过邮箱进行注册允许重复手机号的问题
+			<br>3 修复抽奖完成页面分享功能无效的问题
+			<br>4 修复后台问答回复时过滤输入的内容，防止被利用
+			<br>5 修复热门商圈筛选出错的问题
+			<br>6 修复已绑定手机号在客户端上可以重复注册的问题
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 调整首页热门团购为本周推荐团购 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>2 恢复我们说，他们说板块
+			<br>3 调整产品添加页面显示样式
+			<br>4 调整后台产品列表显示样式 -- <a href="/admin.php?mod=product&code=vlist">点此查看</a>
+			<br>5 调整后台添加产品“使用向导”的显示样式
+			<br>6 调整美团模板首页全部区域显示更多 -- <a target=_blank href="/index.php">点此查看</a>
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.6.0 build20141030 --</h4>
+		<p style="font-size: 12px;">
+			新增内容：<br>
+			<br>1 用户个人中心新增待评价列表信息 -- <a target=_blank href="/?mod=me&code=order&comment=1">点此评价</a>
+			<br>2 用户个人中心新增已评价列表信息 -- <a target=_blank href="/?mod=me&code=order&comment=2">点此查看</a>
+			<br>3 评价新增图片上传功能
+			<br>4 评价支持匿名评价
+			<br>5 新增商家回复功能 -- <a target=_blank href="/?mod=seller&code=comment&op=list">点此回复</a>
+			<br>6 商家详情页新增评论信息 -- 商家详情页
+			<br>7 首页新增仿美团顶部广告位，支持多图轮播 -- <a href="/admin.php?mod=ad&code=vlist">点此设置</a>
+			<br>8 首页新增热门团购信息导航 -- 后台<a href="/admin.php?mod=catalog">点此设置</a>
+			<br>9 首页新增热门商圈信息导航 -- 后台<a href="/admin.php?mod=tttuangou&code=city">点此设置</a>
+			<br>10 首页新增最近浏览记录功能，支持删除浏览记录 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>11 新增退款成功返回按钮
+			<br>12 后台增加商家导出数据操作
+			<br>13 新增3G模式退款API
+			<br>14 新增商家列表排序前后调整功能 -- <a href="/admin.php?mod=tttuangou&code=mainseller">点此设置</a>
+			<br>15 限时抢购列表页面新增标签显示 -- <a target=_blank href="/countdown">点此查看</a>
+			<br>16 新增产品销售报表，支持对报表的导出 -- <a href="/admin.php?mod=salecount&code=product">点此查看</a>
+			<br>17 新增支付接口报表，支持对每种支付接口支付金额的统计和报表的导出 -- <a href="/admin.php?mod=salecount&code=payment">点此查看</a>
+			<br>18 新增用户消费报表，支持对个用户消费、充值、账户余额的统计和报表的导出 -- <a href="/admin.php?mod=salecount&code=user">点此查看</a>
+			<br>19 新增产品结算报表，统计有关商品的销售及结算信息的报表，支持对报表的导出 -- <a href="/admin.php?mod=salecount&code=fund">点此查看</a>
+			<br>20 新增热门团购设置，在产品列表中，可人工开启热门团购显示在首页（仅限美团模板） -- <a href="/admin.php?mod=product&code=vlist">点此设置</a>
+			<br>21 后台页面新增地址路径导航索引，让用户可以明确当前页面是在哪个分类之下
+			<br>22 增加后台可发起手工升级的脚本
+			<br><font style="color:#ff0000">23 新增手机号注册，手机号绑定和重绑功能</font>
+			<br>23 后台新增标签管理功能 -- <a href="/admin.php?mod=tag">点此查看</a>
+			<br>24 前台增加按标签进行筛选产品 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>25 新增开启和关闭首页分类显示功能 -- <a href="/admin.php?mod=ui&code=igos&op=config">点此设置</a>
+			<br>26 新增在没有分类的首页排序后台加上6个标签导航 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>27 新增原路退款功能，选择原路退款方式需要填写支付账户信息 -- <a target=_blank href="/?mod=me&code=order&pay=1">点此查看</a>
+			<br>28 增加在原路退的页面增加可提现帐户的提示
+			<br>29 增加极简模板，只有登录页、个人管理页和商家管理页面 -- <a href="/admin.php?mod=styles&code=temp">点此设置</a>
+			<br>30 新增手机号登录功能
+			<br>
+			<br>
+			修复内容：<br>
+			<br><font style="color:#ff0000">1 修复后台偶尔出现套餐添加失败问题</font> -- <a href="/admin.php?mod=product&code=linklist&~iiframe=yes">点此添加</a> 
+			<br>2 修复帐户充值时，无法使用易宝支付的问题 
+			<br>3 修复文章列表分页按钮显示的样式问题 -- <a target=_blank href="/article">点此查看</a>
+			<br>4 修复某些特殊环境下注册或登录时出现‘未允许字段’的错误
+			<br>5 修复商家管理页开伪静态后链接出错的问题
+			<br>6 修改系统几个逻辑类，适应商家API请求需要
+			<br>7 修复后台用户充值订单管理中筛选时出错的问题
+			<br>8 修复限时抢购列表页面图片显示超出线框的问题
+			<br><font style="color:#ff0000">9 修复后台退款处理时的机制问题，防止可能发生的重复退款问题（重要修复）</font> 
+			<br>10 修复子目录下安装的团购系统在退出时跳转错误
+			<br>11 修复报表统计中，有订单但用户被删除或产品被删除或支付方式被删除的数据，给予过滤
+			<br>12 修复后台充值卡列表筛选结果不准确的问题
+			<br>13 修复商家信息的API接口中返回产品字段不充分的问题
+			<br>14 修复顶部和中间部分幻灯广告冲突的问题
+			<br><font style="color:#ff0000">15 修复过期团购券查询后不能申请退款的问题</font>
+			<br>16 修复限时抢购商品到指定时间后的提示信息出错问题 -- <a target=_blank href="/countdown">点此查看</a>
+			<br>17 修复中文GBK编码时的搜索问题
+			<br>18 修复商家的其他团购中原价显示错误的问题
+			<br>19 修复商品详情页面评分，商家地址定位的问题
+			<br>20 修复商家列表页面的销售数量和具体累加的数量对不上的问题
+			<br>21 修复商家列表页面的JS加载问题
+			<br>
+			<br>			
+			优化内容：<br>
+			<br>1 优化快钱支付，补充校验码
+			<br>2 优化限时抢购下单时间，现在调整为下单15分钟内支付有效
+			<br>3 优化了不同皮肤下，搜索框的显示样式
+			<br>4 优化美团模板下首页侧边栏子分类显示效果
+			<br>5 优化待评价产品详情页面，标题、图片、按钮等显示效果 -- <a target=_blank href="/user/order/comment-1">点此查看</a>
+			<br>6 优化美团模板首页侧边栏子分类显示样式
+			<br>7 优化美团模板首页侧边栏图片广告的大小样式
+			<br>8 优化页面菜单样式
+			<br>9 优化前台的排序导航样式调整
+			<br>10 后台标签修改后自动刷新页面
+			<br>11 优化广告位尺寸，增加图与图之间的空间 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>12 优化团购等全局字样字数限制
+			<br>13 优化商家其他团购、商家回评、导航部分的显示样式
+			<br>14 优化后台充值卡管理页面每页显示50条数据
+			<br>15 优化产品详情页面抢购区域显示样式
+			<br>16 优化各皮肤导航悬浮颜色效果
+			<br>17 优化商家回评显示图标效果
+			<br>18 优化产品添加的顺序和步骤，将原来的六步减少至4步
+			<br>19 商家的其他团购如果为空时不显示出来
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 调整评论体系，现在按订单进行评论 -- <a href="/admin.php?mod=order&code=vlist">点此查看</a>
+			<br>2 更新数据表结构
+			<br>3 订单评论兼容老API产品评论
+			<br>4 补充对客户端退款的服务器返回信息处理
+			<br>5 更新3G模式下页面提示结构
+			<br>6 调整后台短信测试时的检测提示信息
+			<br>7 短信通道测试时的地址修正及相关描述的调整
+			<br>8 适应API端需求，调整product与seller部分逻辑
+			<br>9 修改扫码参数值分隔符*号为#号
+			<br>10 修改邀请返利页面和邀请返利faq模板页面的文字说明
+			<br>11 登录页的用户名登录提示修改
+			<br>12 调整了抽奖页面手机号展示的方式
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.5.3 build20140911 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复添加产品时默认开启标签的问题 -- 产品管理/编辑/其他设置
+			<br>2 修复某些用户首页分类团购展示不全的问题 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>3 修复前台商家管理页面中在开启伪静态功能后按时间筛选后出错的问题 -- <a href="/?mod=seller&code=ticket&op=list">点此筛选</a>
+			<br>4 修复多城市时的首页缓存的问题 -- <a target=_blank href="/index.php">点此查看</a>
+			<br>5 修复产品标签过期时间设定无效的问题 -- 产品管理/编辑/其他设置
+			<br>6 修复程序运行在某些服务器上因设置过小内存导致不能运行的问题
+			<br>
+			<br>
+			新增内容：<br>
+			<br>1 增加后台用户按UID进行搜索的功能，方便搜索用户 -- <a href="/admin.php?mod=member&code=search">点此搜索</a>
+			<br>
+			<br>
+			优化内容：<br>
+			<br>1 优化“生成充值卡”按钮的样式及位置 -- <a href="/admin.php?mod=recharge&code=card">点此查看</a>
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 调整订单管理页面下单时间显示的格式为年月日时分秒 -- <a href="/admin.php?mod=order&code=vlist">点此查看</a>
+			<br>2 调整团购首页显示问题 -- <a target=_blank href="/index.php">点此查看</a>
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.5.2 build20140905 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复没有商家数据时，无法添加商家的问题 -- <a href="/admin.php?mod=tttuangou&code=mainseller">点此添加</a>
+			<br>2 修复后台购物券管理消费时间段筛选无效的问题 -- <a href="/admin.php?mod=coupon&code=vlist">点此筛选</a>
+			<br>3 修复前台购物券按消费时间段筛选无效的问题 -- <a target=_blank href="/?mod=seller&code=ticket&op=list">点此筛选</a>
+			<br>4 修复添加产品标签时数量限时出错的问题 -- 产品管理/编辑/其他设置
+			<br>5 修复某些浏览器下编辑产品时图片不显示的问题
+			<br>6 修复后台用户搜索列表中的注册时间未知时显示为1970年的问题 -- <a href="/admin.php?mod=member&code=search">点此查看</a>
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 调整fsockopen的连接超时时间设置为3到6秒之间，以免程序假死同时在连接不上时会记录下来方便调试
+			<br>2 调整注册页面“推荐人手机号”输入框的位置 -- <a target=_blank href="/?mod=account&code=register">点此查看</a>
+			<br>3 调整页面中的其他一些显示问题
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.5.1 build20140903 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复整合UC后可能出现的安全问题（感谢乌云安全平台的反馈）
+			<br>2 修复商家后台添加时出错的问题 -- <a href="/admin.php?mod=tttuangou&code=addseller">点此添加</a>
+			<br>3 修复后台产品搜索时出错的问题 -- <a href="/admin.php?mod=product&code=vlist">点此搜索</a>
+			<br>4 修复前台充值页面显示错位的问题 -- <a target=_blank href="/?mod=recharge">点此查看</a>
+			<br>
+			<br>
+			新增内容：<br>
+			<br>1 增加后台产品按ID进行搜索的功能，方便搜索产品 -- <a href="/admin.php?mod=product&code=vlist">点此搜索</a>
+			<br>2 增加用户注册时过滤特殊字符的功能，增加系统安全性 -- <a target=_blank href="/?mod=account&code=register">点此查看</a>
+			<br>3 增加导航参数设置参考 -- <a href="/admin.php?mod=tttuangou&code=indexnav">点此查看</a>
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 恢复后台产品简介的富文本框编辑器			
+			<br>2 调整退款的部分功能
+			<br>3 调整其他页面中的显示问题
+		</p>
+		<h4 style="margin-bottom:0px">-- WEB版本号V4.5.0 build20140901 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复团购券状态筛选结果不准确问题 -- <a href="/admin.php?mod=coupon&code=vlist">点此查询</a>
+			<br>2 修复过期限时抢购商品不显示 -- <a target=_blank href="/?mod=countdown">点此查看</a>
+			<br>3 修复产品列表显示区域筛选不准确问题 -- <a href="/admin.php?mod=product&code=vlist">点此查看</a>
+			<br>4 修复我的团购卷列表中，分类展示显示不正确的问题 -- <a target=_blank href="/?mod=me&code=coupon">点此查看</a>
+			<br>5 修复添加购物卷格式不正确的问题
+			<br>6 修复开启邮件订阅验证，订阅邮件失败的问题
+			<br>7 修复安卓客户端下载图标显示为“体验版下载”的问题 -- <a target=_blank href="/?mod=downapp">点此查看</a>
+			<br>8 修复使用余额支付部分款项，再用网银直连支付剩余款项时，费用计算出错问题
+			<br>9 修复添加合作商家账号时，提示使用uc密码登陆问题
+			<br>10 修复底部友情链接显示错位问题
+			<br>11 修复更新以后，部分用户导航栏设置被修改的问题 -- <a href="/admin.php?mod=tttuangou&code=indexnav">点此查看</a>
+			<br>12 修复搜索产品时，无法根据产品详情内容进行搜索的问题 -- <a href="/admin.php?mod=product&code=vlist">点此搜索</a>
+			<br>13 修复使用qq快捷登录后，更换密码无法登录的问题
+			<br>14 修复搜索用户名称，无法搜索出结果的问题
+			<br>
+			<br>
+			新增内容：<br>
+			<br>1 新增106优质短信通道，快速，稳定 -- <a href="/admin.php?mod=service&amp;code=sms">点此设置</a>
+			<br>2 新增团购券超级验证功能，输入一个未使用的团购券，会列出其他可消费的同类卷号，多张同时批量验证 -- <a href="/?mod=list&amp;code=ckticket">点此了解</a>
+			<br>3 新增商家管理订单、团购券、实物订单的筛选浏览功能 -- <a href="/?mod=seller&amp;code=product&amp;op=list">点此了解</a>
+			<br>4 新增产品标签功能，可自定义多种产品标签名称，以及前台显示时间 -- 产品管理/编辑/其他设置
+			<br>5 新增商家列表功能，以商家为入口展示其发布的团购信息 -- <a href="/?mod=seller">点此了解</a>
+			<br>6 新增多套餐组合功能，将同一商家的相关套餐都关联起来 -- <a href="/admin.php?mod=product&amp;code=linklist&amp;%7Eiiframe=yes">点此了解</a>
+			<br>7 新增编辑器新增多图同时上传功能 -- 产品管理/编辑器
+			<br>8 新增用户列表新增uid信息和注册时间 -- <a href="/admin.php?mod=member&amp;code=search">点此了解</a>
+			<br>9 新增用户列表头部筛选功能
+			<br>10新增多种展示风格的图片广告 -- <a href="/admin.php?mod=ad&amp;code=vlist">点此设置</a>
+			<br>11新增申请商家后台审核功能 -- <a href="/admin.php?mod=tttuangou&amp;code=mainseller">点此了解</a>
+			<br>12新增后台订单管理实物订单购买数量信息 -- 团购管理/订单管理
+			<br>13新增退款理由可供选择 -- 退款页面
+			<br>14新增商家信息搜索功能 -- <a target=_blank href="/index.php">点此了解</a>
+			<br>15新增管理员结算功能（管理员可以主动为商家结算金额） -- <a href="/admin.php?mod=tttuangou&amp;code=mainseller">点此结算</a>
+			<br>16新增首页最新团购滚动功能（需要选择美团模板） -- <a target=_blank href="/index.php">点此了解</a>
+			<br>17新增首页分类展示团购功能（显示有团购的分类，每个分类显示6个团购信息） -- <a target=_blank href="/index.php">点此了解</a>
+			<br>18新增编辑器表格快捷设置功能 -- 产品管理/编辑/详情设置
+			<br>19新增限时抢购列表页商品显示开始预告时间或抢购结束时间 -- <a target=_blank href="/?mod=countdown">点此了解</a>
+			<br>20新增“我的订单”中团购项目的标题、有效期、订单号的信息展示 -- <a href="/?mod=me&code=order">点此了解</a>
+			<br>
+			<br>
+			优化内容：<br>
+			<br>1 优化升级数据库脚本执行先后顺序
+			<br>2 优化侧边栏宽度，使其更符合网站整体风格
+			<br>3 优化调整个人中心和商家管理侧边栏位置 -- <a href="/admin.php?mod=widget">点此设置</a>
+			<br>4 优化网站宽度，使网站显示的更宽（首页、个人中心页面、商家管理等页面调整为1200px宽度）
+			<br>5 优化了产品倒计时显示方式，超过7天的显示为截止时间（产品详情页）
+			<br>6 优化了移动应用管理里面的操作方式，减小误操作带来的问题 -- <a href="/admin.php?mod=api">点此了解</a>			
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 取消了多团设置里面的“一排一个”和“第一个大框，其余小框”的选项） -- <a href="/admin.php?mod=ui&code=igos&op=config">点此设置</a>			
+			<br>2 调整“特别说明”改为“购买须知”，详情页位置也有所调整
+			<br>3 调整列表显示为已售份数，已售份数为虚拟数加真实数的和 -- <a target=_blank href="/index.php">点此了解</a>
+		</p>
+	</div>
+	<div style="width:28%;float:left;padding-right:5px">		
+		<h4 style="margin-bottom:0px">-- 安卓客户端V2.0.0 build20141030 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复部分实物商品购买出错的问题
+			<br>
+			<br>
+			新增内容：<br>
+			<br>1 新增手机退款功能，通过跳转3G页面实现退款操作 -- 已付款订单中可以进行退款操作
+			<br>2 去除了周边模块，新增商家列表功能，支持商家按距离，人均消费等方式进行排序 -- 通过商家来展示旗下的相关团购信息
+			<br>3 新增商家详情介绍页面，展示商家发布的团购信息
+			<br>3 新增注册时可以填写推荐人信息和选择订阅操作
+			<br>4 新增搜索支持同时搜索团购产品信息和商家信息
+			<br>5 新增支持手机号注册
+			<br>6 新增银行卡快捷支付，无需开通网银也可一键支付，开通门槛低、费率低，支持154家银行，一次开通同时支持web、客户端、wap使用，开通联系客服QQ800058566
+			<br>7 新增通过手机号找回密码功能
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 将与订单相关的操作整合到一个入口“我的订单”中
+			<br>2 调整评论模式，实现可以根据订单进行评论
+			<br>3 调整了整个客户端的配色，使其更适应现在主流的扁平风格
+			<br>4 将可以评价的订单放入到“已付款”的订单列表中
+			<br>5 评论体系的修改，修改为对应订单进行评论
+			<br>6 我的订单调整为左右滑动切换的方式，操作方便，显示更直观
+			<br>7 更多页风格修改 
+			<br>8 团购详情页购买栏悬浮显示
+		</p>
+		<h4 style="margin-bottom:0px">-- 安卓客户端V1.7.0 build20140902 --</h4>
+		<p style="font-size: 12px;">
+			修复内容：<br>
+			<br>1 修复易宝支付和快钱支付无法使用的问题
+			<br>2 修复个别机型从1.5、1.6升级到新版失败问题
+			<br>
+			<br>
+			新增内容：<br>
+			<br>1 新增手机评论功能 -- 已完成消费的产品详情页进行评论
+			<br>2 新增客户端商家独立验证功能 -- 个人中心/验证团购卷
+			<br>3 新增手机详情页标签显示功能
+			<br>4 新增搜索记录查看功能
+			<br>5 新增团购详情页显示“购买须知”
+			<br>
+			<br>
+			优化内容：<br>
+			<br>1 优化客户端显示效果
+			<br>&nbsp;1.1 优化团购首页显示效果
+			<br>&nbsp;1.2 优化团购详情页显示效果
+			<br>&nbsp;1.3 优化返回按钮显示效果
+			<br>2 优化客户端首页和详情页的图片缓存方式
+			<br>
+			<br>
+			其他内容：<br>
+			<br>1 取消团购详情页面“本单详情”显示，详情内容统一在图文详情页显示
+		</p>		
+	</div>
+    <div style="width:28%;float:left">
+		<h4 style="margin-bottom:0px">-- 苹果客户端V1.3.0 build20141103 --</h4>
+		<p style="font-size: 12px;">
+			新增内容：<br>
+			<br>1 新增银行卡快捷支付，申请门槛低，支付简单便捷，支持154家银行，费率低等特点
+			<br>
+			<br>
+			修复内容：<br>
+			<br>1 修复用户二维码显示出错的问题			
+		</p>
+		<h4 style="margin-bottom:0px">-- 苹果客户端V1.2.4 build20140620 --</h4>
+		<p style="font-size: 12px;">
+			新增内容：<br>
+			<br>1 新增城市选择功能
+			<br>
+			<br>
+			修复内容：<br>
+			<br>1 修复商家信息显示为产品名称的问题
+		</p>
+	</div>
+	</div>
+  
+</body></html>

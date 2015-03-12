@@ -1,0 +1,146 @@
+<!--{template header}-->
+<script type="text/javascript" src="static/js/jquery.notify.js"></script>
+<script type="text/javascript" src="static/addon/artDialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="static/addon/artDialog/artDialog.iframeTools.js"></script>
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont">
+{~ui('isearcher')->load('seller.product_delivery')}
+<table class="tab_list">
+<tr>
+<th width="10%">订单编号</th>
+<th width="15%">商品信息</th>
+<th width="10%">下单会员</th>
+<th width="10%">商品单价</th>
+<th width="10%">购买数量</th>
+<th width="10%">支付方式</th>
+<th width="10%">配送方式</th>
+<th width="15%">收货地区</th>
+<th width="10%">管理操作</th>
+</tr>
+{loop $deliveries $i $order}
+<tr>
+<td><a href="?mod=seller&code=order&op=list&search=wd:{$order['orderid']}&ssrc=order_id&sstr={$order['orderid']}">{$order['orderid']}</a></td>
+<td>
+{$order['product']['flag']}
+</td>
+<td>
+{echo user($order['userid'])->get('name')}
+</td>
+<td>&yen;{$order['productprice']}</td>
+<td>{$order['productnum']}</td>
+<td>
+{if $order['paytype'] > 0}
+{eval $payment = logic('pay')->SrcOne($order['paytype'])}
+{$payment['name']}
+{else}
+未支付
+{/if}
+</td>
+<td>
+{if $order['express']}
+{$order['express']['name']}<br/><font color="#cccccc">( {echo logic('express')->CID2Name($order['express']['express'])} )</font>
+{else}
+未指定
+{/if}
+{if $order['expressprice']>0}<br>&yen;$order['expressprice']元{/if}
+</td>
+<td>
+{if $order['address']}
+{$order['address']['region']}
+{else}
+未指定
+{/if}
+</td>
+<td>
+<a href="#show-detail" onclick="delivery_show_detail('{$order[orderid]}');return false;">地址详情</a>
+<br/>
+<a href="#invoice-input" onclick="delivery_invoice_input('{$order[orderid]}');return false;">{if $order['process'] != 'TRADE_FINISHED'}
+{if $order['invoice'] != ''}修改快递单号{else}上传快递单号{/if}{else}查看快递单号{/if}</a>
+</td>
+</tr>
+<tr id="invoice_for_{$order['orderid']}" style="display:none;">
+<td style="text-align:center;">快递单号</td>
+<td colspan="8">
+{if $order['process'] != 'TRADE_FINISHED'}
+<input id="trackingno_of_{$order['orderid']}" type="text" size="20" value="{$order['invoice']}" />
+&nbsp;&nbsp;&nbsp;
+<input id="submiter_of_{$order['orderid']}" type="button" value="{echo $order['invoice']==''?'填写':'修改'}快递单号" onclick="submitTrackingNo('{$order[orderid]}');" />
+{if $order['invoice']==''}
+<font color="#999">提示：当您上传了快递单号后订单状态会变更为“已发货”</font>
+{/if}
+{else}
+{$order['invoice']}
+{/if}
+</td>
+</tr>
+<tr id="detail_for_{$order['orderid']}" style="display:none;">
+<td style="text-align:center;">收货人信息</td>
+<td colspan="4">
+{if $order['address']}
+姓名：{$order['address']['name']}
+<br>电话：{$order['address']['phone']}
+<br>地址：{$order['address']['region']} {$order['address']['address']}
+<br>邮编：{$order['address']['zip']}
+{if $order['extmsg']}
+<br>备注：{$order['extmsg']}
+{/if}
+{else}
+用户没有填写收货地址
+{/if}
+</td>
+<td style="text-align:center;">规格</td>
+<td colspan="3">
+{if $order['attrs']}
+{loop $order['attrs']['dsp'] $dsp}
+{$dsp['name']} - &yen;{$dsp['price']}元<br/>
+{/loop}
+{else}
+用户没有选择规格
+{/if}
+</td>
+</tr>
+{/loop}
+<tr>
+<td colspan="9" style="border-bottom:1px solid #ccc;">
+{~page_moyo()}
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function delivery_show_detail(orderId)
+{
+$('#detail_for_'+orderId).toggle();
+}
+function delivery_invoice_input(orderId)
+{
+$('#invoice_for_'+orderId).toggle();
+}
+function submitTrackingNo(OID)
+{
+if (!confirm('确定提交吗？')) return;
+var submiter = $('#submiter_of_'+OID);
+submiter.val('正在登记').attr('disabled', 'disabled');
+var trackingno = $('#trackingno_of_'+OID).val();
+$.get('?mod=seller&code=delivery&op=single&oid='+OID+'&no='+trackingno+$.rnd.stamp(), function(data){
+if (data != 'ok')
+{
+submiter.val('保存失败');
+}
+else
+{
+submiter.val('保存成功');
+}
+});
+}
+</script>
+<!--{template footer}-->

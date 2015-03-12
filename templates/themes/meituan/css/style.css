@@ -1,0 +1,236 @@
+/*模板一 美团风格*/
+body {
+	background-color: #f6f6f6;
+}
+a:hover, .exp .pp_channels .sub-list a:hover {
+	color: #0BB;
+}
+/*左上角*/
+.site-mast__user-nav ul li a:hover {
+	color: #0BB;
+}
+/*右上角*/
+.site-mast__user-w .dropdown-open {
+	color: #0BB;
+}
+.site-mast__user-w .dropdown-menu a:hover {
+	color: #0BB;
+	background: #f8f8f8;
+}
+/* 顶部城市选择 */
+#top_title, #show_provinces {
+	border-color: #0BB;
+}
+.city_chose {
+	background: #E4F1FA;
+}
+/* 顶部搜索框 */
+.search-box .search-box__input {
+	border-color: #0BB;
+	border-left: none;
+}
+.select_sel {
+	border-color: #0BB;
+}
+.search-box .search-box__button, .search-box .search-box__button:hover {
+	background: #2db8ad;
+}
+/* 主导航 */
+.nav_bar {
+	background: #2db8ad;
+	border-color: #2db8ad;
+}
+.site-mast__site-nav a {
+	border-left: none;
+	padding: 0 20px;
+}
+.site-mast__site-nav .current, .site-mast__site-nav .current:hover {
+	background-color: #009689;
+}
+.site-mast__site-nav a:hover {
+	background-color: #009689;
+		color:#fff;
+}
+.m_nav .current:hover {
+	background-color: #009689;
+}
+.site-mast_recentlist {
+	border: none;
+}
+.site-mast_recentlist a.recent_active {
+	background: #fff;
+}
+.recentlist {
+	border-color: #2db8ad
+}
+/* 分类筛选 */
+.site-fs__cell-son2 {
+	border: none;
+	background-color: #f7f7f7;
+}
+
+.site-fs__cell .selected {
+	background-color: #2bb8aa;
+}
+.commitment {
+	width: 116px;
+	height: 42px;
+	background: url(../commitment.png) no-repeat;
+}
+/* 内容主体*/
+/*左侧*/
+.site-ms__left h1 {
+	color: #0BB;
+}
+.site-ms__left .cur_title, .cur_title2 {
+	border-color: #DDEEFF;
+}
+/* 产品列表 */
+.deal-tile__title a:hover {
+	color: #0BB;
+}
+.deal-tile__title td span {
+	color: #339999;
+}
+/* 产品详情 */
+
+.content-navbar ul li a {
+	color: #0bb;
+}
+.content-navbar__item--current {
+	border-top-color: #2eb6aa;
+}
+
+.main h4 {
+	background: none;
+	background-color: #37adb1;
+	color: #fff;
+	border-radius: 3px;
+	height: 27px;
+	line-height: 27px;
+}
+.product_item_a:hover {
+	border-color: #2eb6aa;
+}
+/*右侧栏*/
+/* 侧_返利 */
+.at_invite {
+	background: url(../images/second.png) -85px -90px no-repeat;
+}
+/* 侧_其他精彩团购 */
+.product_list .name a:hover {
+	color: #0BB;
+}
+.product_list .markprice {
+	color: #666;
+}
+.product_list .b_btn {
+	background: url(../images/second.png) 0 -199px no-repeat;
+	text-shadow: 1px 1px 1px #30bcbc;
+}
+/*分页*/
+.product_list_pager a {
+	color: #0BB;
+}
+.product_list_pager a:hover {
+	border: 1px solid #0BB;
+}
+.product_list_pager .page_current {
+	background: #0BB;
+	border: 1px solid #0BB;
+}
+/* 页面底部 */
+.foot {
+	color: #666;
+	background: none;
+	background-color: #f6f6f6;
+	border-top: 3px solid #3aa2a2;
+}
+.ft_bg {
+	height: 0;
+}
+#site-info-w ul, #ft ul a {
+	color: #666;
+}
+#site-info-w h3 {
+	color: #666;
+}
+#site-info-w li.end {
+	border-right: none;
+}
+/*返回顶部*/
+a.goTop {
+	width: 52px;
+	height: 52px;
+	background: url(../images/second.png) -141px 0 no-repeat;
+}
+a.goTop:hover {
+	background: url(../images/second.png) -194px 0 no-repeat;
+	width: 52px;
+	height: 52px;
+}
+/* 登陆注册+快捷登陆+找回密码+账号设置*/
+input.formbutton, .save {
+	border-color: #82D0D4 #4D989B #54A3A7 #92D6D9;
+	background: #63C5C8;
+	color: #fff;
+}
+.f_input {
+	font-weight: 500;
+}
+/* 我的团购 */
+.ts3_mbtn2 a:hover {
+	color: #339999;
+}
+/* 收货地址 */
+
+/* 邮件+短信订阅 */
+.enter_address {
+	background: #E4F1FA;
+	border: 1px solid #89B4D6;
+}
+/* 文章列表 */
+.article_dn, .article_title, .article_author, .article_time, .site-ms__left .cur_top {
+	background-color: #A2DDEF;
+}
+/* 往期团购 */
+.time_normal {
+	background: url(../images/second.png) 0 -231px no-repeat;
+}
+.name-cur {
+	border-color: #2db8ad;
+}
+.site-fs__sort-t {
+	border-right: 0;
+}
+/*按钮*/
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background: #2db8ad;
+	border-color: #2db8ad;
+}
+.btn-primary:active, .btn-primary.active {
+	background: #003399 \9;
+}
+.btn-primary {
+	background-color: #2fb9ac;
+	border: 1px solid #2fb9ac;
+	border-bottom: solid 1px #018177;
+}
+.b_btn, .btn-primary {
+	background: #2ec2b3;
+	border-color: #2ec2b3;
+	border-bottom: solid 1px #018177;
+}
+.b_btn:hover, .btn-primary:hover {
+	background: #38cfc2;
+	border-color: #38cfc2;
+	border-bottom: solid 1px #018177;
+}
+/*幻灯*/
+.exp #carousel .pager a {
+	background: transparent url(../../../meituan/images/carousel_control.png) no-repeat -14px -150px;
+}
+.exp #carousel .pager a.selected {
+	background: transparent url(../../../meituan/images/carousel_control.png) no-repeat 0px -150px;
+}
+.exp .rating-area .total-score span, .exp .deal-buy-bottom .price, .exp .product_list .price, .exp .time_normal .time_underway, .exp .listInfo p i, .exp .listInfo p .pro_noprice, .exp .consult_list .reply{ color:#0BB}

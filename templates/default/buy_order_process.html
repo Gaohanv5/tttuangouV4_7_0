@@ -1,0 +1,37 @@
+<!--{template header}-->
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" style="width:650px;">支付处理中</p>
+<div class="sect">
+<h3>{echo ini('payment.lp.tips')}</h3>
+<br/>
+<br/>
+<a href="?sort=sells">您也可以点此继续浏览其他热门商品</a>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{echo ui('widget')->load()}
+</div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+check_order_status();
+});
+function check_order_status()
+{
+$.get('index.php?mod=buy&code=order&op=url&sign={$sign}', function(data){
+if (data == 'wait')
+{
+setTimeout(check_order_status, 2000);
+}
+else
+{
+window.location = data;
+}
+});
+}
+</script>
+<!--{template footer}-->

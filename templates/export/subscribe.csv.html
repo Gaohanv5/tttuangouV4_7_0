@@ -1,0 +1,4 @@
+标记,{echo $class=='mail'?'邮件':'手机'},订阅时间{echo "\n"}
+{loop $list $i $tar}
+{$tar['type']},{echo $class=='mail'?'':'*'}{$tar['target']},{echo date('Y-m-d H:i:s', $tar['time'])}{echo "\n"}
+{/loop}

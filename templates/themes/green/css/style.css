@@ -1,0 +1,186 @@
+/*模板五 绿色风格*/
+
+a:hover, .exp .pp_channels .sub-list a:hover {
+	color: #0891BE
+}
+/*左上角*/
+.site-mast__user-nav ul li a:hover {
+	color: #3C9048;
+}
+/*右上角*/
+.site-mast__user-w .menu_tqb a:hover {
+	color: #E20303;
+}
+/* 顶部城市选择 */
+#show_provinces {
+	border-color: #76a045;
+}
+.city_chose {
+	background: #ddedcc;
+}
+/* 顶部搜索框 */
+.search-box .search-box__input {
+	border-color: #89B556;
+	border-left: none;
+}
+.select_sel {
+	border-color: #89B556;
+}
+.search-box .search-box__button, .search-box .search-box__button:hover {
+	background: #89B556;
+	border-color: #89B556;
+}
+/* 主导航 */
+.nav_bar {
+	background: #89B556;
+}
+.site-mast__site-nav a {
+	background: none;
+}
+.site-mast__site-nav a:hover, .site-mast__site-nav .current, .site-mast__site-nav .current:hover {
+	background-color: #759C47;
+}
+.site-mast__site-nav a:hover{ color:#fff;}
+.site-mast_recentlist {
+	border: none;
+}
+.site-mast_recentlist a.recent_active {
+	background: #fff;
+}
+.recentlist {
+	border-color: #89B556
+}
+/* 分类筛选 */
+.commitment {
+	width: 143px;
+	height: 68px;
+	background: url(../commitment.png) no-repeat;
+	margin-top: 0;
+	margin-left: 40px;
+}
+/* 内容主体*/
+/* 左侧 */
+    /* 产品列表 */
+.deal-tile__title td span {
+	color: #76A045;
+}
+.deal-tile__title a:hover {
+	color: #89B556;
+	text-decoration: underline;
+}
+.product_item_a:hover{border-color: #89B556;}
+/*商品详情页*/
+.content-navbar ul li a {
+	color: #89B556;
+}
+.content-navbar__item--current {
+	border-top-color: #89B556;
+}
+.main h4 {
+	background: none;
+	background-color: #89B556;
+	color: #fff;
+	border-radius: 3px;
+	height: 27px;
+	line-height: 27px;
+}
+
+/* 右侧 */
+/* 分页 */
+.product_list_pager a {
+	color: #89B556;
+}
+.product_list_pager a:hover {
+	border-color: #89B556;
+}
+.product_list_pager .page_current {
+	background: #89B556;
+	border: 1px solid #89B556;
+}
+/* 右侧栏 */
+/* 侧_邀请返利 */
+.at_invite {
+	background: url(../images/cmb.png) -81px -145px no-repeat;
+}
+/* 侧_其他团购 */
+.product_list .name a:hover {
+	color: #89B556;
+}
+.product_list .b_btn {
+	background: url(../images/cmb.png)0 -145px no-repeat;
+}
+/*返回顶部*/
+a.goTop {
+	width: 52px;
+	height: 52px;
+	background: url(../images/cmb.png) 0 -298px no-repeat;
+}
+a.goTop:hover {
+	width: 52px;
+	height: 52px;
+	background: url(../images/cmb.png) -68px -298px no-repeat;
+}
+/*我的团购*/
+.ts_menu_2, .ts3_mbtn1 {
+	border: 1px solid #76A045;
+	border-bottom: none;
+}
+.ts3_mbtn2 {
+	border: 1px solid #76A045;
+}
+.ts3_mbtn2 a:hover {
+	color: #303030;
+}
+#report td {
+	background: #fff;
+}
+/* 收获地址 */
+.address .lrf a {
+	background: #B2E2BA;
+	text-shadow: none;
+}
+.addressbox .hd {
+	background: #98C267;
+}
+/* 邮件+短信订阅 */
+.enter_address {
+	background: #DDEDCC;
+	border: 1px solid #98C267;
+}
+/* 往期团购 */
+.time_normal {
+	background: url(../images/cmb.png)-189px 0 no-repeat;
+}
+/* 文章 */
+.article_dn, .article_title, .article_author, .article_time {
+	background-color: #B2E2BA;
+}
+.site-ms__left .cur_top {
+	background-color: #E2F1F8;
+}
+/**/
+.exp .at_shuzi .R, .exp .quan .ql span, .exp .at_shuzi .red, .exp .sp_member {
+	color: #0891BE;
+}
+.exp .site-mast__site-cla-main, .exp .pop-panel, .exp .pp_channels .sub-list {
+	border-color: #89B556;
+}
+.b_btn, .btn-primary {
+	background: #89B556;
+	border-color: #89B556;
+	border-bottom: solid 1px #89B556;
+}
+.b_btn:hover, .btn-primary:hover {
+	background: #89B556;
+	border-color: #89B556;
+	border-bottom: solid 1px #89B556;
+	opacity: 0.8
+}
+.countdown_goods .deal-tile__title dl dd, .trailer-img-txt .mr {
+	color: #f76120
+}
+.site-fs__cell .selected{
+	background-color: #759C47
+}
+
+.exp .rating-area .total-score span, .exp .deal-buy-bottom .price, .exp .product_list .price, .exp .time_normal .time_underway, .exp .listInfo p i, .exp .listInfo p .pro_noprice, .exp .consult_list .reply{ color:#0891BE}

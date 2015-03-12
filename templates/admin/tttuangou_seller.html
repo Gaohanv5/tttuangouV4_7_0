@@ -1,0 +1,19 @@
+<!--{template @admin/header}--> <form method="post" action="{$action}"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="6"><b style="float:left; display: block;">商家管理</b><a style="text-decoration:none;;margin-top:0px" class="b_add" href="?mod=tttuangou&amp;code=addseller">添加商家 </a></td> <td colspan="5"><a class="button  back1 back2 fr" href="?mod=export&code=seller&referrer={echo urlencode($_SERVER['QUERY_STRING'].'&area='.$area.'&keyword='.$keyword.'&page='.$page)}">导出数据</a>说明：导出数据只导出审核通过的商家</td> </tr>
+{if !empty($seller)}
+<tr> <td colspan="11"> <div class="tr_select">请输入您要搜索的商家关键词：
+<input name="keyword" value="{$keyword}" id="keyword" type="text"  class="isearcher_input_words"/>
+&nbsp;&nbsp;城市：<select name="city" class="isearcher_filter_list"> <option value="false" {if $area=='false'}selected{/if}>不限城市</option>
+{loop $city $i $value}
+<option value="{$value['cityid']}" {if $area==$value['cityid']}selected{/if}>{$value['cityname']}</option>
+{/loop}
+</select>
+&nbsp;&nbsp;审核状态：<select name="enabled" class="isearcher_filter_list"> <option value="" {if ''==$enabled}selected{/if}>全部</option> <option value="true" {if 'true'==$enabled}selected{/if}>已通过</option> <option value="false" {if 'false'==$enabled}selected{/if}>未通过</option> </select> <input name="bottom" type="submit" id="bottom" value="搜索" class="btn btn-primary btn-small" /> </div> </td> </tr>
+{/if}
+<tr class="tr_nav"> <td width="17%">商家名称【用户UID】<br>显示设定</td> <td width="10%">登陆帐户</td> <td width="8%">所在城市</td> <td width="7%">联系电话</td> <td width="7%">产品数</td> <td width="7%">成功订单</td> <td width="12%" title="是指该商家所有卖出产品的总计销售额=各产品单价*卖出的产品数量的总和；注意因为用户购买了可能没去消费，所以此值>=用户实际确认消费过的金额>=总结算金额">累计销售额(?)【<a title="如怀疑数据不准确，可点此进行重新的校正" href="?mod=fund&code=moneyupdate">校正</a>】</td> <td width="8%" title="即商家实际的收入=用户实际确认消费过的总金额-给网站的分成后的金额">总结算金额(?)</td> <td width="8%" title="即商家剩余的待结算的金额=总结算金额-已结算金额">可结算金额(?)</td> <td width="7%" align="center">审核状态</td> <td width="9%" align="center">管理</td> </tr> <!--{if empty($seller)}--> <tr><td colspan="11">暂时还没有商家，请<a href="?mod=tttuangou&code=addseller">点此添加商家</a>。</td></tr> <!--{/if}--> <!--{loop $seller $i $value}--> <tr onmouseover="this.className='tr_hover'" onmouseout="this.className='tr_normal'"> <td>{$value['sellername']}【$value[userid]】<br/><a href="{$value['sellerurl']}" target="_blank">{$value['sellerurl']}</a><br><font color="gray" title="显示优先级">TOP+{$value['display_order']}</font></td> <td><a href="admin.php?mod=member&code=modify&id={$value[userid]}">{echo app('ucard')->load($value[userid])}</a> <br><a href="admin.php?mod=privs&code=edit&uid={$value[userid]}" target="_blank">后台权限</a></td> <td>{$newcity[$value['area']]}</td> <td>{$value['sellerphone']}</td> <td>{$value['productnum']}</td> <td>{$value['successnum']}</td> <td>{$value['money']}元</td> <td>{$value['total_money']}元</td> <td>{$value['account_money']}元
+{if $value['account_money'] > 0}&nbsp;&nbsp;<a href="?mod=fund&sid={$value['id']}">结算</a>{/if}
+</td> <td><font class="dbf" src="id:{$value['id']}@seller/enabled">{$value['enabled']}</font></td> <td align="center"><a href="?mod=tttuangou&code=editseller&id={$value['userid']}">修改</a> - <a href="#" title="点此删除该商家" onclick="if(confirm('您确认要删除该商家吗？')){window.location.href='?mod=tttuangou&code=deleteseller&id={$value['id']}'}">删除</a></td> </tr> <!--{/loop}--> <tr><td colspan="11">
+请注意：<br>1、商家各项金额数据中，均不包括实物订单中用户支付的商品运输费用。<br>2、添加商家时绑定的商家用户将成为商家产品{TUANGOU_STR}券的管理者，<font color=red>商家用户可前台登陆、查看旗下{TUANGOU_STR}券、核对和消费</font>！</td></tr> </table> <a href="?mod=tttuangou&code=addseller" class="back1 back2">添加商家</a> <br> <center>
+{$page_arr}
+</center> </form>
+{~ui('loader')->js('#admin/js/sdb.parser')}
+{template @admin/footer}

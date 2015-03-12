@@ -1,0 +1,92 @@
+<!--{template header}-->
+<div class="site-ms__left">	
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">{$product['flag']}</p>
+<div class="sect">
+<table style="width:100%;">
+<tr>
+<td><p style="padding:10px 0;">
+{if $product['time_remain'] > 0}
+{if $prizes}
+无论最终您是否能够中奖，我们都衷心希望您和您的家人永远幸福！
+{else}
+<a href="?view={$product['id']}">抽奖活动火热进行中，快来看看吧！</a>
+{/if}
+{else}
+本次活动已经结束了，
+{eval $pzwin = logic('prize')->PrizeWIN($product['id'])}
+{if $pzwin}
+中奖号码为：{$pzwin['number']}
+{if $prizes && $pzwin['uid'] == MEMBER_ID}
+，恭喜，您已中奖！
+{/if}
+{else}
+中奖号码还未公布，请随时关注我们的网站{if $prizes}，或许中奖的就是您{/if}！
+{/if}
+{/if}
+</p></td>
+</tr>
+{if $prizes}
+<tr>
+<td><p style="padding:10px 0;">
+温馨提示：<br/>
+每成功邀请1个新用户参加抽奖，您就可以再获得1个大抽奖号！<br/>
+<b class="R14">邀请越多，抽奖号越多，中奖机会也就越大哦！</b>
+</p></td>
+</tr>
+<tr>
+<td>
+<p>
+<br/>以下是您的专用邀请链接：<br/>
+<input id="inviteURL" type="text" size="20" class="f_input inviteP input_h" value="{eval echo $this->Config[site_url]; }/?u={MEMBER_ID}" onclick="copyText(this.value);">
+&nbsp;&nbsp;
+<input type="submit" value=" 复 制 " class="btn btn-primary" style="float:left; margin-left:10px;" onclick="copyText($('#inviteURL').val());">
+</p>
+</td>
+</tr>
+{/if}
+</table>
+</div>
+<div style="padding-left:10px; float:left; display:block; position:relative;">
+分享此活动和专属链接到其他社区网站，邀请更多人参与：
+{~ui('loader')->js('@share.linker')}
+<div class="shop-share" style="float: none;display: inline-block; margin-left: 10px;">
+{eval app('bshare')->load('prize_view', array('product'=>$product))}
+</div>
+<script>
+$(".share-tip").click(function() {
+$(".share-list").toggle();
+})
+</script>
+</div>
+<div style="clear:both;height:0;"></div>
+</div>
+</div>
+{if $prizes}
+<div class="t_area_out">
+<div class="t_area_in">
+<table width="100%" class="tableborder">
+<tr class="tabletitle">
+<td colspan="2"><b>我的抽奖号</b></td>
+</tr>
+<tr class="tableheader">
+<td width="30%">抽奖号码</td>
+<td>说明</td>
+</tr>
+{loop $prizes $i $ticket}
+<tr>
+<td><p style="color:#CB1349;font-weight:bold;">{$ticket['number']}</p></td>
+<td>{$ticket['remark']}</td>
+</tr>
+{/loop}
+</table>
+</div>
+</div>
+{/if}
+</div>
+<div class="site-ms__right">
+<!--{~ui('widget')->load()}-->
+</div>
+</div>
+<!--{template footer}-->

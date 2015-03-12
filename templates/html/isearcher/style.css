@@ -1,0 +1,96 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name style.css * @date 2014-10-30 10:42:14 */ .isearcher {
+	border: none;
+	font-size: 12px;
+	display: block;
+	padding: 0px;
+	overflow: hidden;
+	padding-top: 10px;
+}
+.isearcher .isearcher_select_list {
+	padding: 2px 3px;
+	font-size: 12px;
+}
+.isearcher .isearcher_input_words {
+	width: 140px;
+	font-size: 12px;
+	margin-left: 5px;
+	padding: 0 3px;
+	line-height:25px;
+	height:25px;
+}
+.isearcher .isearcher_submit_button {
+	color: #fff;
+	background-color: #ff7200;
+	border-color: #da3f02;
+	padding: 0 15px;
+}
+.isearcher .isearcher_instant_result {
+	position: absolute;
+	background: #fff;
+	border: 1px solid #ccc;
+	width: 206px;
+	display: none;
+}
+.isearcher .isearcher_instant_result ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.isearcher .isearcher_instant_result ul li {
+	cursor: pointer;
+	padding: 3px 10px;
+}
+.isearcher .isearcher_instant_result ul li:hover {
+	background: #99baf3;
+}
+.isearcher .separator {
+	padding: 3px;
+	margin: 0px 5px;
+	color: #ccc;
+}
+.isearcher p {
+	display: none;
+}
+.isearcher .searcher_li {
+	float: left;
+	clear: none;
+	/* width: 900px; */
+	padding-bottom: 5px;
+	margin: 0;
+	margin-right: 10px;
+	display: inline-table;
+	display: block;
+}
+button, input, select, textarea {
+	font-size: 12px;
+	color: #666;
+}
+.btn {
+	margin: 0 0 0 10px;
+	float: none;
+}
+.tab_list {
+	border-collapse: collapse;
+	margin: 15px 0;
+	width: 100%;
+}
+.tab_list th {
+	border: 1px solid #eee;
+	background: #f6f6f6;
+	color: #333;
+}
+.tab_list td {
+	border: 1px solid #eee;
+}
+button, input, select, textarea {
+	margin: 0;
+}
+.searcher_li .btn-small {
+	height: 27px;
+	line-height: 25px;
+	font-size: 12px;
+	font-weight: 500;
+	padding: 0 10px;
+	margin-left: 5px;
+	float:none;
+}

@@ -1,0 +1,61 @@
+<!--{template header}-->
+<style>
+.field label{ width:115px;}
+.act{ padding-left: 130px;display: block;clear: both;padding-top: 5px;overflow: hidden;}
+#error_msg{ padding:0;} 
+</style>
+<script type="text/javascript">
+function checkRecharge()
+{
+var money = Math.round($('#recharge_money').val()*100)/100;
+if (isNaN(money))
+{
+foundError('充值金额必须是一个有效数字！');
+return false;
+}
+if (money <= 0)
+{
+foundError('充值金额必须大于0！');
+return false;
+}
+return true;
+}
+function foundError(msg)
+{
+$('#error_msg').html(msg).css('color', '#f76120');
+setTimeout(function(){$('#error_msg').css('color', '')}, 2000);
+}
+$(document).ready(function() {$("#recharge_money").focus();});
+</script>
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" >帐户充值</p>
+<div class="sect"  >
+<div class="cont" >
+<form action="?mod=recharge&code=order&op=save" method="post" onsubmit="return checkRecharge();" >
+<div class="field">
+<label style=" overflow:hidden;">请输入充值金额：</label>
+<input id="recharge_money" name="money" type="text" class="input_h f-l" style="_height:27px;"/>
+</div>
+<div class="act">
+<input type="submit" class="btn btn-primary btn-small"  value="下一步" />
+</div>
+</form>
+<div class="act">
+<!--{if $upcfg['percentage'] > 0}-->
+在本站使用非充值卡充值，则可额外返现{$upcfg['percentage']}%，例如充值100元，则额外赠送{$upcfg['percentage']}元。
+<!--{/if}-->
+<p id="error_msg"></p>
+<a href="?mod=recharge&code=card&op=redirect" class="R14N">使用充值卡</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

@@ -1,0 +1,10 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"><td colspan="2">个性界面制作步骤向导</td></tr> <tr class="altbg2"><td colspan="2">
+如果你要制作个性的网站界面，请请务必认真阅读此向导。<BR><BR>
+记事狗系统采用模板替补技术支持多模板套系，这使得你即使只修改一个文件也可以制作自己的网站界面。
+</td></tr> </table> <br> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"><td colspan="2"><A name="#系统设置"></A>提示</td></tr> <tr class="altbg2"><td width="15%">【案例】</td> <td class="smalltxt">
+创建一个“我的”套系的网站界面（可参考已经存在的blue模板套系）。
+</td></tr> <tr class="altbg1"><td>第一步【必需的】</td> <td class="smalltxt">请先在/templates目录下新建一个目录，目录名最好能体现模板套系的特点，比如为my，你的个性模板、图片和样式表CSS文件将放在my目录下（<U>注意：请不要直接修改default目录下模板，因为自动升级时将被覆盖</U>）；</td></tr> <tr class="altbg2"><td>第二布【可省略】</td> <td class="smalltxt">如需配置模板名称，那么将/templates/default（默认模板套系）目录下的tplinfo.php复制到刚创建的my目录下，该文件主要定义了模板的几个名称供后台使用，如启用该文件则需修改该文件中的$tpl_name变量为你的名称，比如“我的”，其他变量可不变；</td></tr> <tr class="altbg1"><td width="15%">第三步【可省略】</td> <td class="smalltxt">如需修改页面排版等，只需将/templates/default中你要修改的模板文件（后缀是.html）复制到my目录下，并完成修改即可（系统运行时将自动从default中读取其他未修改的文件）；
+</td></tr> <tr class="altbg2"><td>第四步【可省略】</td> <td class="smalltxt">如需修改网站颜色、显示宽度等，先在/templates/my目录下创建styles目录，然后将templates/default/styles/vivian.css文件复制到my/styles目录下，并修改；
+</td></tr> <tr class="altbg1"><td>第五步【可省略】</td> <td class="smalltxt">如需修改网站的图片文件，先在/templates/my目录下创建images目录，然后将新的图片按templates/default/images下的文件命名，只需替换你需要修改的图片文件即可；
+</td></tr> <tr class="altbg2"><td>第六步【必需的】</td> <td class="smalltxt">将整个my目录上传到服务器templates目录下，然后登录系统后台，在系统设置-基本设置中选择你在tplinfo.php中设置的模板名称（如果没有设置就是开始创建的目录名称my），然后提交即可生效；</td></tr> </table> <br>
+{template @admin/footer}

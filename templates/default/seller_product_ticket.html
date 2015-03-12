@@ -1,0 +1,84 @@
+<!--{template header}-->
+<script type="text/javascript" src="static/js/jquery.notify.js"></script>
+<script type="text/javascript" src="static/addon/artDialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="static/addon/artDialog/artDialog.iframeTools.js"></script>
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont">
+{~ui('isearcher')->load('seller.product_ticket')}
+<table class="tab_list">
+<tr>
+<th width="14%">订单号</th>
+<th width="30%">商品信息</th>
+<th width="10%">用户信息</th>
+<th width="12%">{TUANGOU_STR}券号码</th>
+<th width="16%">使用时间</th>
+<th width="9%">包含份数</th>
+<th width="9%">管理操作</th>
+</tr>
+{loop $tickets $i $ticket}
+<tr>
+<!--{if $deoid == $ticket['orderid']}-->
+<td style="border-top:none;"></td>
+<td style="border-top:none;"></td>
+<td style="border-top:none;"></td>
+<!--{else}-->
+<td><a href="?mod=seller&code=order&op=list&search=wd:{$ticket['orderid']}&ssrc=order_id&sstr={$ticket['orderid']}">{$ticket['orderid']}</a></td>
+<td>{$ticket['flag']}(单价：&yen;{$ticket['productprice']}&nbsp;数量：{$ticket['productnum']})</td>
+<td>
+{echo user($ticket['uid'])->get('name')}
+</td>
+<!--{/if}-->
+<td>{$ticket['number']}</td>
+<td>
+{if $ticket['status'] == TICK_STA_Used}
+{$ticket['usetime']}
+{else}
+{echo logic('coupon')->STA_Name($ticket['status'])}
+{if $ticket['status'] == TICK_STA_Unused}
+<a href="?mod=list&code=ckticket&number={$ticket['number']}">立即消费</a>
+{/if}
+{/if}
+</td>
+<td>{$ticket['mutis']}份</td>
+<td>
+{if $ticket['status'] == TICK_STA_Unused}
+<a href="#alert" onclick="ticket_alert(this, {$ticket['ticketid']});return false;">消费提醒</a>
+<font style="display: none;"></font>
+{elseif $ticket['status']==TICK_STA_Used}已使用
+{elseif $ticket['status']==TICK_STA_Invalid}已作废
+{else}已过期
+{/if}
+</td>
+</tr>
+{eval $deoid = $ticket['orderid']}
+{/loop}
+<tr>
+<td colspan="7" style="border-bottom:1px solid #ccc;">
+{~page_moyo()}
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function ticket_alert(a, id)
+{
+$(a).hide().next().text('正在通知').css('color', '#999').show();
+$.get('?mod=seller&code=ajax&op=alert&id='+id.toString()+$.rnd.stamp(), function(data){
+if (data == 'ok')
+{
+$(a).next().text('已经提醒').css('color', '#007F00');
+setTimeout(function(){$(a).show().next().hide()}, 3000);
+}
+});
+}
+</script>
+<!--{template footer}-->

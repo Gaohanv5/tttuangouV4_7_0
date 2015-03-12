@@ -1,0 +1,17 @@
+<!--{template @admin/header}--> <form action="?mod=service&code=mail&op=save" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">{$actionName}邮件服务器</td> </tr> <tr> <td width="12%"></td> <td><input name="id" type="hidden" value="{$c['id']}" /></td> <tr> <tr> <td>标记:</td> <td> <input name="flag" type="text" value="{$c['flag']}" />
+（纯字符）
+</td> </tr> <tr> <td>名称:</td> <td> <input name="name" type="text" value="{$c['name']}" /> </td> </tr> <tr> <td>权重:</td> <td> <input name="weight" type="text" value="{$c['weight']}" /> </td> </tr> <tr> <td>邮件类型:</td> <td> <select name="cfg[type]" id="mail_type_list"> <option value="SMTP"{if $c['cfg']['type']=='SMTP'}selected="selected"{/if}>SMTP</option> <option value="Mail"{if $c['cfg']['type']=='Mail'}selected="selected"{/if}>系统Mail (Linux系统适用)</option> <option value="Sendmail"{if $c['cfg']['type']=='Sendmail'}selected="selected"{/if}>Sendmail程序 (Win系统适用)</option> <option value="Qmail"{if $c['cfg']['type']=='Qmail'}selected="selected"{/if}>Qmail</option> </select> </td> </tr> <tr class="for_SMTP"> <td>环境检测：</td> <td> <a href="index.php?mod=apiz&code=mail&op=SmtpTest" target="_blank">点此检查本服务器是否可以连接SMTP</a> </td> </tr> <tr class="for_SMTP"> <td>SMTP服务器地址:</td> <td> <input name="cfg[server]" type="text" value="{$c['cfg']['server']}" /> </td> </tr> <tr class="for_SMTP"> <td>SMTP服务器端口:</td> <td> <input name="cfg[port]" type="text" value="{$c['cfg']['port']}" /> </td> </tr> <tr class="for_SMTP"> <td>用户名:</td> <td> <input name="cfg[username]" type="text" value="{$c['cfg']['username']}" /> </td> </tr> <tr class="for_SMTP"> <td>帐号密码:</td> <td> <input name="cfg[password]" type="text" value="{$c['cfg']['password']}" />
+（留空时表示不进行权限验证）
+</td> </tr> <tr class="for_SMTP"> <td>邮箱地址:</td> <td> <input name="cfg[mail]" type="text" value="{$c['cfg']['mail']}" />
+（显示在发件人地址一栏中）
+</td> </tr> <tr class="for_SMTP"> <td>发信人名称:</td> <td> <input name="cfg[name]" type="text" value="{$c['cfg']['name']}" />
+（显示在邮件发件人一栏中）
+</td> </tr>
+{eval $ssl = function_exists('openssl_open')}
+<tr class="for_SMTP"> <td>是否使用SSL连接:</td> <td> <select name="cfg[ssl]">
+{if $ssl}<option value="true"{if $c['cfg']['ssl']=='true'}selected="selected"{/if}>是</option>{/if}
+<option value="false"{if $c['cfg']['ssl']=='false'||$c['cfg']['ssl']==''}selected="selected"{/if}>否</option> </select> <br/>*注1：<font color="red">选择“是”的话，则您的空间必须支持OpenSSL才可以{if $ssl}（您的空间支持SSL）{else}<b>（您的空间不支持SSL，只能选择“否”）</b>{/if}</font> <br/>*注2：如果您使用的SMTP端口号为25，请选择“否”。如果您想使用SSL连接，请端口号填写465
+<br/>*注3：以上端口号都是一般服务器所使用的，特殊情况请联系邮件服务器管理员
+<br/>*注4：<font color="red">如果您不知道这个是什么，请选择“否”</font> </td> </tr> <tr> <td>状态:</td> <td> <label><input name="enabled" type="radio" value="true"{if $c['enabled']=='true'||$c['enabled']==''} checked="true"{/if} />启用</label> <label><input name="enabled" type="radio" value="false"{if $c['enabled']=='false'} checked="true"{/if} />关闭</label> </td> </tr> </table> <br/> <center> <input type="submit" class="button" name="addsubmit" value="提 交"> </center> </form>
+{~ui('loader')->js('#admin/js/service.mail.mgr')}
+{template @admin/footer}

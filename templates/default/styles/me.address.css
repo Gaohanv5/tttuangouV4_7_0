@@ -1,0 +1,51 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name me.address.css * @date 2014-09-01 17:24:23 */ .addressbox {
+	width: 100%;
+	_position: relative;
+}
+.addressbox td {
+	padding: 5px 6px;
+}
+.addressbox .hd {
+	text-align: center;
+	height: 33px;
+	z-index: 1;
+}
+.addressbox .hd th {
+	background: #f9f9f9;
+	padding: 7px 10px;
+	font-size: 12px;
+	text-align: center;
+	color: #999;
+	font-weight: 500;
+	border-top: 1px solid #eee;
+}
+.address_new {
+	display: none;
+	position: absolute;
+	width: 630px;
+	margin: 0 auto;
+	padding: 10px;
+	z-index: 2;
+}
+.address_new .left {
+	text-align: right;
+	padding: 10px;
+}
+.address_new select {
+	width: 100px;
+}
+.address_new #addr_address {
+	width: 303px;
+}
+.address_new .button {
+	height: auto;
+	cursor: pointer;
+	font-size: 12px;
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+}
+.address_new .btn {
+	float: none;
+	margin: 0 20px 0 0;
+}

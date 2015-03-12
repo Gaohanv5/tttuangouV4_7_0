@@ -1,0 +1,16 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name widget.area.blocks.sort.css * @date 2011-08-31 14:10:12 */ #wablist {
+    margin: 0px;
+    padding: 0px;
+}
+#wablist li {
+    margin: 6px auto;
+    padding: 0;
+    border: 1px solid #999;
+}
+#wablist li div {
+    padding: 5px;
+    width: 100%;
+}
+#wablist .dragHolder {
+    border: 1px dashed #ccc;
+}

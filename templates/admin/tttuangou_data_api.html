@@ -1,0 +1,19 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td>数据调用</td> </tr> <tr> <td>
+首先，您需要为您的网页代码里指定这几个标签的ID，远程JS才能自动填充内容
+<p>
+连接地址：[CLASS = tuan_product_url]，类型：a标签<br/>
+产品名称：[ID = tuan_name]，类型：任意标签<br/>
+产品短标题：[ID = tuan_flag]，类型：任意标签<br/>
+产品原价：[ID = tuan_price]，类型：任意标签<br/>
+{TUANGOU_STR}现价：[ID = tuan_nowprice]，类型：任意标签<br/>
+产品折扣：[ID = tuan_discount]，类型：任意标签<br/>
+{TUANGOU_STR}节省：[ID = tuan_saves]，类型：任意标签<br/>
+购买人数：[ID = tuan_buyers]，类型：任意标签<br/>
+产品总数量：[ID = tuan_total]，类型：任意标签<br/>
+卖出数量：[ID = tuan_sell]，类型：任意标签<br/>
+剩余数量：[ID = tuan_surplus]，类型：任意标签<br/>
+图片地址：[ID = tuan_product_image]，类型：img标签<br/>
+剩余时间：[ID = tuan_time_life]，类型：任意标签<br/> </p> </td> </tr> <tr> <td>
+然后，复制下面这段代码到您的网页中（请保证您的网页已经加载了jQuery库） &lt;&lt; <a href="admin.php?mod=tttuangou&code=dataapi&op=demo">查看演示</a> &gt;&gt;
+<p> <textarea style="width:100%;height:50px;">&lt;script type="text/javascript" charset="{ini:settings.charset}" src="{$script_url}"&gt;&lt;/script&gt;</textarea> </p> </td> </tr> </table>
+{template @admin/footer}

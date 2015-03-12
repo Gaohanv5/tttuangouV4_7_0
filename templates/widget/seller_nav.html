@@ -1,0 +1,22 @@
+<div class="t_area_out ">
+<!--{if MEMBER_ID < 1}-->
+<h1>我的产品</h1>
+<div class="t_area_in">
+<a href="?mod=account&code=login">我要登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?mod=account&code=register">我要注册</a>
+</div>
+<!--{else}-->
+<!--{eval $forbidmoney = intval(user()->get('forbid_money'));}-->
+<h1>我的产品</h1>
+<div class="t_area_in side_nav_ul">
+<li class="snu_cur"><a href="?mod=seller&code=product&op=list">产品列表</a></li>
+<li><a href="?mod=seller&code=order&op=list">订单列表</a></li>
+<li><a href="?mod=seller&code=ticket&op=list">{TUANGOU_STR}券列表</a></li>
+<li><a href="?mod=seller&code=delivery&op=list">发货清单</a></li>
+<li><a href="?mod=fund">我要结算</a></li>
+<li><a href="?mod=fund&code=order">结算记录</a></li>
+<li><a href="?mod=fund&code=money">结算金额明细</a></li>
+<li><a href="?mod=list&code=ckticket">{TUANGOU_STR}券验证</a></li>
+</div>
+<!--{/if}-->
+</div>
+<style>.site-ms__left{width:980px;}.t_area_out{margin-bottom: 0;border:none;color: #999;}</style>

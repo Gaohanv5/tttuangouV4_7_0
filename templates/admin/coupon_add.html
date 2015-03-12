@@ -1,0 +1,6 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">添加{TUANGOU_STR}券 / <a href="?mod=order&code=process&id={$oid}">[ 返回 ]</a></td> </tr> <tr> <td class="td_title" width="20%">用户ID</td> <td> <input id="uid" type="text" value="{$uid}" /> </td> </tr> <tr> <td class="td_title">产品ID</td> <td> <input id="pid" type="text" value="{$pid}" /> </td> </tr> <tr> <td class="td_title">订单ID</td> <td> <input id="oid" type="text" value="{$oid}" /> </td> </tr> <tr> <td class="td_title">{TUANGOU_STR}券号码</td> <td> <input id="number" type="text" value="" /> *9位纯数字（<b>如果您输入的是一个已经存在的号码，系统会自动重新随机分配一个号码</b>）
+</td> </tr> <tr> <td class="td_title">{TUANGOU_STR}券密码</td> <td> <input id="password" type="text" value="" /> *3位纯数字
+</td> </tr> <tr> <td class="td_title">包含份数</td> <td> <input id="mutis" type="text" value="1" /> </td> </tr> <tr> <td class="td_title">状态</td> <td> <font id="generate_result">等待生成</font> </td> </tr> <tr> <td class="tr_nav tr_center" colspan="2"> <input id="btn_random" type="button" class="button back2" style=" display:inline;" name="submit" value="随机卡密" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<input id="btn_create" type="button" class="button" name="submit" value=" 生 成 " /> </td> </tr> </table>
+{template @admin/footer}

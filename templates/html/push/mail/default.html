@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={ini:settings.charset}" />
+<title>{ini:settings.site_name} {TUANGOU_STR}推荐</title>
+</head>
+<body>
+{eval
+$base_url = ini('settings.site_url').'/templates/html/push/mail/';
+$weekdays = array('','一','二','三','四','五','六','天');
+}
+<table cellpadding="0" cellspacing="0" width="750px"> 
+<tbody><tr> 
+<td> 
+<p style="margin:0; padding:0;text-align:center; font-size:12px; color:#929292;">如不想继续收每日推荐邮件，您可随时<a href="{ini:settings.site_url}{~rewrite('?mod=subscribe&code=undo')}" style="" title="取消订阅">取消订阅</a>。</p>
+<p style="margin:0; padding:0;text-align:center;font-size:12px; color:#929292; ">建议您把本邮件地址加到您的邮箱联系人中，以确保能正确接收此邮件。</p>
+</td> 
+</tr> 
+</tbody>
+</table> 
+<div style="width:700px; margin:5px 0; padding: 20px 20px 20px 20px; background-color:#a3dcef;background-image: url({$base_url}bg-deal.jpg);background-repeat: no-repeat;background-position: center top; border-width:5px; border-style: solid; border-color:#deedcc;">
+<table cellpadding="0" cellspacing="0" style="background-color:#fff;" width="100%"> 
+<tbody><tr> 
+<td colspan="2"> 
+<div id="mail-header" style="height:104px; margin: 0; border-bottom:4px solid #338888;"> 
+<table bgcolor="#2d2d2d" cellpadding="0" cellspacing="0" height="104px" width="700px"> 
+<tbody><tr> 
+<td width="110" style="height:37px; padding:25px 0 0 20px;" valign="top"><a href="{ini:settings.site_url}" style="display:block; dborder-right:1px solid #545454; padding-right:15px;" title="{ini:settings.site_name}"><img width="134" height="57" src="{$base_url}logo.gif" style="border: 0px;"  /></a></td>
+<td width="250" style="padding-left:15px; padding-top:38px;" valign="top">
+<font style="padding:5px 9px;color:#fff;font-size:10pt;font-weight:bold;background:#5F5F5F;">{echo logic('misc')->City('name', $city)}</font>
+</td> 
+<td width="220" align="right" style="padding-right:20px; padding-top:43px;" valign="top"> 
+<table cellpadding="0" cellspacing="0" width="225px;"> 
+<tbody><tr> 
+<td align="right" style="margin:0; color:#fff; font-size:12px;"> 
+{eval echo date('Y年m月d日 星期');}{eval echo $weekdays[date('N')];}
+</td>
+</tr> 
+<tr> 
+<td align="right" style="padding-top:15px;"></td> 
+</tr> 
+</tbody></table> 
+</td> 
+</tr> 
+</tbody></table> 
+</div> 
+</td> 
+</tr> 
+<tr> 
+<td style="padding:20px 0 25px 0; border-top:10px solid #44ABAF;" valign="top"> 
+<table cellpadding="0" cellspacing="0" width="100%"> 
+<tbody><tr> 
+<td colspan="2" style="padding: 0 20px 20px 20px;"> 
+<h1 style="margin:0; padding:0; line-height:1.2; "><a href="{ini:settings.site_url}{echo rewrite('?view='.$id)}" style="text-decoration:none; font-size:30px; font-weight:700; margin:0; color:#399;" title="{$name}">{$flag}</a></h1>
+</td> 
+</tr> 
+<tr> 
+<td width="237" style="" valign="top"> 
+<div style="margin:0; font-size:14px; color:#000;padding:0 0px 0 4px; width:237px;overflow:hidden;"> 
+<table background="{$base_url}mail-tpl-tag.gif" bgcolor="#4BC1DD" cellpadding="0" cellspacing="0" height="60px" width="233px">
+<tbody><tr> 
+<td width="117px"><div style="padding-left:35px; font-size:28px; color:#fff; font-weight:700;">{$nowprice}</div></td>
+<td width="116px" style=" padding-top:2px; ;  "><a href="{ini:settings.site_url}{echo rewrite('?view='.$id)}" title="{$name}"><img width="106" height="47" src="{$base_url}mail-tpl-view.gif" style="border:none;"  /></a></td>
+</tr> 
+</tbody></table> 
+<div style="padding-left:17px;"> 
+<table cellpadding="0" cellspacing="0" width="216px"> 
+<tbody><tr style="background-color:#d0eef6;"> 
+<td width="72" align="center" style="margin:0; color:#000;border-left:1px solid #4bc1dd; font-size:12px; padding:10px 0 5px 0;">原价</td> 
+<td width="72" align="center" style="margin:0; color:#000;font-size:12px; padding:10px 0 5px 0;">折扣</td> 
+<td width="72" align="center" style="margin:0; color:#000;border-right:1px solid #4bc1dd; font-size:12px; padding:10px 0 5px 0;">节省</td> 
+</tr> 
+<tr style="background-color:#d0eef6;"> 
+<td width="72" align="center" style="border-left:1px solid #4bc1dd; border-bottom:1px solid #4bc1dd; font-size:14px; font-weight:700; color:#000; margin:0; padding:0 0 5px 0;"><del>{$price}</del></td>
+<td width="72" align="center" style="border-bottom:1px solid #4bc1dd; font-size:14px; font-weight:700; color:#000; margin:0; padding:0 0 5px 0;">{$discount}折</td>
+<td width="72" align="center" style="border-right:1px solid #4bc1dd; border-bottom:1px solid #4bc1dd; font-size:14px; font-weight:700; color:#000; margin:0; padding:0 0 5px 0;">{echo $price-$nowprice}</td>
+</tr> 
+</tbody></table> 
+</div> 
+<div style="padding:8px 0 0 17px;"> 
+<table cellpadding="0" cellspacing="0" width="216px"> 
+<tbody><tr> 
+<td style="border:1px solid #e8e8e8; width:217px; height:116px; padding:0 5px 10px 15px;"> 
+<table cellpadding="0" cellspacing="0"> 
+<tbody><tr><td style="margin:0; padding:0;  color:#000;padding:10px 0 7px 0; font-size:16px; font-weight:bold; ">{$sellername}</td></tr>
+<tr> 
+<td style="margin:0; padding:0; color:#000;vetical-align:top; font-size:12px; "> 
+<div style="margin:0; padding:0; color:#000; font-size:12px; "> 
+{$selleraddress} （<a style=" color:#399;" href="http://ditu.google.cn/?q=$sellermap[0],$sellermap[1]" target="_blank">查看地图</a>）<br/>{$sellerphone}<br  />
+</div> 
+</td> 
+</tr> 
+<tr> 
+<td style="font-size:12px; color:#000; font-family: Helvetica, Arial, sans-serif;; margin:0; padding:0;"> </td> 
+</tr> 
+</tbody></table> 
+</td> 
+</tr> 
+</tbody></table> 
+</div> 
+</div> 
+</td> 
+<td width="428" valign="top"> 
+<a href="{ini:settings.site_url}{echo rewrite('?view='.$id)}" title="{$name}"><img src="{echo imager($img, IMG_Normal)}" style="border:none;" width="428" height="259"  /></a>
+</td> 
+</tr> 
+<tr> 
+<td colspan="2"> 
+<table cellpadding="0" cellspacing="0" width="100%"> 
+<tbody><tr> 
+<td valign="top" style="margin:0; padding:20px 0 0 20px; line-height: 21px; font-size: 14px; color:#000;"> 
+<table cellpadding="0" cellspacing="0" width="368" style="margin:0; padding:0;"> 
+<tbody><tr><td style="padding-bottom:5px; "><h3 style="font-size:16px; color:#000; margin:0;">以下为您呈献：</h3></td></tr> 
+<tr> 
+<td> 
+<div style="margin:0; padding:0; font-size:14px; color:#000;width:440px;overflow:hidden;">
+<p style="padding:3px 6px;color:#fff;background-color:#0F4B3C;-webkit-border-radius:3px;-moz-border-radius:3px;">
+<b>本单简介</b>
+</p>
+{$intro}
+<p style="padding:3px 6px;color:#fff;background-color:#0F4B3C;-webkit-border-radius:3px;-moz-border-radius:3px;">
+<b>本单详情</b>
+</p> 
+{$content}
+<p style="padding:3px 6px;color:#fff;background-color:#0F4B3C;-webkit-border-radius:3px;-moz-border-radius:3px;">
+<b>特别提示</b>
+</p> 
+{$cue}
+</div> 
+</td> 
+</tr> 
+<tr> 
+<td align="center" style="padding:5px 0; "><a href="{ini:settings.site_url}"><img width="168" height="31" style="border:none;" src="{$base_url}mail-tpl-more.gif"  /></a></td> 
+</tr> 
+</tbody></table> 
+</td> 
+</tr> 
+</tbody></table> 
+</td> 
+</tr> 
+</tbody></table> 
+</td> 
+</tr> 
+</tbody></table> 
+<table style="background-color:#deedcc; margin-top:2px;" width="100%"> 
+<tbody><tr> 
+<td style=" color:#545454; font-size:12px; text-align:center; line-height:16px; padding:10px;">&nbsp;&nbsp; </td> 
+</tr> 
+</tbody></table> 
+</div> 
+<table cellpadding="0" cellspacing="0" width="750px"> 
+<tbody><tr> 
+<td align="center"> 
+<p style="font-size:12px;  color:#929292; margin:3px; padding-bottom:5px;">您收到此邮件是因为您订阅了每日推荐更新。如果您不想继续接收此类邮件，可随时<a href="{ini:settings.site_url}{~rewrite('?mod=subscribe&code=undo')}" style="" title="">取消订阅</a>。</p> 
+</td> 
+</tr> 
+</tbody></table> 
+</body>
+</html>

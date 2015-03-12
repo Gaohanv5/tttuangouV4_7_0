@@ -1,0 +1,129 @@
+<!--{template header}-->
+<style>.field label{ width:100px;}.act{ padding-left:120px;} </style>
+<script type="text/javascript">
+function trim(str){
+var re=/\s*(\S[^\0]*\S)\s*/;
+re.exec(str);
+return RegExp.$1;
+}
+function checkCash()
+{
+var money = Math.round($('#cash_money').val()*100)/100;
+var maxmoney = {$maxmoney};
+var paytype = $("input[name='paytype']:checked").val();
+if (isNaN(money))
+{
+foundError('提现金额必须是一个有效数字！');
+return false;
+}
+if (money <= 0)
+{
+foundError('请输入提现金额，或提现金额输入错误，提现金额必须大于0元');
+return false;
+}
+if (money > maxmoney)
+{
+foundError('提现金额过大，您的帐户余额只有' + maxmoney + '元');
+return false;
+}
+if(paytype=='alipay'){
+var alipaynumber = trim($('#alipaynumber').val());
+var aliusername = trim($('#aliusername').val());
+if(alipaynumber.length < 6){
+foundError('您没有填写支付宝帐号或支付宝帐号填写错误！');
+return false;
+}else if(aliusername.length < 2){
+foundError('您没有填写收款人姓名或收款人姓名填写错误！');
+return false;
+}
+}else if(paytype=='bank'){
+var bankname = $('#bankname').val();
+var banknumber = trim($('#banknumber').val());
+var bankusername = trim($('#bankusername').val());
+if(bankname.length < 3){
+foundError('请选择一个转帐银行！');
+return false;
+}else if(banknumber.length < 8){
+foundError('您没有填写银行卡号或银行卡号填写错误！');
+return false;
+}else if(bankusername.length < 2){
+foundError('您没有填写开户人姓名或开户人姓名填写错误！');
+return false;
+}
+}
+return true;
+}
+function foundError(msg)
+{
+$('#error_msg').html(msg).css('color', '#f76120');
+setTimeout(function(){$('#error_msg').css('color', '')}, 2000);
+}
+function getpay(type)
+{
+$('.paystatus').hide();$('#p_'+type).show();
+document.getElementById('cashSubmit').disabled = false;
+}
+$(document).ready(function() {$("#cash_money").focus();});
+</script>
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">帐户提现</p>
+<div class="sect">
+<div class="cont">
+<!--{if $maxmoney > 0}-->
+<form action="?mod=cash&code=order&op=save" method="post" onsubmit="return checkCash();" >
+<!--{~logic('payfrom')->html(MEMBER_ID, 'index')}-->
+<div class="field R14N">您最大可提现金额为：{~user()->get('money')}元。</div>
+<div class="field">
+<label style=" overflow:hidden;">请输入提现金额</label>
+<input id="cash_money" name="money" type="text" class="f-l" style="_height:27px;"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">请选择提现方式</label>
+<label style="text-align:left;width:80px" onclick="getpay('alipay');"><input name="paytype" type="radio" value="alipay"/>支付宝</label>
+<label style="text-align:left;width:80px" onclick="getpay('bank');"><input name="paytype" type="radio" value="bank"/>银行转帐</label>
+<label style="text-align:left;width:80px" onclick="getpay('money');"><input name="paytype" type="radio" value="money"/>上门提现</label>
+</div>
+<div class="field paystatus" style="display:none;" id="p_money">
+<label style=" overflow:hidden;">上门取现地址</label>{$payaddress}
+</div>
+<div class="paystatus" style="display:none;" id="p_alipay">
+<div class="field">
+<label style=" overflow:hidden;">支付宝帐号</label><input id="alipaynumber" name="alipaynumber" type="text"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">收款人姓名</label><input id="aliusername" name="aliusername" type="text"/>
+</div>
+</div>
+<div style="display:none;" class="paystatus" id="p_bank">
+<div class="field">
+<label style=" overflow:hidden;">转帐银行</label><select id="bankname" name="bankname"><option value="">请选择...</option>
+<!--{loop $bank $key $val}-->
+<option value="{$key}">{$val}</option>
+<!--{/loop}-->
+</select>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">银行卡号</label><input id="banknumber" name="banknumber" type="text"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">开户人姓名</label><input id="bankusername" name="bankusername" type="text"/>
+</div>
+</div>
+<div class="act"><input id="cashSubmit" type="submit" class="btn btn-primary" value=" 提交申请 " disabled/></div>
+</form>
+<p id="error_msg"></p>
+<!--{else}-->
+<div class="field">您没有可提现的帐户余额，无法进行提现！（余额至少需要&yen;1元以上）</div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

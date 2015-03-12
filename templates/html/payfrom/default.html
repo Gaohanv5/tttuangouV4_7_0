@@ -1,0 +1,23 @@
+<div class="header">该用户消费信息记录</div>
+<table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+<thead>
+<tr class="tr_nav">
+<td width="15%">账户名称</td>
+<td width="10%">账号信息</td>
+<td width="6%">消费次数</td>
+<td>该账户累计消费</td>
+</tr>
+</thead>
+<tbody>
+<!--{if $pays}-->
+<!--{loop $pays $one}-->
+<tr>
+<td>{$one['pname']}</td>
+<td>{$one['payfrom']}</td>
+<td>{$one['paynum']}</td>
+<td>{$one['paysum']}</td>
+</tr>
+<!--{/loop}-->
+<!--{/if}-->
+</tbody>
+</table>

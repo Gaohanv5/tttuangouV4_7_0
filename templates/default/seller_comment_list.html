@@ -1,0 +1,69 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">用户给我的评价<span class="B12">（综合评分：{$comments['average']}分；共有评论：{$comments['count']}条）</span></p>
+<div class="cont">
+<style>
+table td{text-align:left;border-bottom:1px solid #eee;padding:15px 5px;}
+#report th{ text-align:left;}
+#report tr td{ padding:15px 10px;}
+.seller_reply .s_btn{ float:right; margin:10px 4px 0 10px;}
+</style>
+<table id="report" style="width:100%">
+<tr>
+<th style="text-align: left;">评价</td>
+<th>评论</td>
+<th width="100">评价人</td>
+<th width="200">产品信息</td>
+<th width="50">操作</td>
+</tr>
+<!--{loop $comments['comment'] $one}-->
+<tr>						
+<td>{$one['score']}分</td>
+<td>
+<div style="overflow:hidden; margin-bottom:10px;">
+{$one['content']}
+{if $one['img']}<br><a href="{echo imager($one['img'], IMG_Original)}" title="单击查看原图" target="_blank"><img class="order_img2" src="{echo imager($one['img'], IMG_Tiny)}"></a>{/if}</div>
+<div class="G12">[{echo date('Y-m-d H:i:s', $one['timestamp_update'])}]</div>
+<div id="replycontent_{$one['id']}">{if $one['reply']}<font style="color:#af874d">{$one['reply']}</font>{/if}</div>
+</td>
+<td>{$one['user_name']}</td>
+<td><a href="?view={$one['product_id']}">{$one['name']}</a><br><font color="red">{$one['nowprice']}</font>元</td>
+<td><div id="replybutton_{$one['id']}">{if !$one['reply']}<a href="javascript:comment_reply({$one['id']});">答复</a>{/if}</div></td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+<div id="hiddenform" style="display:none;">
+<iframe name="reply_iframe" width="0" height="0" style="margin:0px padding:0px;border:0px;"></iframe>
+<form id="replyform_defaultid" method="post" action="index.php?mod=comment&code=ajaxsubmit" target="reply_iframe">
+<div class="seller_reply">
+<input type="hidden" name="id" value="defaultid">
+<textarea name="reply" id="replypost_defaultid"></textarea>
+<input onclick="fromsubmit(defaultid);" class="b_btn s_btn" type="button" value="提交">
+<input type="button" value="取消" class="u_btn s_btn" onclick="unsubmit(defaultid);">
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<script>
+function comment_reply(id){var html = $('#hiddenform').html();html = html.replace(/defaultid/g, id);$('#replycontent_'+id).html(html);}
+function fromsubmit(id){
+var reply = $('#replypost_'+id).val();
+if(id > 0 && reply != ''){
+$('#replyform_'+id).submit();$('#replybutton_'+id).html('');
+$('#replycontent_'+id).html('<font style="color:#af874d">'+reply+'</font>');
+}else{
+alert('请输入答复内容！');return false;
+}
+}
+function unsubmit(id){$('#replycontent_'+id).html('');}
+</script>
+<!--{template footer}-->

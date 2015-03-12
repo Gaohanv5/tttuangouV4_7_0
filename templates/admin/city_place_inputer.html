@@ -1,0 +1,14 @@
+{~ui('loader')->js('#admin/js/cplace.inputer')}
+<select id="__cplace_region" name="__cplace_region" onchange="cplace_region_change()"> <option value="0">全部</option>
+{loop $places $i $region}
+<option value="{$region['id']}"{if $region['selected']} selected="selected"{eval $regiond=$region['id']}{/if}>{$region['name']}</option>
+{/loop}
+</select> <select id="__cplace_street" name="__cplace_street"> <option value="0">全部</option>
+{if $regiond && isset($places[$regiond])}
+{loop $places[$regiond]['streets'] $street}
+<option value="{$street['id']}"{if $street['selected']} selected="selected"{/if}>{$street['name']}</option>
+{/loop}
+{/if}
+</select>
+&nbsp;&nbsp;&nbsp;&nbsp;
+[ <a href="admin.php?mod=tttuangou&code=city" target="_blank">添加区域</a> ]

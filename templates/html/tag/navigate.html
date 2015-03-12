@@ -1,0 +1,9 @@
+{if $tags}
+<div class="site-fs__cell-tags">	
+{loop $tags $i $tag}
+<label><a href="{$tag['url']}" class="topclass-name {if $tag['selected']}selected{/if}" title="{$tag['desc']}">  {$tag['name']} </a></label>
+{/loop}
+<div style="clear: both;"></div>
+<script>$(".site-fs__cell-tags .selected input").attr("checked",'true');</script>
+</div>
+{/if}

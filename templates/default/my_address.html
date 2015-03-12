@@ -1,0 +1,93 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">我的收货地址</p>
+<div class="address">
+<a class="btn btn-small" style="float:left; margin-left:0;" href="javascript:address_add();" >添加新地址</a>
+</div>
+<div class="cont">
+<div id="address_new" class="address_new">
+<form id="address_new_form" method="post" action="address.save">
+<table width="100%">
+<tr>
+<td width="100"></td><td><input id="addr_id" name="id" type="hidden" value="0" class="validate[required,custom[number]]" /></td>
+</tr>
+<tr>
+<td class="left">省市区：</td>
+<td>
+<select id="addr_province" name="province" class="validate[required]"></select>
+<select id="addr_city" name="city" class="validate[required]"></select>
+<select id="addr_country" name="country" class=""></select>
+</td>
+</tr>
+<tr>
+<td class="left">街道地址：</td>
+<td>
+<input id="addr_address" name="address" type="text" class="validate[required,minSize[5],maxSize[30]]" />
+</td>
+</tr>
+<tr>
+<td class="left">邮政编码：</td>
+<td>
+<input id="addr_zip" name="zip" type="text" class="validate[optional,custom[number],minSize[6],maxSize[6]]" />
+</td>
+</tr>
+<tr>
+<td class="left">收件人姓名：</td>
+<td>
+<input id="addr_name" name="name" type="text" class="validate[required,minSize[2],maxSize[8]]]" />
+</td>
+</tr>
+<tr>
+<td class="left">电话号码：</td>
+<td>
+<input id="addr_phone" name="phone" type="text" class="validate[required,custom[phone]]" />
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<input id="address_submit_button" class="btn btn-primary btn-small" type="button" value=" 保存 " />
+<input id="address_cancel_button" class="btn btn-small" type="button" value=" 取消 " />
+<font id="address_submit_result"></font>
+</td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+<div class="cont" style="*margin-top:0;">
+<table class="addressbox">
+<tr class="hd">
+<th>收件人</td>
+<th>所在地区</td>
+<th>街道地址</td>
+<th>邮编</td>
+<th>电话</td>
+<th>编辑</td>
+</tr>
+<!--{loop $addressList $address}-->
+<tr> 
+<td>{$address['name']}</td>
+<td>{$address['region']}</td>
+<td>{$address['address']}</td>
+<td>{$address['zip']}</td>
+<td>{$address['phone']}</td>
+<td><a href="javascript:address_edit({$address['id']});">编辑</a> - <a href="javascript:address_del({$address['id']});">删除</a></td>
+</tr>
+<!--{/loop}-->
+</table>
+</div>
+{~ui('loader')->css('@jquery.validationEngine')}
+{~ui('loader')->js('@jquery.validationEngine')}
+{~ui('loader')->js('@jquery.validationEngine.cn')}
+{~ui('loader')->js('@jquery.form')}
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

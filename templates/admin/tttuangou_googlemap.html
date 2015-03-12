@@ -1,0 +1,47 @@
+<html> <head> <meta http-equiv="Content-Type" content="text/html; charset={ini:settings.charset}"> <title>搜狗地图API接口</title> <script type="text/javascript" src="http://api.go2map.com/maps/js/api_v2.0.js"></script> </head> <body onLoad="initialize()" style="margin: 0;padding: 0;"> <div id="map_canvas" style="width: 600px; height: 500px"></div> <script type="text/javascript">
+var map, marker;
+function initialize() {
+var city0 = "{$city}";
+if( city0 != "" ){
+var request = {address:{addr:city0, city:city0}};
+var geo = new sogou.maps.Geocoder();
+geo.geocode(request,city2point);
+}else{
+map_init('{$x}', '{$y}');
+}
+}
+function city2point(res){
+if(res.status='ok'){
+var p = res.data[0];
+//alert(p.location.x);
+map_init(p.location.x, p.location.y);
+}
+}
+function map_init(map_x, map_y){
+var myPoint = new sogou.maps.Point(map_x, map_y);
+var myOptions = {
+zoom:{$z},
+center: myPoint,
+mapTypeId: sogou.maps.MapTypeId.ROADMAP
+}
+map = new sogou.maps.Map(document.getElementById("map_canvas"), myOptions);
+sogou.maps.event.addListener(map, 'click', function(event) {
+xyzchanged(event, map);
+});
+marker = new sogou.maps.Marker({map: map, draggable: true});
+sogou.maps.event.addListener(marker, 'dragend', function(event){
+xyzchanged(event, map);
+});
+placeMarker(myPoint);
+}
+function xyzchanged(event, map)
+{
+placeMarker(event.point);
+var xyz = event.point.x+","+event.point.y+","+map.getZoom();
+window.parent.getxy(xyz);
+}
+function placeMarker(location) {
+marker.setPosition(location);
+map.setCenter(location);
+}
+</script> </body> </html>

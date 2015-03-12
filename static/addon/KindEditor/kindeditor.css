@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+img {
+
+max-width: 650px;
+
+/* width: expression(this.width > 650 ? "650px" : this.width + "px"); */
+width: expression( onload = function() { this.style.width = ( this.offsetWidth > 650 ) ? "650px" : "auto" } );
+
+overflow: hidden;
+
+}

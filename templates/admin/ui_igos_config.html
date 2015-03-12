@@ -1,0 +1,14 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<style type="text/css">
+.ini input {
+width: 16px;
+}
+</style> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2"><b>多团展示方式设置</b></td> </tr> <tr> <td width="30%"></td> <td></td> </tr> <tr> <td class="td_title">首页多团风格类型</td> <td> <form action="admin.php?mod=ui&code=igos&op=save" method="post"> <select name="style"> <option value="meituan"{if ini('ui.igos.style')=='meituan'} selected="selected"{/if}>横排两个</option> <option value="lashou"{if ini('ui.igos.style')=='lashou'} selected="selected"{/if}>横排三个</option> </select> <br/> <input type="submit" value="设置" class="button" /> </form> </td> </tr> <tr> <td class="td_title">关闭首页分类商品显示？启用全部商品显示</td> <td> <font class="ini" src="ui.igos.oldindex">{echo ini('ui.igos.oldindex') ? 'true' : 'false'}</font>（如启用，则不按分类显示出所有商品，这是4.5版本以前的首页；默认不启用，首页商品按分类分别展示，这是4.5版本后的新首页）
+</td> </tr> <tr> <td class="td_title">多于 12 个产品时，是否启用分页？</td> <td> <font class="ini" src="ui.igos.pager">{echo ini('ui.igos.pager') ? 'true' : 'false'}</font>（如启用，则每页12个，自动分页；如不启用，则一页全面列出）
+</td> </tr> <tr> <td class="td_title">是否自动降低已售完产品的显示优先级？</td> <td> <font class="ini" src="ui.igos.dsper">{echo ini('ui.igos.dsper') ? 'true' : 'false'}</font>（如启用，则售完产品自动显示在最下面）
+</td> </tr> <tr> <td class="td_title">多于 N 个产品时，是否自动降低倒计时的精度？</td> <td>
+最多产品： <font class="ini" src="ui.igos.litetimer_wm">{echo (int)ini('ui.igos.litetimer_wm')}</font> 个，状态：
+<font class="ini" src="ui.igos.litetimer">{echo ini('ui.igos.litetimer') ? 'true' : 'false'}</font>（建议开启，否则首页产品过多时IE浏览器下会很卡）
+</td> </tr> <tr> <td class="td_title" title="Lazy 模式:在浏览器可视区域外的图片不会被载入, 直到用户将页面滚动到它们所在的位置才显示的一种方式">是否使用 Lazy 模式加载首页产品图片？</td> <td> <font class="ini" src="ui.igos.lazyimager">{echo ini('ui.igos.lazyimager') ? 'true' : 'false'}</font>（建议开启，可以加速页面载入，节省服务器资源）
+</td> </tr> </table> <!--{template @admin/footer}-->

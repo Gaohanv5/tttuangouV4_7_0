@@ -1,0 +1,30 @@
+<!--{template header}-->
+{~ui('loader')->js('@time.lesser')}
+<div class="bread-nav"><a href="?">首页</a><span>>></span><a href="?mod=about_to_begin">即将开始</a></div>
+<div class="site-ms__left">
+<style>.deal_component{ width:938px; overflow:hidden;}.b_btn{ float:none;}.remind_line{ padding:10px 0; display:block;}</style>
+<div class="deal_component">
+<div>提示：系统会在此产品开团前以短信/邮件的方式提醒您，订阅人数较多的情况，会导致信息下发时间延后</div>
+<form method="post" action="?mod=about_to_begin&code=notify&op=save">
+<input type="hidden" name="id" value="{$id}" />
+{if $this->sms_enabled}
+<div class="remind_line"><label><input type="checkbox" name="notify_type[]" value="sms" checked="true" /> 短信提醒：</label>
+<input type="text" name="sms" value="{$sms}" {eval echo $user[phone_validate]?" readonly='true' " : ''} /><br />
+</div>
+{/if}
+{if $this->mail_enabled}
+<div class="remind_line"><label><input type="checkbox" name="notify_type[]" value="mail" /> 邮件提醒：</label>
+<input type="text" name="mail" value="{$mail}" {eval echo $user[checked]?" readonly='true' " : ''}  /><br />
+</div>
+{/if}
+<input type="hidden" name="referer" value="{$referer}" />
+<div><input class="b_btn" type="submit" value="确定" /></div>
+</form>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load('countdown')}
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

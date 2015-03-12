@@ -1,0 +1,9 @@
+<!--{if $cfg['list']}-->
+<div class="onead">
+<ul>
+{loop $cfg['list'] $id $one}
+<li><a href="{$one['link']}" target="{$one['target']}"><img src="{$one['image']}" alt="{$one['text']}"/></a></li>
+{/loop}
+</ul>
+</div>
+<!--{/if}-->

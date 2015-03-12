@@ -1,0 +1,56 @@
+<!--{template header}-->
+{~ui('loader')->js('@account.register')}
+{~ui('loader')->css('@account.register')}
+{~ui('loader')->js('@account.active')}
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">确认信息</p>
+<div class="sect">
+<form id="activeForm" action="?mod=account&code=login&op=active" method="post" enctype="multipart/form-data" >
+<div class="cont">
+<div id="accintro" class="field">
+</div>
+<div id="accdetail" style="display:;">
+<div class="field">
+<label>用户名</label>
+<input type="text" name="username" id="username" class="f_input l_input" value="{$data['username']}" size="30">
+<font id="username_result"></font>
+<span class="hint">4-16 个字符，一个汉字为两个字符</span>
+</div>
+<input name="password" type="hidden" class="f_input l_input" id="password" value="{$data['password']}" size="30">
+<div class="field">
+<label>Email</label>
+<input type="text" name="mail" id="email"  class="f_input l_input" value="{$data['mail']}" size="30">
+<font id="email_result"></font>
+<span class="hint">登录及找回密码用</span>
+</div>
+<div class="field">
+<label>手机号</label>
+<input type="text" name="phone" id="phone"  class="f_input l_input" value="{$data['phone']}" size="30">
+<font id="phone_result"></font>
+<span class="hint">{TUANGOU_STR}成功后会发送短信到手机</span>
+</div>
+<div class="field">
+<label></label>
+<label style="width:130px;margin-left:108px;">
+<input type="checkbox" name="subs" checked="checked" /> 订阅最新{TUANGOU_STR}信息
+</label>
+</div>
+</div>
+<div  id="l_act">
+<input type="hidden" name="uuid" value="{$uuid}" />
+<input type="submit" class="formbutton"  value="确认并提交" />
+注：此页面只会在您第一次使用快捷登录时出现！
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

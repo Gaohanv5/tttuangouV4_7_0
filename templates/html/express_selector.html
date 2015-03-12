@@ -1,0 +1,25 @@
+{~ui('loader')->css('@express.selector',true)}
+{~ui('loader')->js('@express.selector',true)}
+<div class="express_div">
+<p class="title"> </p>
+<div id="express_list_{$data['id']}">
+<script>
+for(i in product_array)
+{
+if(product_array[i].weight != undefined)
+{
+_pid_upo = product_array[i].productid;
+}
+}
+//显示快递
+express_display(0,_pid_upo);
+</script>
+</div>
+<div id="address_first_{$data['id']}"> </div>
+</div>
+<script>
+$(document).ready(function(){
+setTimeout('$(".express_div input[type=radio]:first").trigger("click");$(".address_list input[type=radio]:first").trigger("click");', 1000);
+//express_price_change(1000, 5.00,1000,1.00,_pid_upo);
+});
+</script>

@@ -1,0 +1,62 @@
+<!--{template @admin/header}--> <script type="text/javascript">
+function trim(str){
+var re=/\s*(\S[^\0]*\S)\s*/;
+re.exec(str);
+return RegExp.$1;
+}
+function getpay(type)
+{
+$('.paystatus').hide();$('#p_'+type).show();document.getElementById('fundSubmit').disabled = false;
+}
+function checkFund()
+{
+var money = Math.round($('#fund_money').val()*100)/100;
+var maxmoney = {$max_money};
+var paytype = $("input[name='paytype']:checked").val();
+if (isNaN(money) || money <= 0)
+{
+foundError('您没有输入结算金额或结算金额输入错误！');
+return false;
+}
+if (money > maxmoney)
+{
+foundError('结算金额输入数据过大，结算金额必须小于或等于'+maxmoney+'元');
+return false;
+}
+if(paytype=='alipay'){
+var alipaynumber = trim($('#alipaynumber').val());
+var aliusername = trim($('#aliusername').val());
+if(alipaynumber.length < 6){
+foundError('您没有填写支付宝帐号或支付宝帐号填写错误！');
+return false;
+}else if(aliusername.length < 2){
+foundError('您没有填写收款人姓名或收款人姓名填写错误！');
+return false;
+}
+}else if(paytype=='bank'){
+var bankname = $('#bankname').val();
+var banknumber = trim($('#banknumber').val());
+var bankusername = trim($('#bankusername').val());
+if(bankname.length < 3){
+foundError('请选择一个转帐银行！');
+return false;
+}else if(banknumber.length < 8){
+foundError('您没有填写银行卡号或银行卡号填写错误！');
+return false;
+}else if(bankusername.length < 2){
+foundError('您没有填写开户人姓名或开户人姓名填写错误！');
+return false;
+}
+}
+return true;
+}
+function foundError(msg)
+{
+$('#error_msg').html(msg).css('color', '#f00');
+}
+</script> <style>
+p.field{margin:15px 10px;overflow: hidden;}
+p.field label{padding:5px 0px;width:90px;float:left;}
+.paystatus{border-top:1px dashed #999;}
+#p_money{padding-top:15px;}
+</style> <form action="?mod=fund&code=order&op=done" method="post" onsubmit="return checkFund();"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2"><b>商家结算</b></td> </tr> <tr> <td width="20%"></td> <td width=""><input type="hidden" name="sid" value="{$sid}"></td> </tr> <tr> <td class="td_title">结算商家：</td> <td>{$seller_info['sellername']}</td> </tr> <tr> <td class="td_title">请输入结算金额：</td> <td><input type="text" name="money" id="fund_money"/>（最大可结算金额：&yen;{$seller_info['account_money']}元）</td> </tr> <tr> <td class="td_title">请选择结算方式：</td> <td> <p class="field"> <label onclick="getpay('alipay');"><input name="paytype" type="radio" value="alipay"/>支付宝</label> <label onclick="getpay('bank');"><input name="paytype" type="radio" value="bank"/>银行转帐</label> <label onclick="getpay('money');"><input name="paytype" type="radio" value="money"/>上门提现</label> </p> <p class="field paystatus" style="display:none;" id="p_money"> <label style=" overflow:hidden;">上门取现地址：</label>{$payaddress}&nbsp;&nbsp;<a href="?mod=recharge&code=config">设置</a> </p> <div class="paystatus" style="display:none;" id="p_alipay"> <p class="field"> <label style=" overflow:hidden;">支付宝帐号：</label><input id="alipaynumber" name="alipaynumber" type="text"/> </p> <p class="field"> <label style=" overflow:hidden;">收款人姓名：</label><input id="aliusername" name="aliusername" type="text"/> </p> </div> <div style="display:none;" class="paystatus" id="p_bank"> <p class="field "> <label style=" overflow:hidden;">转帐银行：</label><select id="bankname" name="bankname"><option value="">请选择...</option> <!--{loop $bank $key $val}--> <option value="{$key}">{$val}</option> <!--{/loop}--> </select> </p> <p class="field"> <label style=" overflow:hidden;">银行卡号：</label><input id="banknumber" name="banknumber" type="text"/> </p> <p class="field"> <label style=" overflow:hidden;">开户人姓名：</label><input id="bankusername" name="bankusername" type="text"/> </p> </div> <p class="field" id="error_msg"></p> </td> </tr> <tr> <td colspan="2" class="tr_center"> <input type="submit" class="button" value="结 算" id="fundSubmit" disabled/> </td> </tr> </table> </form> <!--{template @admin/footer}-->

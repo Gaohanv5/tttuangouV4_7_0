@@ -1,0 +1,4 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2"><b>注册用户设置</b></td> </tr> <tr> <td width="50%"></td> <td></td> </tr> <tr> <td class="td_title">用户注册时是否对输入的手机号码进行唯一性检查？</td> <td> <font class="ini" src="member.phone.unique">{echo ini('member.phone.unique') ? 'true' : 'false'}</font> </td> </tr> <tr> <td class="td_title">是否 <b>禁止</b> 用户在前台自己修改邮件地址或者手机号码？</td> <td> <font class="ini" src="member.contact.keep">{echo ini('member.contact.keep') ? 'true' : 'false'}</font>（禁止后，用户在前台下单的时候也是不可以修改手机号码的，请慎选）
+</td> </tr> </table> <!--{template @admin/footer}-->

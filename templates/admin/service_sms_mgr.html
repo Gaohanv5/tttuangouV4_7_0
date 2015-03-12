@@ -1,0 +1,13 @@
+<!--{template @admin/header}--> <form action="?mod=service&code=sms&op=save" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">{$actionName}短信通道</td> </tr> <tr> <td width="12%"></td> <td><input name="id" type="hidden" value="{$c['id']}" /></td> <tr> <tr> <td>通道名称:</td> <td>
+{$c['name']}
+<input name="cfg[driver]" type="hidden" value="$c['cfg']['driver']" /> </td> </tr> <tr> <td>平台帐号:</td> <td> <input name="cfg[account]" type="text" value="{$c['cfg']['account']}" /> </td> </tr> <tr> <td>平台密码:</td> <td> <input name="cfg[password]" type="password" value="{$c['cfg']['password']}" /> </td> </tr>
+{if in_array($c['cfg']['driver'],array('zt','tyx'))}
+<tr> <td>签名信息:</td> <td> <input name="cfg[sign]" type="text" value="{$c['cfg']['sign']}" />
+* 示例: <font color="red">天天团购</font> 发送效果：<font color="red">短信内容 +【天天团购】</font> </td> </tr>
+{/if}
+<tr> <td>拆包阀值:</td> <td> <input name="cfg[bcmax]" type="text" value="{$c['cfg']['bcmax']}" />
+* 当群发目标超过阀值时系统会自动切割成若干小包进行发送 / 一般设置为10即可 / {~ifaq('{TUANGOU_STR}短信队列拆包', '帮助')}
+</td> </tr> <tr> <td>发送间隔:</td> <td> <input name="cfg[sinv]" type="text" value="{$c['cfg']['sinv']}" />
+* 单位/秒，短信队列发送的间隔时间 / 一般设置为0 / {~ifaq('{TUANGOU_STR}短信队列间隔', '帮助')}
+</td> </tr> <tr> <td>通道状态:</td> <td> <label><input name="enabled" type="radio" value="true"{if $c['enabled']=='true'} checked="true"{/if} />启用</label> <label><input name="enabled" type="radio" value="false"{if $c['enabled']=='false'} checked="true"{/if} />关闭</label> </td> </tr> <!--{if $c['cfg']['driver'] == 'zt'}--> <tr class="tips"> <td colspan="2"> <a href="{~ihelper('tg.shop')}" target="_blank"><font color="red">点此在线购买</font></a> </td> </tr> <!--{/if}--> </table> <br/> <center> <input type="submit" class="button" name="addsubmit" value="提 交"> </center> </form>
+{template @admin/footer}

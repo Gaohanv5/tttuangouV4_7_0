@@ -1,0 +1,7 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2"><b>手动升级模式</b></td> </tr> <tr> <td class="td_title" width="20%">临时升级令牌：</td> <td>
+{$upsParser['token']}
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="admin.php?mod=upgrade&code=manual">[ 刷新 ]</a> </td> </tr> <tr> <td class="td_title">手动升级地址：</td> <td> <a href="{$upsParser['url']}" target="_blank">请点击此处访问</a> </td> </tr> <tr> <td></td> <td>
+注意：<br/>
+1、您的网站必须外部可以访问才能进行手动模式升级！（本地安装测试的用户无法使用本方式升级）<br/>
+2、本次生成的升级令牌的有效期为24小时，请在24小时内完成升级！<br/> <b>3、如果您已经完成手动升级，请 <a href="admin.php?mod=upgrade&code=manual&op=token_close">点击这里</a> 删除临时令牌</b> </td> </tr> <tr> <td></td> <td> <font style="font-weight:bold;color:red;">提示：升级未完成之前请千万不要刷新或者关闭本页面，否则令牌刷新后会导致升级失败！</font> </td> </tr> </table> <!--{template @admin/footer}-->

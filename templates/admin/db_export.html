@@ -1,0 +1,36 @@
+{template @admin/header}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder"> <tr class="header"> <td><div style="float:left; margin-left:0px; padding-top:8px"> <a href="###" onclick="collapse_change('tip')">技巧提示</a> </div> <div style="float:right; margin-right:4px; padding-bottom:9px"> <a href="###" onclick="collapse_change('tip')"> <img id="menuimg_tip" src="./templates/default/images/admincp/menu_reduce.gif" border="0"/></a> </div></td> </tr> <tbody id="menu_tip" style="display:"> <tr> <td><ul> <li>数据备份功能可备份Mysql数据库中的内容，导出的数据文件可用本系统的“数据恢复”功能自动循环导入。
+<li>全部备份均不包含系统模板文件和图片等附件文件。如果你是为了更换空间而备份，请看<A HREF="{~ihelper('tg.host.move')}" target=_blank>更换空间的详细步骤</A>。
+<li>默认情况下，备份文件没有压缩；压缩备份文件可以让您的备份文件占用更小的空间，请在下面更多选项中选择压缩方式。
+<li>数据库备份都保存在/backup/db目录下，并且每次备份都按日期创建了一个独立的文件夹；具体信息可以在备份之后到“<A HREF="admin.php?mod=db&code=import">数据恢复</A>”中查看或者删除不需要的备份。
+</ul></td> </tr> </tbody> </table> <form name="backup" method="post" action="admin.php?mod=db&code=doexport"> <input type="hidden" name="setup" value="1"> <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder"> <tr class="header"> <td colspan="2">数据备份类型</td> </tr> <tr> <td class="altbg1" width="40%"><input class="radio" type="radio" value="all_tables" name="type" onclick="$('#showtables').css('display', 'none')" checked>
+全部数据</td> <td class="altbg2" width="45%"></td> </tr> <tr> <td class="altbg1"><input class="radio" type="radio" value="custom" name="type" onclick="$('#showtables').css('display', '')">
+自定义备份</td> <td class="altbg2">根据需要自行选择需要备份的数据表</td> </tr> <tbody id="showtables" style="display:none"> <tr> <td class="altbg2" colspan="2"><table cellspacing="0" cellpadding="0" border="0" width="100%"> <tr> <td colspan="4"><b>天天{TUANGOU_STR}数据表</b> <input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'customtables')" checked> <b>全选</b></td> </tr> <!--{loop $table_list_group $table_list}--> <tr> <td><!--{loop $table_list $table}--> <input class="checkbox" type="checkbox" name="customtables[]" value="{$table[Name]}" checked>
+{$table[Name]}</td> <td><!--{/loop}--> </tr> <!--{/loop}--> </table></td> </tr> </tbody> <tr> <td class="altbg1">&nbsp;</td> <td align="right" class="altbg2" style="text-align: right;"><input class="checkbox" type="checkbox" value="1" onclick="$('#advanceoption').css('display', $('#advanceoption').css('display') == 'none' ? '' : 'none'); this.value = this.value == 1 ? 0 : 1; this.checked = this.value == 1 ? false : true">
+更多选项 &nbsp; </td> </tr> <tbody id="advanceoption" style="display: none;"> <tr class="header"> <td colspan="2">数据备份方式</td> </tr> <!--{if 0}--> <tr> <td class="altbg1"><input class="radio" type="radio" name="method" value="shell"  onclick="if(0) {if(this.form.sqlcompat[2].checked==true) this.form.sqlcompat[0].checked=true; this.form.sqlcompat[2].disabled=true; this.form.sizelimit.disabled=true;} else {this.form.sqlcharset[0].checked=true; for(var i=1; i<=5; i++) {if(this.form.sqlcharset[i]) this.form.sqlcharset[i].disabled=true;}}">
+系统 MySQL Dump (Shell) 备份</td> <td class="altbg2">&nbsp;</td> </tr> <!--{/if}--> <tr> <td class="altbg1"><input class="radio" type="radio" name="method" value="multivol" checked onclick="this.form.sqlcompat[2].disabled=false; this.form.sizelimit.disabled=false; for(var i=1; i<=5; i++) {if(this.form.sqlcharset[i]) this.form.sqlcharset[i].disabled=false;}">
+分卷备份 - 文件长度限制(kb)</td> <td class="altbg2"><input type="text" size="40" name="sizelimit" value="2048"></td> </tr> <tr class="header"> <td colspan="2">数据备份选项</td> </tr> <tr> <td class="altbg1">&nbsp;使用扩展插入(Extended Insert)方式</td> <td class="altbg2"><input class="radio" type="radio" name="extendins" value="1">
+是 &nbsp;
+<input class="radio" type="radio" name="extendins" value="0" checked>
+否</td> </tr> <tr> <td class="altbg1">&nbsp;建表语句格式</td> <td class="altbg2"><input class="radio" type="radio" name="sqlcompat" value="" checked>
+默认 &nbsp;
+<input class="radio" type="radio" name="sqlcompat" value="MYSQL40">
+MySQL 3.23/4.0.x &nbsp;
+<input class="radio" type="radio" name="sqlcompat" value="MYSQL41">
+MySQL 4.1.x/5.x &nbsp;</td> </tr> <tr> <td class="altbg1">&nbsp;强制字符集</td> <td class="altbg2"><input class="radio" type="radio" name="sqlcharset" value="" checked>
+默认 &nbsp;
+<input class="radio" type="radio" name="sqlcharset" value="gbk">
+GBK &nbsp;
+<input class="radio" type="radio" name="sqlcharset" value='utf8'>
+UTF-8
+</option></td> </tr> <tr> <td class="altbg1">&nbsp;十六进制方式：可以保证备份数据的完整性</td> <td class="altbg2"><input class="radio" type="radio" name="usehex" value="1" checked>
+是 &nbsp;
+<input class="radio" type="radio" name="usehex" value="0">
+否</td> </td> </tr> <tr> <td class="altbg1">&nbsp;压缩备份文件</td> <td class="altbg2"><input class="radio" type="radio" name="usezip" value="1">
+多分卷压缩成一个文件 &nbsp;
+<input class="radio" type="radio" name="usezip" value="2">
+每个分卷压缩成单独文件 &nbsp;
+<input class="radio" type="radio" name="usezip" value="0" checked>
+不压缩</td> </td> </tr> <tr> <td class="altbg1">&nbsp;备份文件名</td> <td class="altbg2"><input type="text" size="40" name="filename" value="{$filename}">
+.sql</td> </tr> </tbody> </table> <center> <input class="button" type="submit" name="exportsubmit" value="提 交"> </center> </form>
+{template @admin/footer}

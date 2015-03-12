@@ -1,0 +1,18 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<form action="admin.php?mod=wips&code=sql&op=save" method="post"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">
+入侵检测 &gt;&gt; SQL注入攻击防御
+</td> </tr> <tr class="tr_nav"> <td width="10%" style="text-align: right;">设置项</td> <td>变量值&nbsp;&nbsp;&nbsp;<a href="{~ihelper('wips.sql')}" target="_blank">( 帮助说明 )</a></td> </tr> <tr> <td class="td_title">禁止的SQL函数</td> <td><textarea name="dfunction" cols="50" rows="3">{~ini('wips.sql.dfunction')}</textarea></td> </tr> <tr> <td class="td_title">禁止的SQL方法</td> <td><textarea name="daction" cols="50" rows="3">{~ini('wips.sql.daction')}</textarea></td> </tr> <tr> <td class="td_title">禁止的SQL标记</td> <td><textarea name="dnote" cols="50" rows="3">{~ini('wips.sql.dnote')}</textarea></td> </tr> <tr> <td class="td_title">是否禁止注释符</td> <td> <label><input type="radio" name="afullnote" value="true" {if ini('wips.sql.afullnote') == 'true' || ini('wips.sql.afullnote') == ''} checked="checked"{/if} /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="afullnote" value="false" {if ini('wips.sql.afullnote') == 'false'} checked="checked"{/if} /> 否</label> </td> </tr> <tr> <td class="td_title">是否禁止16进制符</td> <td> <label><input type="radio" name="dlikehex" value="true" {if ini('wips.sql.dlikehex') == 'true' || ini('wips.sql.dlikehex') == ''} checked="checked"{/if} /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="dlikehex" value="false" {if ini('wips.sql.dlikehex') == 'false'} checked="checked"{/if} /> 否</label> </td> </tr> <tr> <td class="td_title">是否对后台启用？</td> <td> <label><input type="radio" name="foradm" value="true" {if ini('wips.sql.foradm') == 'true' || ini('wips.sql.foradm') == ''} checked="checked"{/if} /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="foradm" value="false" {if ini('wips.sql.foradm') == 'false'} checked="checked"{/if} /> 否</label>
+/ 如果您编辑产品或者编辑文章时经常遇到入侵误报的问题，请尝试此处选“否”
+</td> </tr> <tr> <td class="td_title">是否自动联网升级？</td> <td> <label><input type="radio" name="autoups" value="true" {if ini('wips.sql.autoups') == 'true' || ini('wips.sql.autoups') == ''} checked="checked"{/if} /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="autoups" value="false" {if ini('wips.sql.autoups') == 'false'} checked="checked"{/if} /> 否</label>
+/ 联网升级时可以自动优化入侵检测规则，实现全网防御
+</td> </tr> <tr> <td></td> <td> <input type="submit" value="保存" class="wbutton" /> </td> </tr> </table> </form>
+{template @admin/footer}

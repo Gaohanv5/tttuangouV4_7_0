@@ -1,0 +1,97 @@
+{~ui('loader')->css('@address.selector',true)}
+{eval $aid = get('aid', 'int')}
+{~ui('loader')->css('@account.register',true)}
+{~ui('loader')->js('@account.register',true)}
+<script type="text/javascript"> 
+$(function(){ 
+$("#addr_province").focus(function(){ $(".hint1").show();}).blur(function(){ $(".hint1").hide();});
+$("#addr_city").focus(function(){ $(".hint2").show();}).blur(function(){ $(".hint2").hide();});
+$("#addr_address").focus(function(){ $(".hint3").show();}).blur(function(){ $(".hint3").hide();});
+$("#addr_zip").focus(function(){ $(".hint4").show();}).blur(function(){ $(".hint4").hide();});
+$("#addr_name").focus(function(){ $(".hint5").show();}).blur(function(){ $(".hint5").hide();});
+$("#addr_callphone").focus(function(){ $(".hint6").show();}).blur(function(){ $(".hint6").hide();});
+}); 
+</script>
+<style type="text/css">
+.hint1, .hint2, .hint3, .hint4,.hint5,.hint6, .error {
+background: #ffc;
+overflow: hidden;
+padding: 1px 5px 2px;
+width: 240px;
+float: left;
+margin-left: 0px;
+display: none;
+position: absolute;
+color: #666;
+font-size: 12px;
+margin-top:2px;
+}
+#addr_province_result,#addr_city_result,#addr_address_result,#addr_zip_result,#addr_name_result,#addr_callphone_result{ position:absolute;}
+#rd_add label{ float:none;}
+</style>
+<div class="address_list">
+<p class="title">请选择收货地址：</p>
+<ul id="rd_add">
+<!--{loop logic('address')->GetList(user()->get('id')) $address}-->
+<li><input productId="{eval echo implode(',',$productStuffArray);}" type="radio" name="address_id_{$data['id']}" value="{$address['id']}"{if $aid == $address['id']} checked="checked"{/if} id="addr_sel_{$address['id']}_{$data['id']}" /><label for="addr_sel_{$address['id']}"> {$address['name']} - {$address['region']}{$address['address']} - {$address['phone']}</label></li>
+<!--{/loop}-->
+<li id="li_address_new" class="li_address_new"><input productid="{$data['id']}" type="radio" name="address_id_{$data['id']}" value="0" id="rd_add_other_{$data['id']}"/><label for="rd_add_other"> 使用其他地址</label></li>
+{~logic('address')->import()->wlist()}
+</ul>
+</div>
+<div id="address_new" class="address_new">
+<form id="address_new_form" method="post" action="address.save">
+<table>
+<tr>
+<td width="100"></td><td></td>
+</tr>
+<tr>
+<td class="left">省市区：</td>
+<td>
+<select id="addr_province" name="province" style="float:left;" ></select>
+<select id="addr_city" name="city" style="float:left;" ></select>
+<select id="addr_country" name="country"  style="float:left;"></select>
+<font id="addr_province_result" ></font>
+<font id="addr_city_result" style=" margin-left:120px;"></font>
+</td>
+</tr>
+<tr>
+<td class="left">街道地址：</td>
+<td>
+<input id="addr_address" name="address" type="text" style="float:left" />
+<font id="addr_address_result" style="width:200px;"></font>
+<span class="hint3" style="display:none;">此处不能为空，长度最少为5个字符</span>
+</td>
+</tr>
+<tr>
+<td class="left">邮政编码：</td>
+<td>
+<input id="addr_zip" name="zip" type="text" style="float:left;" />
+<font id="addr_zip_result"></font>
+<span class="hint4" style="display:none;">无效的邮政编码</span>
+</td>
+</tr>
+<tr>
+<td class="left">收件人姓名：</td>
+<td>
+<input id="addr_name" name="name" type="text" style="float:left;" />
+<font id="addr_name_result"></font>
+<span class="hint5" style="display:none;">此处不能为空，长度最少为2个字符</span>
+</td>
+</tr>
+<tr>
+<td class="left">电话号码：</td>
+<td>
+<input id="addr_callphone" name="phone" type="text" style="float:left;"/>
+<font id="addr_callphone_result"></font>
+<span class="hint6" style="display:none;">此处不能为空，无效的电话号码</span>
+</td>
+</tr>
+<tr>
+<td></td>
+<td><input id="address_submit_button" class="btn btn-primary btn-small" type="button" value="保存" /> <font id="address_submit_result"></font></td>
+</tr>
+</table>
+</form>
+</div>
+{~ui('loader')->js('@address.selector',true)}

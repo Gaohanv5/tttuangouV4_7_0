@@ -1,0 +1,6 @@
+<!--{template @admin/header}--> <div class="header"> <a href="?mod=product&code=vlist" style="float:left; display: block;">返回到产品列表</a> </div> <table id="productTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <thead> <tr class="tr_nav"> <td>产品名称</td> <td width="20%">更新时间</td> <td width="20%">管理操作</td> </tr> </thead> <tbody> <!--{loop $list $one}--> <tr> <td>
+{$one['name']}<br/> <a href="{conf site_url}/?view={$one['id']}" target="_blank">{$one['flag']}</a> </td> <td>
+{echo date('Y-m-d H:i:s', $one['addtime'])}
+</td> <td> <a href="?mod=product&code=edit&id={$one['draft']}&draftID={$one['id']}&~iiframe=yes">编辑</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="?mod=product&code=draft&op=del&pid={$one['draft']}&did={$one['id']}" onclick="javascript:return confirm('确认删除吗？');">删除</a> </td> </tr> <!--{/loop}--> </tbody> </table>
+{template @admin/footer}

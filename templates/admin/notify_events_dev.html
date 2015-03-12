@@ -1,0 +1,24 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('@jquery.thickbox')}
+{~ui('loader')->css('@jquery.thickbox')}
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="{$colspan}">
+事件通知接口
+</td> </tr> <tr> <td colspan="{$colspan}">
+[ 是否开启事件监听 ？<img class="{$listener}" title=".listener" /> ] (如果您自己定义了某些通知或者添加了新通知驱动，开启监听后会记录所有的未识别通知)
+</td> </tr>
+{if $etsCheck}
+<tr> <td colspan="{$colspan}"> <font id="etsChecker">正在检测标签语言包更新...</font>
+{~ui('loader')->js('#admin/js/ets.lang.updater')}
+</td> </tr>
+{/if}
+<tr> <td width="5%" bgcolor="#F4F8FC">删除</td> <td width="23%" bgcolor="#F4F8FC">标记</td> <td width="22%" bgcolor="#F4F8FC">名称</td> <!--{$apiTitles}--> <td></td> </tr> <!--{loop $list $flag $cfg}--> <tr id="tr_of_{$flag}"> <td><img class="delete" title="{$flag}" /></td> <td>{$flag}</td> <td> <input class="cname" type="text" value="{$cfg['name']}" title="{$flag}" /> <br/> <style type="text/css">.ini input{ width:100%;}.ini textarea{ width:100%;}</style> <font class="ini" rel="string" src="notify.event.{$flag}.intro">{echo ini('notify.event.'.$flag.'.intro')}</font> </td>
+{$cfg['_apis']}
+</tr> <!--{/loop}--> <tr class="footer"> <td colspan="{$colspan}"> <a id="event_test_lnk" href="javascript:event_test();">通知测试</a> </td> </tr> <tr class="tips"> <td colspan="{$colspan}">
+说明：<br/>
+1. 名称只是作为一个标记，支持实时保存<br/>
+2. 点击 <img class="ol_enable" /> 或者 <img class="ol_disable" /> 可以快速开启或者关闭<br/>
+3. 点击 <img class="ol_editor" /> 可以编辑信息模板<br/>
+4. 点击 <img class="ol_delete" /> 可以删除不需要的事件（开启监听后会自动添加，注意关闭）
+</td> </tr> </table> <div id="msgEditor"> <div class="editorSpace"> <div class="left"> <p class="tags">可用标签列表 <font id="tagsClear">[清理]</font></p> <div id="msgTags">无</div> </div> <div class="right"> <textarea id="msgContent"></textarea> </div> <label><input id="al2user" type="checkbox" checked="checked" value="true" /> 通知用户</label> <br/> <label><input id="cc2admin" type="checkbox" checked="" value="true" /> 通知管理员</label> <input id="formHash" type="hidden" value="{FORMHASH}" /> <input id="msgSubmit" type="button" value="保存" /> </div> </div>
+{template @admin/footer}

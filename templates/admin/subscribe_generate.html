@@ -1,0 +1,16 @@
+<!--{template @admin/header}--> <script type="text/javascript">
+var templateID = "{$template['id']}";
+var __flag = "{$flag}";
+var __from = "{$from}";
+var __idx = "{$idx}";
+</script> <table width="100%"> <tr> <td> <iframe id="piframe" src="" style="width:100%;height:160px;"></iframe> </td> </tr> <tr> <td>
+{echo ($flag == 'sms') ? '手机号码' : '邮件地址'}：
+<input type="text" id="target" /> <input type="button" onclick="pushdPreview(this)" value="发送预览" title="点击此处将订阅信息发送到指定号码预览效果" /> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+[ <input type="button" id="templateButton" onclick="template_edit()" value="编辑模板" title="如果您对预览信息不满意，可以点击此处重新编辑模板" /> ]
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+选择城市：
+<select id="citySel_of_{$flag}" title="请选择需要群发信息到哪个城市的订阅用户">
+{loop logic('misc')->CityList() $city}
+<option value="{$city['cityid']}"{if $cityID == $city['cityid']} selected="selected"{/if}>{$city['cityname']}</option>
+{/loop}
+<option value="-1"{if $cityID == 0} selected="selected"{/if}>- 全部 -</option> </select> <input type="button" onclick="pushdRequest('{$flag}', this)" value="订阅群发" title="点击此处将最新产品信息发送给用户" /> </td> </tr> </table> <!--{template @admin/footer}-->

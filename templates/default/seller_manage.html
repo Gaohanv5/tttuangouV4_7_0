@@ -1,0 +1,42 @@
+<!--{template header}-->
+<div class="ts_menu_2 w960">
+<ul>
+<li class="ts3_mbtn1"><a href="?mod=magseller">{TUANGOU_STR}项目</a></li>
+<li class="ts3_mbtn2"><a href="?mod=list&code=ckticket">{TUANGOU_STR}券验证</a></li>
+</ul>
+</div>
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont w916">
+<table id="report">
+<tr>
+<th>项目</th>
+<th>详细</th>
+</tr>
+{loop $product $i $value}
+<tr>
+<td width="75%">{$value['flag']}</td>
+<td width="25%">
+{if $value['status']==PRO_STA_Failed}
+{TUANGOU_STR}失败
+{elseif $value['status']==PRO_STA_Normal}
+{TUANGOU_STR}进行中
+{elseif $value['status']==PRO_STA_Success}
+{TUANGOU_STR}已成功
+{if $value['type']=='ticket'}
+<a href="?mod=magseller&code=ticket&id={$value['id']}">(查看{TUANGOU_STR}券)</a>
+{/if}
+{elseif $value['status']==PRO_STA_Finish}
+{TUANGOU_STR}已经结束
+{elseif $value['status']==PRO_STA_Refund}
+{TUANGOU_STR}失败，已经退款
+{/if}
+</td>
+</tr>
+{/loop}
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

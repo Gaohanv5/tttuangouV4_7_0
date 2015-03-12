@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="{~ini('settings.charset')}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>商家收款</title>
+<meta name="description" content="">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<style>
+html, button, input, select, textarea { color: #4a4f54;  }
+body { font: 16px/26px Helvetica, Helvetica Neue, Arial; line-height: 160%; overflow-x: hidden; background:#F0EFED;margin: 0;}
+img { vertical-align: middle; }
+a{ text-decoration: none; }
+h1{ color: #141414; line-height: 200%;font-size: 20px;display: block; padding:0 10px 10px 10px;border-bottom:1px solid #dcd8cd;}
+h2{ color: #141414; line-height: 120%;padding: 0 10px;}
+.wrapper { width: 100%; margin: 0; position: relative; }
+.num_wrap{ display:block; width:95%;background:#fff; border: 1px solid #ddd;border-top:1px solid #dcd8cd; border-bottom:1px solid #dcd8cd;line-height: 160%;clear: both;padding: 10px 0; margin: 10px auto;border-radius: 3px;}
+.num_wrap p{ margin: 0 10px; clear: both; display: block;}
+.num_input{margin: 10px 0 10px 10px; padding: 10px 0 10px 10px; border:1px solid #eee;width: 90%;font-size: 18px; }
+.num_confirm{ display: block; text-align: center; font-size: 20px; padding: 5px 0;}
+.num_confirm em{ font-family: Georgia; color: #fb7252; font-style: normal; font-weight: 700; font-size: 20px;}
+.num_button{ width: 90%; display: block; clear: both; margin: 0 10px;}
+.num_button button{width:25%;height: 45px; margin: 0 20px 15px 0;background-color: #ededed;border: 1px solid #ededed;border-bottom: solid 1px #ccc; font-size: 20px;}
+.tips,.myphone{ background:#fef6e1; border-bottom:1px solid #ffebc8; color:#d58900; text-align:center;line-height: 140%;font-size: 18px;padding: 5px 0;margin: 10px;}
+.tips_error{color: #f60;}
+.tips_sucess{color: #5bd137}
+.setp_btn{background: #fb7252;color: #fff;text-align: center;line-height: 180%;font-size: 18px;display: block;margin: 20px auto;border-radius: 2px; border:none; width:95%;}
+.setp_btn[disabled]{ background:#ddd; color:#666; opacity:0.8;}
+.setp_btn_wrap{ width: 95%; margin: 0 auto;}
+.setp_btn_2{width: 70%; float: right;}
+.num_input_captcha{ width: 35%; float: left;}
+.setp_btn_back,.num_input_captcha_a{ width: 28%;background-color: #f9f9f9;border: 1px solid #ededed;border-bottom: solid 1px #ccc; color: #999;text-align: center;line-height: 180%;font-size: 18px;display: inline;margin: 20px 0;border-radius: 2px;  margin-right: 1%; float: left;}
+.num_input_captcha_a{ margin: 10px 0 0; width: 40%; padding: 3px;}
+.num_input_captcha_a[disabled]{ background:#ddd; color:#666; opacity:0.8;}
+</style>
+</head>
+<body>
+{~ui('loader')->js('@jquery')}
+{~ui('loader')->js('@wap.proceeds')}
+{~ui('loader')->css('@wap.proceeds')}
+<!--{if 'step1' == $act}-->
+<div id="setp_1" class="wrapper">
+<div class="num_wrap">
+<input class="num_input" type="text" id="num_money" name="money" onpaste="return false;" placeholder="请输入要消费的金额(单位:元)" >
+<script>
+function num_input(obj,tip){
+if(tip==1){
+var con=document.getElementById('num_money').value;
+document.getElementById('num_money').value=con+obj.innerHTML;
+}else if(tip==2){
+var con=document.getElementById('num_money').value;
+document.getElementById('num_money').value=con.slice(0,-1);
+}
+}
+function to_step2() {
+var money = $('#num_money').val();
+if(money > 0) {
+window.location.href='index.php?mod=wap&code=proceeds&act=step2&money=' + money;
+}
+}
+</script>
+<div class="num_button">
+<button onclick="num_input(this,1)">.</button>
+<button onclick="num_input(this,1)">0</button>
+<button onclick="num_input(this,2)">←</button>
+<br>
+<button onclick="num_input(this,1)">1</button>
+<button onclick="num_input(this,1)">2</button>
+<button onclick="num_input(this,1)">3</button>
+<br>
+<button onclick="num_input(this,1)">4</button>
+<button onclick="num_input(this,1)">5</button>
+<button onclick="num_input(this,1)">6</button>
+<br>
+<button onclick="num_input(this,1)">7</button>
+<button onclick="num_input(this,1)">8</button>
+<button onclick="num_input(this,1)">9</button>
+</div>
+</div>
+<input class="setp_btn num_money_chk" onclick="to_step2()" type="submit"  value="下一步（1/3）">
+</div>
+<!--{elseif 'step2' == $act}-->
+<form method="post" action="index.php?mod=wap&code=proceeds&act=step2&do=1">
+<div id="setp_2" class="wrapper">
+<div class="num_wrap">
+<div class="num_confirm">请确认消费金额：<em>{$money}</em>元</div>
+<input class="num_input" type="text" id="id_username" name="username" onpaste="return false;" placeholder="请输入账号" >
+<input class="num_input" type="password" id="id_password" name="password" onpaste="return false;" placeholder="请输入密码" >
+<!--{if $error_msg}-->
+<p class="tips_error">{$error_msg}</p>
+<!--{/if}-->
+<p>输入完成后请继续下一步完成支付短信验证</p>
+</div>
+<div class="setp_btn_wrap">
+<input type="hidden" name="money" value="{$money}" />
+<input class="setp_btn_back" type="button" onclick="javascript:history.go(-1);" value="返回">
+<input class="setp_btn setp_btn_2" type="submit"   value="下一步（2/3）">
+</div>
+</div>
+</form>
+<!--{elseif 'step3' == $act}-->
+<!--{if !$pmoney}-->
+<form method="post" action="index.php?mod=wap&code=proceeds&act=step3&do=1">
+<input type="hidden" name="auth" value="{$auth}" />
+<div id="setp_3" class="wrapper">
+<div class="num_wrap">
+<div class="num_confirm">请确认消费金额：<em>{$money}</em>元</div>
+<!--{if false == $user['phone_validate']}-->
+<div class="tips">该账户还没绑定手机号，请输入手机号</div>
+<input class="num_input" type="text" id="id_phone" name="phone" value="{$phone_view}" onpaste="return false;" placeholder="请输入手机号" >
+<!--{else}-->
+<div class="myphone">已绑定手机号码：{$phone_view}</div>
+<!--{/if}-->
+<p id="phone_result" class="tips_error"></p>
+<input class="num_input num_input_captcha" type="text" name="vfcode" onpaste="return false;" placeholder="请输入验证码" >
+<input class="num_input_captcha_a" type="button" value="发送支付验证码" onclick="J_vsnd(this, 1)">
+<!--{if $error_msg}-->
+<p class="tips_error">{$error_msg}</p>
+<!--{/if}-->
+<p>输入完成后请继续下一步完成支付短信验证</p>
+<script>
+var countdown=10; 
+var t = '';                                	 
+function J_vsnd(val, send) { 
+if(1 == send) {
+var phone = $('#id_phone').val();
+$.post('index.php?mod=wap&code=vfsend&user_phone=1', { 'phone' : phone , 'auth' : '{$auth}' }, function (r) {
+if(r) {
+$('#phone_result').html(r);
+return false;
+} else {
+$('#phone_result').html('验证码已经发送！');
+return true;
+}
+});
+}
+if (countdown == 0) {
+val.removeAttribute("disabled");	
+val.value="发送支付验证码"; 
+countdown = 10;  
+clearTimeout(t);
+} else { 
+val.setAttribute("disabled", true); 
+val.value="重新发送(" + countdown + ")"; 
+countdown--; 
+t = setTimeout(function() { 
+J_vsnd(val, 0) 
+},1000)
+} 
+};
+</script>	    
+</div>
+<input class="setp_btn" type="submit" value="确认消费">
+</div>
+</form>
+<!--{else}-->
+<div id="setp_3_1" class="wrapper">
+<div class="num_wrap">
+<div class="num_confirm">消费成功</div>
+<p>本单消费：<span class="tips_sucess">{$money}</span>元</p>
+<!--{if $nmoney > 0}-->
+<p>账户支付{$pmoney}元，另需线下支付<span class="tips_error">{$nmoney}</span>元</p>
+<!--{/if}-->
+</div>
+<div class="setp_btn_wrap">
+<input class="setp_btn setp_btn_2" type="submit" onclick="window.location.href='index.php?mod=wap&code=proceeds';"  value="继续收款">
+</div>
+</div>
+<!--{/if}-->
+<!--{/if}-->
+</body>
+</html>

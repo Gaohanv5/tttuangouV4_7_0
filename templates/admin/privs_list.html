@@ -1,0 +1,24 @@
+<!--{template @admin/header}--> <script language="javascript">
+function checkAll(frm, checkbox){
+for (i = 0; i < frm.elements.length; i++){
+if (frm.elements[i].name == 'privs_code[]' || frm.elements[i].name == 'chkGroup'){
+frm.elements[i].checked = checkbox.checked;
+}
+}
+}
+function check(list, obj){
+var frm = obj.form;
+for (i = 0; i < frm.elements.length; i++){
+if (frm.elements[i].name == "privs_code[]"){
+var regx = new RegExp(frm.elements[i].value, "i");
+if (list.search(regx) > -1) frm.elements[i].checked = obj.checked;
+}
+}
+}
+</script> <style>label{margin-right:10px;}</style> <form method="post" name="userprivs" action="{$action}"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">设置用户 [{$userinfo['username']}] 的后台权限</td> </tr> <!--{loop $privs_list $m_key $m_val}--> <!--{if $m_val[sub_priv_list] && is_array($m_val[sub_priv_list]) && count($m_val[sub_priv_list])}--> <tr> <td bgcolor="#F4F8FC" width="145"> <label for="chkGroup_{$m_key}"> <input name="chkGroup" id="chkGroup_{$m_key}" type="checkbox" value="checkbox" onclick="check('{$m_val[privgroup]}',this);"> {$m_val[title]}</label> </td> <td class="altbg2"> <!--{loop $m_val[sub_priv_list] $s_m_key $s_m_val}--> <label for="{$s_m_val['priv']}"> <input type="checkbox" id="{$s_m_val['priv']}" name="privs_code[]" value="{$s_m_val['priv']}" {$s_m_val['check']}/> {$s_m_val[title]}</label> <!--{/loop}--> </td> </tr> <!--{/if}--> <!--{/loop}--> </table>
+请注意：<br>
+1）给合作商家分配任意权限后，其将自动拥有进入后台的权限；<br>
+2）强烈建议不要给合作商家分配“团购管理”类别之外的权限，否则商家将可能会修改网站的设置; <br>
+3）与管理员不同，即便拥有同样的产品管理权限，合作商家的身份只能管理自己的商品和订单，而管理员可以修改全部的产品；
+<center> <label for="checkall"><input type="checkbox" id="checkall" name="checkall" value="checkbox" onclick="checkAll(this.form, this);"/> 全选</label> <input type="hidden" name="uid" value="{$userinfo['uid']}"> <input type="submit" class="abutton" name="settingsubmit" value="提 交"> </center> <br> </form> <br>
+{template @admin/footer}

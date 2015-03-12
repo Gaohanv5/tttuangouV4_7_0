@@ -1,0 +1,21 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="6"><b>邮件服务器群集</b></td> </tr> <tr class="banner"> <td colspan="6">
+是否开启自动权重平衡？
+<font class="ini" src="service.mail.balance"></font>
+[ 开启后会根据邮件发送次数自动调整邮件服务器的优先级 ]
+</td> </tr> <tr class="banner"> <td colspan="6">
+是否开启多线程发送？
+<font class="ini" src="service.push.mthread"></font>
+[ 提醒：多线程发送会给服务端造成很大的压力，请根据自己的邮件队列数量慎重选择（少量邮件情况下建议关闭） ]
+</td> </tr> <tr class="tr_nav"> <td width="12%" bgcolor="#F4F8FC">标记</td> <td width="16%" bgcolor="#F4F8FC">名称</td> <td width="16%" bgcolor="#F4F8FC">权重</td> <td width="16%" bgcolor="#F4F8FC">使用统计</td> <td width="16%" bgcolor="#F4F8FC">启用状态</td> <td width="12%" align="center" bgcolor="#F4F8FC">管理</td> </tr> <!--{loop $list $one}--> <tr> <td>{$one['flag']}</td> <td>{$one['name']}</td> <td>{$one['weight']}</td> <td>{$one['count']}</td> <td> <font class="dbf" src="id:{$one['id']}@service/enabled">{$one['enabled']}</font> </td> <td align="center">
+[ <a href="?mod=service&code=mail&op=edit&id={$one['id']}">编辑</a> ]
+[ <a href="?mod=service&code=mail&op=del&id={$one['id']}">删除</a> ]
+</td> </tr> <!--{/loop}--> <tr class="footer"> <td colspan="6"> <a href="?mod=service&code=mail&op=add">添加邮件服务器</a> </td> </tr> <tr> <td colspan="6">
+输入邮件地址：<input id="mail" type="text" /> <input type="button" value="发送测试邮件" onclick="javascript:mailTest();" class="is_submit_button" /> </td> </tr> </table> <script type="text/javascript">
+function mailTest()
+{
+window.location = '?mod=service&code=mail&op=test&mail='+document.getElementById('mail').value;
+}
+</script>
+{template @admin/footer}

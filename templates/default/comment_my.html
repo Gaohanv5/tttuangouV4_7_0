@@ -1,0 +1,78 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">        
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">我给商家的评价<span style="float:right;font-size:16px;color:#f76120;"><a href="?mod=me&code=order&comment=1">待评价</a></span></p>
+<div class="cont" style="overflow:visible;">
+<style>
+table td{text-align:left;border-bottom:1px solid #eee;padding:15px 5px;}
+#report td img {
+vertical-align: middle;
+margin: 5px 0;
+float:none;
+}
+#report th{ text-align:left;}
+#report tr td{ padding:20px 10px;}
+.deal_comment_img{ width:370px;}
+#report td .deal_comment_img li img{ float:left;}
+</style>
+<table id="report">
+<tr>
+<th width="10%">评价</td>
+<th width="35%">评论</td>
+<th width="15%">商家</td>
+<th width="30%">产品信息</td>
+<th width="10%">状态</td>
+</tr>
+{loop $comments $i $value}
+<tr>
+<td style="font-weight: 600;color: #f76120;" width="10%">{$value['score']}分</td>
+<td width="35%">{$value['content']}
+{if $value['img']}
+<script>
+$(function(){ 
+$('.deal_comment_img li').hover(function() {
+$(this).addClass('on');
+var wl = $(this).find('img').attr('width');
+if (wl < 190) {
+$(this).find('.in').css('left', '0')
+} else {
+$(this).find('.in').css('left', -wl / 4)
+}
+},
+function() {
+$(this).animate({
+height: "100px"
+},
+100).removeClass('on');
+$(this).find('.in').css('left', '0')
+});
+})
+</script>
+<ul class="deal_comment_img">
+<li>
+<div class="in">
+<img src="{echo imager($value['img'], IMG_Original)}">
+</div>
+</li>
+</ul>
+{/if}
+<br><font color="gray">[{echo date('Y-m-d H:i:s', $value['timestamp_update'])}]</font>
+{if $value['reply']}<br><font style="color:#af874d">{$value['reply']}</font>{/if}
+</td>
+<td width="15%"><a href="?mod=seller&code=view&id={$value['sellerid']}">{$value['sellername']}</a></td>
+<td width="30%"><a href="?view={$value['product_id']}">{$value['name']}</a><br><font color="red">{$value['nowprice']}</font>元</td>
+<td width="10%">{$value['status']}</td>
+</tr>
+{/loop}
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

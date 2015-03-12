@@ -1,0 +1,71 @@
+<!--{template header}-->
+{~ui('loader')->js('@time.lesser')}
+<div class="bread-nav"><a href="?">首页</a><span>>></span><a href="?mod=about_to_begin">即将开始</a></div>
+<div class="site-ms__left">  
+{loop $product $data}
+<div class="t_area_out">
+<div class="countdown_goods">
+<div class="deal-tile__cover_img"><a class="deal-tile__cover" href="?view={$data['id']}"><img src="{$data['pic']}"/></a></div>
+<div class="deal-tile__cover_tag">
+{if $data['linkid']}<i><span title="多个套餐">多种套餐</span></i>{/if}
+{eval logic('product_tag')->html($data['id'])}
+</div>
+<div class="deal-tile__title">
+<h2>{$data['name']}</h2>
+<div class="cite_intro">{$data['intro']}</div>
+<dl>
+<dd>&yen;{$data['nowprice']}<em>&yen;{$data['price']}</em></dd>
+<dt>
+{if $data['begin_date'] || $data['limit_time']}
+{if $this->sms_enabled || $this->mail_enabled}                    
+<a class="remind_btn" href="?mod=about_to_begin&code=notify&id={$data['id']}" title="开团提醒"></a>                     
+{/if}
+<a class="btn_herald" href="javascript:;" style="color:#0088cc;">即将开始</a> 
+{elseif $data['num']<=0}
+<a class="btn_herald" href="javascript:;" style="color:#777;">已经售罄</a>
+{else}
+<a class="b_btn" href="?mod=buy&code=checkout&id={$data['id']}">果断抢下</a>
+{/if}
+</dt>
+</dl>
+<div class="countdown_goods-link">
+{if $data['begin_date']}
+<span class="ml" style=" color:#08c;">
+开始时间：{$data['begin_date']}
+{elseif $data['limit_time']}
+开抢倒计时：<div class="deal_djs" id="remainTime_{$data['id']}"></div>
+<script language="javascript">
+addTimeLesser($data['id'], $data['limit_time']);
+</script>
+{else}
+<span class="ml">
+结束时间：{$data['overtime']}
+{/if}
+</span>
+<span class="mr">
+{if $data['maxnum'] > 0}
+{if $data['begin_date'] || $data['limit_time']}
+总数量：{$data['num']}
+{elseif $data['num'] > 0}
+剩余数量：{$data['num']}
+{/if}
+{/if}
+</span>
+</div>         
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+$(".cite_intro span").removeAttr("style") ;
+});
+</script>
+{/loop}
+<div class="product_list_pager">{~page_moyo()}</div>
+</div> 
+<div class="site-ms__right">
+{~ui('widget')->load('countdown')}
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

@@ -1,0 +1,29 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name product.mgr.idTabs.css * @date 2011-10-10 17:16:23 */ .idTabs .navs {
+    
+}
+.navs li {
+    margin: 3px auto;
+    list-style:none;
+    float: left;
+}
+.navs li a {
+    background:url(../images/idTabs_nav1.png) no-repeat;
+    display:block;
+    width:100px;
+    height:25px;
+    overflow:hidden;
+    text-align:center;
+    line-height:25px;
+    text-decoration: none;
+}
+.idTabs .navs li a.selected {
+    color:#000;
+    background:url(../images/idTabs_nav2.png) no-repeat;
+}
+.items>div {
+    display:none;
+    clear: both;
+    margin:0.1em 0 3em 0.5em;
+}
+/* Moz border */
+.idTabs .navs ul, .idTabs .navs li a { border-radius:4px; -moz-border-radius:4px; }

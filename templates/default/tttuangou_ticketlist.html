@@ -1,0 +1,45 @@
+<!--{template header}-->
+<div class="ts_menu_2 w960">
+<ul>
+<li class="ts3_mbtn2"><a href="?mod=magseller">{TUANGOU_STR}项目</a></li>
+<li class="ts3_mbtn{$p1}"><a href="?mod=magseller&code=ticket&id={$id}">全部</a></li>
+<li class="ts3_mbtn{$p2}"><a href="?mod=magseller&code=ticket&id={$id}&use=0">未使用</a></li>
+<li class="ts3_mbtn{$p3}"><a href="?mod=magseller&code=ticket&id={$id}&use=1">已使用</a></li>
+</ul>
+<div class="clear"></div>
+</div>
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont w916">
+<table id="report">
+<tr>
+<th>{TUANGOU_STR}券编号</th>
+<th>项目</th>
+<th>状态</th>
+<th>过期时间</th>
+</tr>
+{loop $ticket $i $value}
+<tr>
+<td width="15%"><span class="R">{$value['number']}</span></td>
+<td width="40%">{$value['flag']}</td>
+<td width="20%">
+{if $value['status']==TICK_STA_Unused}
+正常 <a href="?mod=magseller&code=sendmail&id={$value['ticketid']}">(消费提醒)</a>
+{elseif $value['status']==TICK_STA_Overdue}
+过期
+{else}
+已使用 ({$value['usetime']})
+{/if}
+</td>
+<td width="15%">
+<img src="images/alarm.png" />
+{echo date('Y-m-d', $value['perioddate']);}
+</td>
+</tr>
+{/loop}
+</table>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

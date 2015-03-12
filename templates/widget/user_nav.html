@@ -1,0 +1,22 @@
+<div class="t_area_out ">
+<!--{if MEMBER_ID < 1}-->
+<h1>我的订单</h1>
+<div class="t_area_in">
+<a href="?mod=account&code=login">我要登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?mod=account&code=register">我要注册</a>
+</div>
+<!--{else}-->
+<!--{eval $forbidmoney = intval(user()->get('forbid_money'));}-->
+{eval $mecss[$_GET['mod'].$_GET['code']] = ' class="snu_cur"'}
+<h1>我的订单</h1>
+<div class="t_area_in side_nav_ul">
+<li{$mecss['mecoupon']}><a href="?mod=me&code=coupon">我的{TUANGOU_STR}券</a></li>
+<li{$mecss['meorder']}><a href="?mod=me&code=order">我的订单</a></li>
+<li{$mecss['comment']}><a href="?mod=comment">我的评价</a></li>
+<li{$mecss['mefavorite']}><a href="?mod=me&code=favorite">我的收藏</a></li>
+</div>
+<!--{/if}-->
+</div>
+<style>
+.site-ms__left{width:980px;}
+.t_area_out{margin-bottom: 0;border:none;color: #666;}
+</style>

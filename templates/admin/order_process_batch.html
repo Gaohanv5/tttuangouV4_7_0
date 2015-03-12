@@ -1,0 +1,32 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/order.process.batch')}
+<script type="text/javascript">
+var __batch_URI = "{$ccURL}";
+</script> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">批量订单处理</td> </tr> <tr> <td width="30%"></td> <td width=""></td> </tr> <tr> <td class="td_title">{$searchWhere}：</td> <td>
+{$searchValue}
+</td> </tr> <tr> <td class="td_title">订单状态：</td> <td>
+{$searchSTA}
+</td> </tr> <tr> <td class="td_title">处理进程：</td> <td>
+{$searchPROC}
+</td> </tr> <tr> <td class="td_title">数据条数：</td> <td> <font color="red"><b>{$allCount}</b></font> </td> </tr> <tr> <td class="td_title">操作备注：</td> <td> <textarea id="opmark" style="width: 300px;height: 50px;"></textarea> </td> </tr> <tr> <td class="td_title">当前可执行操作：</td> <td> <font id="service_result"{if $allCount == 0} style="display:none;"{/if}>
+{if $ordSTA != ORD_STA_Refund && (in_array($ordSPROC, array('__PAY_YET__', 'WAIT_SELLER_SEND_GOODS', 'WAIT_BUYER_CONFIRM_GOODS', 'TRADE_FINISHED')))}
+<input class="service" type="button" href="refund" value="退款" title="退款金额会自动充值到用户帐户余额，订单会自动标记为【已退款】" />
+{/if}
+{if in_array($ordSPROC, array('__CREATE__', 'WAIT_BUYER_PAY'))}
+<input class="service" type="button" href="confirm" value="确认付款" title="确认订单后，系统会自动发送团购券，实物会显示等待发货" />
+{/if}
+{if $ordSTA == ORD_STA_Normal && $ordSPROC != 'TRADE_FINISHED'}
+<input class="service" type="button" href="cancel" value="取消订单" title="取消订单后，将不能再对订单进行任何操作（可删除）" />
+{/if}
+{if $ordSPROC == 'TRADE_FINISHED'}
+<input class="service" type="button" href="afservice" value="售后服务" title="事件通知管理系统会自动将操作备注作为售后信息发送至用户（需开启相关事件通知开关）" />
+{/if}
+{if $ordSTA == ORD_STA_Refund && $ordSPROC != 'TRADE_FINISHED'}
+<input class="service" type="button" href="ends" value="结单" title="结单后会将订单状态更新为【交易完成】" />
+{/if}
+{if true}
+<input class="service" type="button" href="delete" value="删除订单" title="删除订单时会删除相关的团购券信息和发货信息" />
+{/if}
+</font> </td> </tr> <tr class="tips"> <td colspan="2">
+*注意：批量操作无法自定义退款金额，如需自定义退款金额请到订单处理页面进行退款！
+</td> </tr> </table> <!--{template @admin/footer}-->

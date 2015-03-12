@@ -1,0 +1,47 @@
+#msgEditor {
+	display: none;
+}
+#loading {
+	display: none;
+}
+.cname {
+	width: 98%;
+}
+.editorSpace  .left {
+	float: left;
+	margin-right: 20px;
+	width: 150px;
+	height: 200px;
+	overflow: scroll;
+}
+.editorSpace  .right {
+	
+}
+.editorSpace .tags {
+	background: #e9f9ff;
+	padding: 10px;
+	font-weight: bold;
+}
+.editorSpace #tagsClear {
+	cursor: pointer;
+}
+.editorSpace #msgTags li {
+	cursor: pointer;
+}
+.editorSpace  #msgContent {
+	width: 300px;
+	height: 130px;
+}
+.editorSpace  #msgSubmit {
+	float: right;
+	padding: 5px 10px;
+	margin-top: -10px;
+}
+.editorSpace #msgTags ul {
+	list-style: none;
+}
+.editorSpace #msgTags ul li {
+	border-left: 2px solid #99baf3;
+	margin: 3px auto;
+	padding: 2px 3px;
+}

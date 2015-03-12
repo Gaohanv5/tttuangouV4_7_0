@@ -1,0 +1,86 @@
+{~ui('loader')->js('@attrs.selector',true)}
+<div class="pro-attrs-poptit"> 
+<a href="javascript:;" title="关闭" class="pro-attrs-close">×</a>
+<h3>选择商品类型</h3>
+</div>
+<div class="pro-attrs-popbod pro-attrs">
+<!--{loop $pro_attrs $cat}-->
+<dl>
+<dt id="pro-attrs-cat-{$cat['id']}" class="xcat" xcat="{$cat['id']}" xrequired="{$cat['required']}">{$cat['name']}</dt>
+<dd>
+<ul>
+<!--{loop $cat['attrs'] $attr}-->
+<li id="pro-attrs-item-{$attr['id']}" class="pro-attrs-link" catfrom="{$attr['cat_id']}" attrid="{$attr['id']}" productid="$cat['product_id']" pricemoves="{$attr['price_moves']}" xbinding="{$attr['binding']}">{$attr['name']}</li>
+<!--{/loop}-->
+</ul>
+</dd>
+</dl>
+<!--{/loop}--> 
+<input class="btn btn-primary btn-small" type="submit" name="submit" value="确定" style=" float:none;" />
+</div>
+<style>
+.pro-attrs dd{ width:400px;}
+.product-attrs-popover {
+z-index: 9998;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+opacity:0.2;
+filter:alpha(opacity=40);
+display:none
+}
+.pro-attrs-popover {
+z-index:9999;
+position:fixed;
+top:50%;
+left:50%;
+width:550px;
+overflow:hidden;
+margin:-180px 0 0 -330px;
+border-radius:0;
+background-color:#fff;
+display:none;
+box-shadow: 0 0 10px #666;
+}
+.pro-attrs-poptit {
+border-bottom:1px solid #ddd;
+padding:12px;
+position: relative;
+background: #f7f7f7;
+}
+.pro-attrs-poptit h3{ font-size:14px; text-align:left;}
+.pro-attrs-popbod {
+padding: 10px 20px;
+/* color: #444; */
+/* height: 148px; */
+font-size: 12px;
+font-weight: 500;
+}
+.pro-attrs-close {
+float:right;
+color:#999;
+padding:5px;
+margin:-2px -5px -5px;
+font:bold 14px/14px simsun;
+text-shadow:0 1px 0 #ddd
+}
+.pro-attrs-close:hover {
+color:#444;
+}
+</style>
+<script>
+/*商品类型*/
+/*$('.product_attrs_b').click(function(){
+$('.product-attrs-popover').fadeIn(100);
+$('.pro-attrs-popover').show();
+})*/
+$('.pro-attrs-close ,.btn').click(this,function(){
+$('.product-attrs-popover').fadeOut(100);
+$('.pro-attrs-popover').hide();
+var product_attrs_selected = $(this).parent().parent().find(".pro-attrs-popbod .selected").text( );
+$(this).parent().parent().next().text(product_attrs_selected);
+})	
+</script>

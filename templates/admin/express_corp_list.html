@@ -1,0 +1,19 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/express.cdp.sync')}
+<div class="export_link"> <a class="button back1 back2 fr" href="{~ihelper('tg.help.express')}" target="_blank">使用帮助</a> </div> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr> <td colspan="5"> <div class="is_button"><a href="?mod=express">配送方式列表</a></div> <div class="is_current">快递公司及快递单模板</div> <div class="is_button"><a href="?mod=express&code=address&op=list">寄件人信息管理</a></div> <div class="is_current" style="background: #7CA5CB;display: none;" id="cdpSyncStatus"></div> </td> </tr> <tr class="tr_nav"> <td width="10%">编号</td> <td width="10%">标记</td> <td width="20%">名称</td> <td width="10%">状态</td> <td width="20%">管理</td> </tr> <!--{if empty($list)}--> <tr><td colspan="5">暂时还没有任何快递公司！</td></tr> <!--{else}--> <!--{loop $list $i $value}--> <tr> <td>{$value['id']}</td> <td>{$value['flag']}</td> <td>{$value['name']}<br/>{$value['site']}</td> <td>
+{echo ($value['enabled']=='true')?'已启用':'未启用'}
+<br/> <font color="#999">已打印：<b>{$value['printedCount']}</b> 次</font> </td> <td> <a href="?mod=express&code=corp&op=edit&id={$value['id']}">编辑</a>
+&nbsp;&nbsp;-&nbsp;&nbsp;
+{if $value['id'] > 20}
+<a href="?mod=express&code=corp&op=del&id={$value['id']}" onclick="return confirm('确认删除吗？')">删除</a>
+{else}
+<font color="#999" title="系统内置数据，不可删除">删除</font>
+{/if}
+&nbsp;&nbsp;-&nbsp;&nbsp;
+<a href="?mod=express&code=corp&op=delivery&id={$value['id']}"><font color="#{echo $value['PrinterTemplate']?'019400':'D42F24'}">[ {echo $value['PrinterTemplate']?'编辑':'添加'}打印模板 ]</font></a>
+{if $value['id'] < 21 && !$value['PrinterTemplate']}
+&nbsp;&nbsp;
+<a id="cdp_import_of_{$value['id']}" href="?mod=express&code=cdp&op=sync_import&id={$value['id']}"  {if !$tempList[$value['id']]}style="display:none;"{/if}> <font color="#88007F">[ 导入网络模板 ]</font> </a>
+{/if}
+</td> </tr> <!--{/loop}--> <!--{/if}--> <tr> <td colspan="5"><a href="?mod=express&code=corp&op=add" class="back1 back2">添加</a></td> </tr> </table>
+{template @admin/footer}

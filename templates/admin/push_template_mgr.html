@@ -1,0 +1,10 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/push.template.mgr')}
+{~ui('loader')->addon('editor.kind')}
+<form action="?mod=subscribe&code=broadcast&op=save" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">{$actionName}群发任务</td> </tr> <tr> <td width="12%"></td> <td><input name="id" type="hidden" value="{$tpl['id']}" /></td> <tr> <tr> <td>类型:</td> <td> <select name="type" onchange="if(this.value != 'sms'){$('#pt_title').show()}else{$('#pt_title').hide()}">
+{loop $typeDfs $flag $name}
+<option value="{$flag}"{if $tpl['type']==$flag || $class==$flag} selected="selected"{/if}>$name</option>
+{/loop}
+</select> </td> </tr> <tr style="display:none;"> <td>名称:</td> <td> <input name="name" type="text" value="{echo $tpl['name'] ? $tpl['name'] : time()}" /> </td> </tr> <tr> <td>描述:</td> <td> <input name="intro" type="text" value="{$tpl['intro']}" size="60" /> </td> </tr> <tr class="tips"> <td colspan="2">群发内容</td> </tr> <tr id="pt_title" style="{if $class == 'sms'}display:none;{/if}"> <td>标题:</td> <td> <input name="title" type="text" value="{$tpl['title']}" size="60" /> </td> </tr> <tr> <td>内容: 
+<select id="contentType"> <option value="text">TEXT文本</option> <option value="html">HTML代码</option> </select> </td> <td> <textarea name="content" id="content">{echo thtmlspecialchars($tpl['content'])}</textarea> </td> </tr> </table> <br/> <center> <input type="submit" class="button" name="addsubmit" value="提 交"> </center> </form>
+{template @admin/footer}

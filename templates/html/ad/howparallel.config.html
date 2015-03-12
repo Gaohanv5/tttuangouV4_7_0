@@ -1,0 +1,45 @@
+<!--{template @admin/header}-->
+<form action="?mod=ad&code=config&op=save&flag={$flag}" method="post" enctype="multipart/form-data">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+<tr class="header">
+<td colspan="2">
+<a href="?mod=ad&code=vlist">返回广告列表</a> （如果提示 <font color="red">Acces Deined</font> 错误，请检查“全局设置-上传设置”里面对应的图片上传权限是否有打开）
+</td>
+</tr>
+<tr>
+<td width="12%"></td>
+<td></td>
+</tr>
+<tr id="ad_tr_adl">
+<td class="td_title" style="border-right: 2px solid #ccc;">
+左边栏
+</td>
+<td>
+<div id="div_up_adl">广告图片：<input type="file" name="file_adl" /> * 图片大小为 120 x 220</div>
+文字说明：<input type="text" name="data[list][adl][text]" value="{$cfg['list']['adl']['text']}" size="30" /><br/>
+链接地址：<input type="text" name="data[list][adl][link]" value="{$cfg['list']['adl']['link']}" size="50" />
+<select name="data[list][adl][target]"><option value="_self"{if $cfg['list']['adl']['target']=='_self'} selected="selected"{/if}>当前页面打开</option><option value="_blank"{if $cfg['list']['adl']['target']=='_blank'} selected="selected"{/if}>新建窗口打开</option></select>
+</td>
+</tr>
+<tr id="ad_tr_adr">
+<td class="td_title" style="border-right: 2px solid #ccc;">
+右边栏
+</td>
+<td>
+<div id="div_up_adr">广告图片：<input type="file" name="file_adr" /> * 图片大小为 120 x 220</div>
+文字说明：<input type="text" name="data[list][adr][text]" value="{$cfg['list']['adr']['text']}" size="30" /><br/>
+链接地址：<input type="text" name="data[list][adr][link]" value="{$cfg['list']['adr']['link']}" size="50" />
+<select name="data[list][adr][target]"><option value="_self"{if $cfg['list']['adr']['target']=='_self'} selected="selected"{/if}>当前页面打开</option><option value="_blank"{if $cfg['list']['adr']['target']=='_blank'} selected="selected"{/if}>新建窗口打开</option></select>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<input type="submit" value="保 存" class="button" />
+</td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">
+</script>
+<!--{template @admin/footer}-->

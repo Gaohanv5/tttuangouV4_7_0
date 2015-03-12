@@ -1,0 +1,24 @@
+<style type="text/css">
+.site_mast_adsf{
+width:120px;
+height:220px;
+margin:10px auto; 
+position:fixed; 
+top:20%;
+z-index: 2000;
+box-shadow: 0 0 10px #999;
+_position: absolute;
+_top: expression(documentElement.scrollTop + documentElement.clientHeight - this.clientHeight-85 + 'px')
+}
+</style>
+<div id="" class="site_mast_adsf" style="left:10px;"> <a href="{$cfg['list']['adl']['link']}" target="{$cfg['list']['adl']['target']}"> <img {echo 'sr'.'c="'.ini('settings.site_url').'/'.$cfg['list']['adl']['image']}" alt="{$cfg['list']['adl']['text']}" width='120px' height='220px' /></a>
+<p class="fl_close"><img src="static/images/close.gif" width="100" height="14" border="0" alt="关闭对联广告"></p>
+</div>
+<div id="" class="site_mast_adsf" style=' right:10px; '> <a href="{$cfg['list']['adr']['link']}" target="{$cfg['list']['adr']['target']}"> <img {echo 'sr'.'c="'.ini('settings.site_url').'/'.$cfg['list']['adr']['image']}" alt="{$cfg['list']['adr']['text']}" width="120px" height="220px" /></a>
+<p class="fl_close"><img src="static/images/close.gif" width="100" height="14" border="0" alt="关闭对联广告"></p>
+</div>
+<script type="text/javascript">
+$('.fl_close').click(function(){ 
+$('.site_mast_adsf').hide()
+});
+</script>

@@ -1,0 +1,5 @@
+时间:{$ltime}{echo "\n"}
+产品ID,产品名称,商家帐号,商家名称,购买人数,商品价格,售出份数,累计销售额,产品结算价,站长分成比例,已消费/已收货,累计消费金额,结算金额,网站分成金额{echo "\n"}
+{loop $list $i $data}
+{$data['id']},{$data['productname']},{$data['username']},{$data['sellername']},{$data['ordercount']},{$data['productprice']},{$data['productcount']},￥{$data['moneycount']},￥{$data['fundprice']},{$data['profit_pre']},{$data['ticketused']},￥{$data['expendcount']},￥{$data['refundmoneys']},￥{$data['rebatmoneys']}{echo "\n"}
+{/loop}

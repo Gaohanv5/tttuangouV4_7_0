@@ -1,0 +1,5 @@
+时间:{$ltime}{echo "\n"}
+用户名,用户ID,支付金额,充值金额,消费成功金额,帐户余额{echo "\n"}
+{loop $list $i $data}
+{$data['username']},{$data['id']},￥{$data['paymoneys']},￥{$data['rechargemoneys']},￥{$data['trademoneys']},￥{$data['moneyless']}{echo "\n"}
+{/loop}

@@ -1,0 +1,65 @@
+<!--{template header}-->
+<script type="text/javascript">
+function doooo_view_prize()
+{
+window.location = '{echo rewrite("?mod=prize&code=iniz&pid=".$pid)}';
+}
+</script>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">手机号码验证</p>
+<div class="sect">
+<table id="report">
+<tr>
+<td><h2>{$product['name']}</h2></td>
+</tr>
+<tr>
+<td>
+为保证抽奖的公平性，杜绝一人重复注册多个账户，参与活动需要进行手机号码验证
+<br/><br/>
+</td>
+</tr>
+{if $phone}
+<tr>
+<td>
+您已验证过号码：
+<input type="text" value="{$phone}"  class="input_h" readonly />
+<input id="button_get_prize" type="button" class="btn btn-primary" value="直接抽奖" />
+</td>
+</tr>
+{else}
+<tr>
+<td>
+<b>1、输入手机号：</b>
+<input id="input_phone" type="text" class="input_h" value="{~user()->get('phone')}" />
+<input id="button_phone" type="button" class="btn btn-primary" value="获取验证码" />
+</td>
+</tr>
+<tr>
+<td id="s2phone_fail" style="color: red;display: none;"></td>
+<td id="s2phone_ok" style="display: none;">
+验证码已经发送到您的手机上，请注意查看！<br/>如果您暂时还没有收到，请不要着急，因为网络情况不同，有时短信需要等待几分钟才可以收到的哦！
+</td>
+</tr>
+<tr>
+<td>
+<b>2、输入验证码：</b>
+<input id="input_vcode" type="text" class="input_h" value="" />
+<input id="button_vcode" type="button" class="btn btn-primary" value="确认并抽奖" />
+</td>
+</tr>
+<tr>
+<td id="transVfcode_status" style="color: red;display: none;"></td>
+</tr>
+{/if}
+</table>
+</div>
+</div>
+</div>        
+</div>
+<div class="site-ms__right">
+<!--{~ui('widget')->load()}-->
+</div>
+</div>
+<!--{template footer}-->

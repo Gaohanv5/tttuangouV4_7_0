@@ -1,0 +1,10 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name filecheck.checkout.css * @date 2014-05-15 17:39:21 */ em{font-style: normal;font-weight: normal;}
+.edited{padding-left: 18px;background: url(../images/filecheck.gif) no-repeat -100px -385px;color: #E8594D;}
+.del{padding-left: 18px;background: url(../images/filecheck.gif) no-repeat 0 -285px;color: #E8594D;}
+.unknown {padding-left: 18px;background: url(../images/filecheck.gif) no-repeat -50px -435px;color: #6189B8;}
+td span{margin-right:15px;display:inline;float:left;color:#999;margin-top:4px;}
+td span.cfolder,td span.ofolder{color: #2366A8;display:block;font-size: 14px;padding-left: 50px;line-height: 30px;font-weight: 700;cursor:pointer;margin-top:0px;}
+td span.ofolder{background: url(../images/filecheck.gif) no-repeat -260px -100px;}
+em.files {padding: 1px 0 1px 50px;background: url(../images/filecheck.gif) no-repeat -260px -150px;font-weight:bold;}
+td span.cfolder{background: url(../images/filecheck.gif) no-repeat -260px -50px;}
+.fileok{text-align:center;height:150px;font-size:16px;color:green;font-weight:bold;}

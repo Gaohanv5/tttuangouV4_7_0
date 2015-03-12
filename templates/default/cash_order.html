@@ -1,0 +1,71 @@
+<!--{template header}-->
+{~ui('loader')->js('@jquery.hook')}
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">提现记录</p>
+<ul class="cont">
+<div style="float: right;">
+<li>分类:</li>
+<li class="liL_{$tabcssall}"><a href="?mod=cash&code=order">全部</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssno}"><a href="?mod=cash&code=order&pay=no">等待处理</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssdoing}"><a href="?mod=cash&code=order&pay=doing">正在处理</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssyes}"><a href="?mod=cash&code=order&pay=yes">提现成功</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcsserror}"><a href="?mod=cash&code=order&pay=error">提现失败</a></li>
+</div>
+</ul>
+<div class="cont">
+<table id="report">
+<tr>
+<th style="text-align:left">提现记录流水号</th>
+<th style="text-align:left">提现金额</th>
+<th>提现方式/受理时间</th>
+<th style="text-align:center">结算状态</th>
+</tr>    
+<!--{loop $list $one}-->
+<tr>
+<td width="40%" style="padding-left:7px;">{$one['orderid']}</td>
+<td width="20%" style="padding-left:7px;">{$one['money']}</td>
+<td width="20%" style="padding-left:7px;text-align: center;">
+{if $one['paytype'] =='money'}
+上门提现<br/>
+{elseif $one['paytype'] =='bank'}
+银行转帐[{$one['bankname']}]<br/>
+[{$one['bankusername']}]{$one['bankcard']}<br/>
+{elseif $one['paytype'] =='alipay'}
+支付宝<br/>[{$one['bankusername']}]{$one['alipay']}<br/>
+{/if}
+{if $one['paytime'] > 0}
+受理时间：{echo date('Y-m-d H:i:s', $one['paytime'])}
+{else}
+等待处理
+{/if}
+</td>
+<td width="20%" style="text-align:center">
+{if $one['status']=='no'}
+<a href="?mod=cash&code=del&id={$one['orderid']}">取消提现</a>
+{elseif $one['status']=='yes'}
+<font color="green">提现成功</font>
+{elseif $one['status']=='doing'}
+正在处理
+{elseif $one['status']=='error'}
+<font color="red">提现失败</font>
+{/if}
+</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

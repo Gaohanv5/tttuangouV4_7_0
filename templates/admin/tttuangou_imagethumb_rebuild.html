@@ -1,0 +1,60 @@
+<!--{template @admin/header}--> <script type="text/javascript" src="./static/js/jquery.js"></script> <form method="post" action="admin.php?mod=tttuangou&code=mailcron&op=dels"> <table cellspacing="1" cellpadding="4" width="100%" class="tableborder"> <tr class="header"> <td>更新缩略图</td> </tr> <tr> <td>
+如果您调整了缩略图设置，这里可以更新之前的缩略图，注意更新期间请不要关闭浏览器。<br/> <b>本次更新将会把所有的产品图片缩略图更新为：</b><br/>
+宽：<font color="red">{$thumbwidth}</font> x 高：<font color="red">{$thumbheight}</font> - - - - ( 您可以<b><a href="admin.php?mod=tttuangou&code=varshow">点击这里</a></b>来设置缩略图大小 )
+</td> </tr> <tr> <td> <div style="width:600px;height:10px;border:1px solid #000;"> <div id="cr_bar" style="width:0px;height:10px;background:#000;"></div> </div>
+[ <font id="cr_sends">0</font> / {$cronLength} ] &gt;&gt;&gt; <font id="cr_perc">0</font> %
+</td> </tr> <tr> <td> <input id="cr_control" type="button" value="开始" class="button" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="cr_status">初始化中...</font> </td> </tr> </table> </form> <script tyle="text/javascript">
+var gf_url = 'admin.php?mod=tttuangou&code=imagethumb&op=run&od=';
+var gf_runs = false;
+var gf_sends = 0;
+var gf_total = {$cronLength};
+$(document).ready(function(){
+$('#cr_status').text('请点击左边的按钮开始更新缩略图');
+$('#cr_control').bind('click', function(){
+if (!gf_runs)
+{
+gf_runs = true;
+$('#cr_control').val('暂停');
+reBuildRun();
+}
+else
+{
+gf_runs = false;
+$('#cr_control').val('继续');
+}
+});
+});
+function reBuildRun()
+{
+if (!gf_runs) return;
+$.get(gf_url+gf_sends, function(data){
+$('#cr_status').html(data);
+gf_sends ++;
+if (gf_sends >= gf_total)
+{
+alert('更新完成！');
+gf_runs = false;
+gf_sends = gf_total;
+reBuildDisplayer();
+$('#cr_control').val('完成');
+$('#cr_control').unbind('click');
+$('#cr_status').text('已经完成了对所有产品图片缩略图的更新！');
+}
+else
+{
+reBuildDisplayer();
+setTimeout(reBuildRun, 300);
+}
+});
+}
+function reBuildDisplayer()
+{
+var prc = (gf_sends/gf_total).toFixed(2);
+var cr_bar = Math.round(prc*600);
+var cr_perc = Math.round(prc*100);
+$('#cr_bar').css('width', cr_bar+'px');
+$('#cr_sends').text(gf_sends);
+$('#cr_perc').text(cr_perc);
+}
+</script>
+{template @admin/footer}

@@ -1,0 +1,15 @@
+{~ui('loader')->css('@card.selector',true)}
+{~ui('loader')->css('@account.register',true)}
+{~ui('loader')->js('@account.register',true)}
+{eval $cardList = logic('card')->GetList(user()->get('id'));}
+{if $cardList}
+<div class="card_price_list">
+	<p class="title">使用代金券：</p>
+	<ul id="rd_add">
+	<!--{loop  $cardList $card}-->
+		<li><input type="checkbox" name="card_id[{$card['id']}]" value="{$card['id']}"/>&nbsp;&nbsp;{$card['reason']},<span class="card_one" id="card_price_{$card['id']}">{$card['credit']}</span>元</li>
+	<!--{/loop}-->
+	</ul>
+</div>
+{~ui('loader')->js('@card.selector')}
+{/if}

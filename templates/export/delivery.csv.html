@@ -1,0 +1,4 @@
+商品名称,订单编号,下单会员,购买份数,配送方式,快递单号,收货地区,街道地址,邮编,收货人,联系电话,买家留言,订单备注{echo "\n"}
+{loop $list $i $order}
+{$order['product']['flag']},*{$order['orderid']},{echo user($order['userid'])->get('name')},{$order['productnum']},{$order['express']['name']},*{$order['invoice']},{$order['address']['region']},{$order['address']['address']},{$order['address']['zip']},{$order['address']['name']},*{$order['address']['phone']},{echo str_replace(',', ' ', $order['extmsg'])},{$order['remark']}{echo "\n"}
+{/loop}

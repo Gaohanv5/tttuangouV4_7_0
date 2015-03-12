@@ -1,0 +1,11 @@
+<!--{template @admin/header}--> <style type="text/css">
+ol li {list-style:decimal}
+.in_num{width:35px;text-align:right}
+</style> <form method="post" id="config_setting" action="{$action}" method="post"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">分成设置 (商户与站长的收益分成，单选)</td> </tr> <tr> <td width="30%"></td> <td width=""></td> </tr> <tr class="header"> <td colspan="2">说明：这里统一设置商家和网站的可选分成比例选项，不同的分成比例可对应不同的提现要求等，比如1%的分成可能提现周期为2个月；2%的分成提现周期为1个月等，具体站长可以灵活设置。<br>
+站长可以在后台：商家管理：编辑具体某个商家时看到这些可选比例选项，通过勾选可以设置具体某个商家的分成比例。<br>
+前台用户自主申请成为商家时，也会看到此分成比例选项。通过看比例的说明了解后，用户可自主选择分成比例。选择保存后，该比例即记录为此商家与网站的分成比例。<br>
+【特别注意】只有当在具体的商品中未设置“商家结算价”时，才会按分成百分比例给站长分成；
+</td> </tr> <tr> <td colspan="2" style="background: #F4F8FC;"> <ol> <li><input class="in_num" name="profit_pre[]" value="{$profit[0]['pre']}"/>%，<input name="profit_text[]" value="{$profit[0]['text']}"/>
+之前未设置过与站长分成比例的商家，将默认按照该值进行分成；
+</li> <li><input class="in_num" name="profit_pre[]" value="{$profit[1]['pre']}"/>%，<input name="profit_text[]" value="{$profit[1]['text']}"/></li> <li><input class="in_num" name="profit_pre[]" value="{$profit[2]['pre']}"/>%，<input name="profit_text[]" value="{$profit[2]['text']}"/></li> <li><input class="in_num" name="profit_pre[]" value="{$profit[3]['pre']}"/>%，<input name="profit_text[]" value="{$profit[3]['text']}"/></li> <li><input class="in_num" name="profit_pre[]" value="{$profit[4]['pre']}"/>%，<input name="profit_text[]" value="{$profit[4]['text']}"/></li> </ol> </td> </tr> <tr> <td colspan="2" class="tr_center"> <input type="submit" class="button" value="保存" /> </td> </tr> </table> </form>
+{template @admin/footer}

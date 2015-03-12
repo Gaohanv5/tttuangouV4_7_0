@@ -1,0 +1,8 @@
+<!--{template @admin/header}--> <form action="?mod=express&code=corp&op=save" method="post"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="4">快递公司{$actionName}</td> </tr> <tr> <td width="12%"></td> <td><input name="id" type="hidden" value="{$c['id']}" /></td> </tr> <tr> <td>快递公司标记</td> <td>
+{if $c['id'] > 20 || $c['id'] < 1}
+<input name="flag" type="text" class="ilng" value="{$c['flag']}" /> *英文字符，不要使用汉字
+{else}
+<input name="flag" type="hidden" value="{$c['flag']}" />
+{$c['flag']} <font color="#999">*系统内置数据，不可修改</font>
+{/if}
+</td> </tr> <tr> <td>快递公司名称</td> <td> <input name="name" type="text" class="ilng" value="{$c['name']}" /> </td> </tr> <tr> <td>公司网站</td> <td> <input name="site" type="text" size="50" value="{$c['site']}" /> </td> </tr> <tr> <td>状态</td> <td> <label><input name="enabled" type="radio" class="iradio" value="true"{if $c['enabled']=='true'} checked="true"{/if} />启用</label> <label><input name="enabled" type="radio" class="iradio" value="false"{if $c['enabled']=='false' || empty($c['enabled'])} checked="true"{/if} />关闭</label> </td> </tr> <tr class="footer"> <td colspan="4"> <input type="submit" value="保存" class="back1 back2"/> </td> </tr> </table> </form> <!--{template @admin/footer}-->

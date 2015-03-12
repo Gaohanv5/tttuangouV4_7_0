@@ -1,0 +1,54 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<ul class="cont">
+<div style="float:right;">
+<li>产品状态：</li>
+<li class="liL_{$_s1}"><a href="?mod=me&code=favorite">全部</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s4}"><a href="?mod=me&code=favorite&status=2">未开始</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s2}"><a href="?mod=me&code=favorite&status=0">进行中</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s3}"><a href="?mod=me&code=favorite&status=1">已结束</a></li>
+</div>
+</ul>
+<div class="cont">
+<table id="report">
+<tr>
+<th style="text-align:left">{TUANGOU_STR}项目</th>
+<th>金额</th>
+<th>状态</th>
+<th style="border-right:none;">操作</th>
+</tr>
+<!--{loop $list $i $value}-->
+<!--{if $value['display'] > 0}-->
+<tr>
+<td style="padding-left:7px;"><a href="?view={$value[id]}" target="_blank">{$value['flag']}</a></td>
+<td style="text-align:center">&yen;{$value['nowprice']}元</td>
+<td style="text-align:center">
+{if $value['begintime'] > $timestamp}未开始(开始时间:{echo date('Y-m-d H:i',$value['begintime'])})
+{elseif $value['overtime'] < $timestamp}已过期(过期时间:{echo date('Y-m-d H:i',$value['overtime'])})
+{else}进行中(截止时间:{echo date('Y-m-d H:i',$value['overtime'])})
+{/if}
+</td>
+<td style="text-align:center">
+{if $value['begintime'] < $timestamp && $value['overtime'] > $timestamp}
+<a href="?view={$value[id]}" target="_blank">购买</a>&nbsp;&nbsp;
+{/if}
+<a href="?mod=me&code=favorite&op=cancle&id={$value['id']}">删除</a></td>
+</tr>
+<!--{/if}-->
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

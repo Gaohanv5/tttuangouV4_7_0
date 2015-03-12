@@ -1,0 +1,50 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name order.process.css * @date 2011-09-28 17:19:19 */ .small {
+	color: #c8c8c8;
+}
+#paylog {
+	display: none;
+}
+.paylog {
+	background: #ffffff;
+	padding: 6px;
+	border: 1px solid #c8c8c8;
+}
+.paylog ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.paylog ul li {
+	padding-left: 10px;
+	border-left: 2px solid #f8d080;
+}
+#couponlist {
+	display: none;
+}
+.coupons {
+	background: #ffffff;
+	padding: 6px;
+	border: 1px solid #c8c8c8;
+}
+.coupons ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.coupons ul li {
+	padding-left: 10px;
+	border-left: 2px solid #99baf3;
+}
+#remark {
+	width: 300px;
+}
+#extmsg_reply {
+    width: 300px;
+}
+#opmark {
+	width: 300px;
+	height: 50px;
+}
+.oping {
+	background: #c8c8c8;
+}

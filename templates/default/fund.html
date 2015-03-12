@@ -1,0 +1,146 @@
+<!--{template header}-->
+<style>.field label{ width:100px;} </style>
+<script type="text/javascript">
+function trim(str){
+var re=/\s*(\S[^\0]*\S)\s*/;
+re.exec(str);
+return RegExp.$1;
+}
+function checkmoney(){
+var value = Math.round($('#fund_money').val()*100)/100;
+var maxmoney = {$max_money};
+var minmoney = {$min_money};
+var permoney = {$per_money};
+if(permoney && value < maxmoney && value > minmoney){
+var money = Math.floor(value/permoney)*permoney;
+$('#fund_money').val(money);
+}
+}
+function checkFund()
+{
+var money = Math.round($('#fund_money').val()*100)/100;
+var maxmoney = {$max_money};
+var minmoney = {$min_money};
+var paytype = $("input[name='paytype']:checked").val();
+if (isNaN(money) || money <= 0)
+{
+foundError('结算金额必须是一个有效数字！');
+return false;
+}
+if (money < minmoney)
+{
+foundError('请输入结算金额，或结算金额输入错误，结算金额必须大于或等于'+minmoney+'元');
+return false;
+}
+if (money > maxmoney)
+{
+foundError('结算金额过大，您的帐户最大可结算金额为' + maxmoney + '元');
+return false;
+}
+if(paytype=='alipay'){
+var alipaynumber = trim($('#alipaynumber').val());
+var aliusername = trim($('#aliusername').val());
+if(alipaynumber.length < 6){
+foundError('您没有填写支付宝帐号或支付宝帐号填写错误！');
+return false;
+}else if(aliusername.length < 2){
+foundError('您没有填写收款人姓名或收款人姓名填写错误！');
+return false;
+}
+}else if(paytype=='bank'){
+var bankname = $('#bankname').val();
+var banknumber = trim($('#banknumber').val());
+var bankusername = trim($('#bankusername').val());
+if(bankname.length < 3){
+foundError('请选择一个转帐银行！');
+return false;
+}else if(banknumber.length < 8){
+foundError('您没有填写银行卡号或银行卡号填写错误！');
+return false;
+}else if(bankusername.length < 2){
+foundError('您没有填写开户人姓名或开户人姓名填写错误！');
+return false;
+}
+}
+return true;
+}
+function foundError(msg)
+{
+$('#error_msg').html(msg).css('color', '#f76120');
+setTimeout(function(){$('#error_msg').css('color', '')}, 2000);
+}
+function getpay(type)
+{
+$('.paystatus').hide();$('#p_'+type).show();
+document.getElementById('fundSubmit').disabled = false;
+}
+</script>
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" >帐户结算</p>
+<div class="sect"  >
+<div class="cont" >
+<!--{if $account_money > 0}-->
+<div class="field R14N" style="color:#333;">
+<!--{if $min_money > 0}-->最低结算金额为：<font class="R14">{$min_money}元</font>，<!--{/if}-->
+<!--{if $per_money > 0}-->结算金额必须是<font class="R14">{$per_money}</font>的倍数，<!--{/if}-->
+您本次最大可结算金额为：<font class="R14">{$max_money}元</font>。
+</div>
+<!--{if $max_money < $min_money}-->
+<div class="field">您最大可结算金额 <font color="red">不满足</font> 最低结算金额要求，无法进行结算！</div>
+<!--{else}-->
+<form action="?mod=fund&code=order&op=save" method="post" onsubmit="return checkFund();" >
+<div class="field">
+<label style=" overflow:hidden;">请输入结算金额</label>
+<input id="fund_money" name="money" type="text" class="f-l" style="_height:27px;" onblur="checkmoney();"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">请选择结算方式</label>
+<label style="text-align:left;width:60px" onclick="getpay('alipay');"><input name="paytype" type="radio" value="alipay"/>支付宝</label>
+<label style="text-align:left;width:80px" onclick="getpay('bank');"><input name="paytype" type="radio" value="bank"/>银行转帐</label>
+<label style="text-align:left;width:80px" onclick="getpay('money');"><input name="paytype" type="radio" value="money"/>上门提现</label>
+</div>
+<div class="field paystatus" style="display:none;" id="p_money">
+<label style=" overflow:hidden;">上门取现地址</label>{$payaddress}
+</div>
+<div class="paystatus" style="display:none;" id="p_alipay">
+<div class="field">
+<label style=" overflow:hidden;">支付宝帐号</label><input id="alipaynumber" name="alipaynumber" type="text"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">收款人姓名</label><input id="aliusername" name="aliusername" type="text"/>
+</div>
+</div>
+<div style="display:none;" class="paystatus" id="p_bank">
+<div class="field ">
+<label style=" overflow:hidden;">转帐银行</label><select id="bankname" name="bankname"><option value="">请选择...</option>
+<!--{loop $bank $key $val}-->
+<option value="{$key}">{$val}</option>
+<!--{/loop}-->
+</select>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">银行卡号</label><input id="banknumber" name="banknumber" type="text"/>
+</div>
+<div class="field">
+<label style=" overflow:hidden;">开户人姓名</label><input id="bankusername" name="bankusername" type="text"/>
+</div>
+</div>
+<div class="act"><input id="fundSubmit" type="submit" class="btn btn-primary" value=" 提交申请 " disabled/></div>
+</form>
+<p id="error_msg"></p>
+<!--{/if}-->
+<!--{else}-->
+<div class="field">您没有可结算的帐户余额，无法进行结算！</div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

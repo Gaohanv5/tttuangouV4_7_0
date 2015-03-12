@@ -1,0 +1,12 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">检测到新版本更新</td> </tr> <tr> <td class="td_title" width="10%">最新版本：</td> <td>
+{$response['version']}
+</td> </tr> <tr> <td class="td_title">Build 号：</td> <td>
+{$response['build']}
+</td> </tr> <tr> <td class="td_title">更新日志：</td> <td class="td_content"> <pre style="line-height:1.2;">{echo str_replace("\n\r", "", $response['log'])}</pre> </td> </tr> <tr> <td class="td_title">本次升级队列：</td> <td>
+{$response['ups_queue']}
+</td> </tr> <tr> <td class="td_title"></td> <td class="td_content">
+{if $response['ups_allow']}
+<a href="{$next_url}" class="button back1">点此进行升级</a>
+{else}对不起，因当前升级计划所限，您暂时不能进行在线升级{/if}
+</td> </tr> </table>
+{template @admin/footer}

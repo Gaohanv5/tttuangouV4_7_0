@@ -1,0 +1,1 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package js * @name error.clear.js * @date 2011-12-07 13:42:08 */ window.onerror = function() {return true;};

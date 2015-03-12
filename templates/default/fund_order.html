@@ -1,0 +1,75 @@
+<!--{template header}-->
+{~ui('loader')->js('@jquery.hook')}
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" >结算记录</p>
+<ul class="cont">
+<div style="float: right;">
+<li>分类:</li>
+<li class="liL_{$tabcssall}"><a href="?mod=fund&code=order">全部</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssno}"><a href="?mod=fund&code=order&pay=no">等待处理</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssdoing}"><a href="?mod=fund&code=order&pay=doing">正在处理</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcssyes}"><a href="?mod=fund&code=order&pay=yes">结算成功</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$tabcsserror}"><a href="?mod=fund&code=order&pay=error">结算失败</a></li>
+</div>
+</ul>
+<div class="cont">
+<style>td.line{text-align:center;border-bottom:1px solid #eee;height:69px;}</style>
+<table style="width:100%">
+<tr style="text-align:center;height:33px;background: #f2f2f2;">
+<td>结算记录流水号</td>
+<td>结算金额</td>
+<td>结算方式/受理时间</td>
+<td>结算类型</td>
+<td>结算状态</td>
+</tr>
+<!--{loop $list $one}-->
+<tr>
+<td class="line">{$one['orderid']}</td>
+<td class="line">{$one['money']}</td>
+<td class="line">
+{if $one['paytype'] =='money'}
+上门提现<br/>
+{elseif $one['paytype'] =='bank'}
+银行转帐[{$one['bankname']}]
+[{$one['bankusername']}]{$one['bankcard']}<br/>
+{elseif $one['paytype'] =='alipay'}
+支付宝[{$one['bankusername']}]{$one['alipay']}<br/>
+{/if}
+{if $one['paytime'] > 0}
+受理时间：{echo date('Y-m-d H:i:s', $one['paytime'])}
+{else}
+等待处理
+{/if}
+</td>
+<td class="line">
+{if $one['from']=='admin'}后台直结{else}前台申请{/if}
+</td>
+<td class="line">
+{if $one['status']=='no'}
+<a href="?mod=fund&code=del&id={$one['orderid']}">取消结算</a>
+{elseif $one['status']=='yes'}
+<font color="green">结算成功</font>
+{elseif $one['status']=='doing'}
+正在处理
+{elseif $one['status']=='error'}
+<font color="red">结算失败</font>
+{/if}
+</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

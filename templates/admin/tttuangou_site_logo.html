@@ -1,0 +1,10 @@
+<!--{template @admin/header}--> <script type="text/javascript">
+function reSizeImg(obj)
+{
+if (obj.width > 230)
+{
+obj.width = 230;
+}
+}
+</script> <form name="logoform" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="4">站点Logo设置</td> </tr> <tr class="alert"> <td colspan="4">所有风格模板的LOGO标准尺寸为<b>245x75</b>像素，请不要上传分辨率过大的图片！</td> </tr> <tr> <td width="10%">描述</td> <td width="20%">Logo</td> <td width="12%">路径</td> <td width="15%">上传/替换</td> </tr> <!--{loop $logos $i $logo}--> <tr onmouseover="this.className='tr_hover'" onmouseout="this.className='tr_normal'"> <td>{$logo['title']}</td> <td><img onload="reSizeImg(this)" src="{$logo['url']}" /></td> <td>{$logo['url']}</td> <td> <input type="file" name="uploads[]" /> <input type="submit" class="button" value="保存" onclick="document.logoform.action='admin.php?mod=tttuangou&code=dositelogo&op=save&path={echo urlencode($logo['url'])}';" /> </td> </tr> <!--{/loop}--> <tr class="footer"> <td colspan="4"><b>提示：每次只能上传一张图片，请不要尝试进行批量上传替换！<font color="red">如果提示 Acces Deined 错误，请检查“全局设置-上传设置”里面对应的图片上传权限是否有打开</font></b></td> </tr> </table> </form>
+{template @admin/footer}

@@ -1,0 +1,10 @@
+<!--{template @admin/header}--> <div class="header"> <a style="float:left; display: block;" href="?mod=article">文章列表</a><a style="text-decoration:none;;margin-top:2px" class="b_add" href="admin.php?mod=article&amp;code=create">发布新文章 </a> </div> <table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <thead> <tr class="tr_nav"> <td width="3%">编号</td> <td width="15%">标题</td> <td width="6%">用户</td> <td width="6%">署名</td> <td width="8%">管理</td> </tr> </thead> <tbody> <!--{loop $articles $one}--> <tr> <td>
+{$one['id']}
+</td> <td>
+{$one['title']}
+</td> <td>
+{echo app('ucard')->load($one['author_id'])}
+</td> <td>
+{$one['writer']}
+</td> <td> <a href="?mod=article&code=modify&id={$one['id']}">[ 编辑 ]</a> <a href="?mod=article&code=delete&id={$one['id']}" onclick="return confirm('确认要删除吗？');">[ 删除 ]</a> </td> </tr> <!--{/loop}--> </tbody> <tfoot> <tr class="footer"> <td colspan="5"><a href="admin.php?mod=article&code=create">发布新文章</a></td> </tr> <tr> <td colspan="5">{~page_moyo()}</td> </tr> </tfoot> </table>
+{template @admin/footer}

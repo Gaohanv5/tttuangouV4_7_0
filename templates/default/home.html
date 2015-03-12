@@ -1,0 +1,27 @@
+<!--{template "header"}-->
+<div class="site-ms__left"> 
+<div class="site-mast__search-result" {if $kw} style="display:block;"{else}style="display:none;"{/if}>找到“{$kw}”相关的商品信息如下</div>
+<!--{eval echo ui('loader')->css($this->Module.'.'.$this->Code)}-->
+<!--{~ui('ad')->load('howdo')}-->
+<!--{~ui('ad')->load('howdom')}-->
+<!--{~ui('ad')->load('howdot')}-->
+<!--{~ui('ad')->load('howdof')}-->
+<!--{~ui('ad')->load('howdos')}-->
+<!--{~ui('ad')->load('howparallel')}-->
+<div class="site-fs">
+<!--{~logic('city')->hot_place_navigate()}-->
+<!--{~ui('catalog')->hot_display()}-->
+<!--{~logic('city')->place_navigate()}-->
+<!--{~ui('catalog')->display()}-->
+<!--{~logic('sort')->product_navigate()}-->
+<!--{~logic('tag')->navigate()}-->
+<script type="text/javascript">
+var __Timer_lesser_auto_accuracy = {echo ini('ui.igos.litetimer') ? 'true' : 'false'};
+var __Timer_lesser_worker_max = {echo (int)ini('ui.igos.litetimer_wm')};
+</script>
+</div>
+<style>.promo_tab{ display:none;}.site-fs .site-fs__cell-tags{ margin:10px 0 10px 15px;}.site-fs__sort-s{ margin:10px 0 0;}</style>
+<!--{~ui('loader')->js('@time.lesser')}-->
+<!--{eval ui('igos')->load($product)}-->
+<!--{~ui('iimager')->single_lazy()}-->
+<!--{template "footer"}-->

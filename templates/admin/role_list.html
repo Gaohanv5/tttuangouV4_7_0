@@ -1,0 +1,3 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header" align="center"> <td>角色名称</td> <td>管理权限</td> </tr> <!--{loop $role_list $role}--> <tr align="center"> <td class="altbg1" width="20%">{$role[name]}</td> <td class="altbg1"> <a href="admin.php?mod=role&code=modify&id={$role[id]}">[编辑]</a> <a href="admin.php?mod=role&code=delete&id={$role[id]}">[删除]</a> </td> </tr> <!--{/loop}--> </table>
+注意：角色不是必须的，只是用来快速给管理员和合作商家分配权限；<a href="?mod=role&code=add" class="back1 back2">添加新角色</a>
+{template @admin/footer}

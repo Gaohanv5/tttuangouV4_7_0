@@ -1,0 +1,61 @@
+<table class="ucard_table" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="ucard_td_left">用户：</td>
+		<td>
+			{$user['name']}
+		</td>
+		<td>
+			<a href="admin.php?mod=member&code=modify&id={$user['id']}">[编辑]</a>
+		</td>
+	</tr>
+	<tr>
+		<td class="ucard_td_left">余额：</td>
+		<td>
+			{$user['money']}
+		</td>
+		<td>
+			<a href="#ucard_user_recharge" onclick="javascript:ucard_user_recharge({$user['id']});return false;">[充值]</a>
+			&nbsp;&nbsp;/&nbsp;&nbsp;
+			<a href="#ucard_user_lessmoney" onclick="javascript:ucard_user_lessmoney({$user['id']});return false;">[扣费]</a>
+		</td>
+	</tr>
+	{if $user['qq'] != ''}
+	<tr>
+		<td class="ucard_td_left">QQ：</td>
+		<td>
+			{$user['qq']}
+		</td>
+		<td>
+			<a href="http://wpa.qq.com/msgrd?v=3&uin={$user['qq']}&site=qq&menu=yes" target="_blank" title="打开QQ聊天框">[对话]</a>
+		</td>
+	</tr>
+	{/if}
+	{if $user['email'] != ''}
+	<tr>
+		<td class="ucard_td_left">邮件：</td>
+		<td>
+			{$user['email']}
+		</td>
+		<td>
+			<a href="#ucard_send_mail" onclick="javascript:ucard_user_send_mail({$user['id']});return false;" title="向此邮箱发送邮件">[邮件]</a>
+		</td>
+	</tr>
+	{/if}
+	{if $user['phone'] != ''}
+	<tr>
+		<td class="ucard_td_left">手机：</td>
+		<td>
+			{$user['phone']}
+		</td>
+		<td>
+			<a href="#ucard_send_sms" onclick="javascript:ucard_user_send_sms($user['id']);return false;" title="向此号码发送短信">[短信]</a>
+		</td>
+	</tr>
+	{/if}
+	<tr>
+		<td class="ucard_td_left">财务：</td>
+		<td colspan="2">
+			<a href="?mod=reports&code=view&service=user&hoster={$user['id']}">报表统计</a>
+		</td>
+	</tr>
+</table>

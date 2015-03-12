@@ -1,0 +1,24 @@
+<div class="t_area_out ">
+{eval $cpid = isset($_GET['view']) ? $_GET['view'] : -1;}
+<h1>看过本{TUANGOU_STR}的人还看了</h1>
+<div class="t_area_in">
+<ul class="product_list">
+{eval $one_product =  logic('product')->GetOne($cpid);}
+<!--{if $one_product}-->
+{eval $product_other_list = logic('product')->GetOtherList($one_product['city'], $one_product['category'], $one_product['id'], 10);}
+{loop  $product_other_list $i $product}
+<li>
+<p class="pl_img"><a href="?view={$product['id']}"><img src="{echo imager($product['imgs'][0], IMG_Small);}" width="175"/></a></p>
+<p class="name"><a href="?view={$product['id']}">{$product['name']}</a></p>
+<div class="shop">
+<div class="pr">
+<font class="price">&yen;{$product['nowprice']}</font>
+<font class="markprice">&nbsp;市场价：&yen;{$product['price']}</font>
+</div>
+</div>
+</li>
+{/loop}
+<!--{/if}-->
+</ul>
+</div>
+</div>

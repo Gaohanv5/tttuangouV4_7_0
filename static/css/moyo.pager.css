@@ -1,0 +1,45 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name moyo.pager.css * @date 2013-09-23 16:08:27 */ .page_first {
+	padding: 5px 11px;
+    background: #fff;
+	margin:auto 3px;
+	border:1px solid;
+}
+.page_last {
+	padding: 5px 11px;
+    background: #fff;
+	margin:auto 3px;
+	border:1px solid;
+}
+.page_up {
+	padding: 5px 11px;
+	font-weight: bold;
+	background: #fff;
+	margin:auto 3px;
+	border:1px solid;
+}
+.page_down {
+	padding: 5px 11px;
+    background: #fff;
+	font-weight:bold;
+	margin:auto 3px;
+	border:1px solid;
+}
+.page_count {
+	margin-left: 10px;
+	color: #808080;
+	display:inline-block;
+	white-space: nowrap;
+	margin:10px auto;
+}
+.page_current {
+	padding: 6px 12px;
+	background:#ece9d8 ;
+	margin:auto 3px;
+}
+.page_number {
+    padding: 5px 11px;
+    background: #fff;
+	margin:auto 3px;
+	border:1px solid;
+}
+

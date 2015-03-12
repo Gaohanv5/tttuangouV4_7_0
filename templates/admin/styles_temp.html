@@ -1,0 +1,5 @@
+<!--{template @admin/header}--> <form method="post" action="{$action}"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">默认模板设置</td> </tr> <tr> <td width="40%" bgcolor="#F4F8FC">模板是一个网站的内容展示骨架，如果只是更改显示颜色背景请点此使用<a href="admin.php?mod=styles&code=vlist">皮肤设置</a>；默认模板决定从指定目录读取模板文件，指定目录缺少的模板会从default目录中读取；注意：如要新建模板套系，请新建一个目录，而不要直接修改default目录模板文件，并且需要在<font color=red>tplinfo.php</font>文件里进行登记。
+</td> <td bgcolor="#FFFFFF">
+{$temp_select}
+</td> </tr> </table> <br> <center><input type="submit" class="button" name="addsubmit" value="提 交"></center> </form>
+{template @admin/footer}

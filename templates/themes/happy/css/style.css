@@ -1,0 +1,198 @@
+/*模板三 喜庆风格*/
+
+a:hover, .exp .pp_channels .sub-list a:hover {
+	color: #E20303;
+}
+/*左上角*/
+.site-mast__user-nav ul li a:hover {
+	color: #AE1023;
+}
+/*右上角*/
+.site-mast__user-w .menu_tqb a:hover {
+	color: #E20303;
+}
+/* 顶部城市选择 */
+#show_provinces {
+	border-color: #FFD3C6;
+}
+.city_chose {
+	background: #FEF9F2;
+}
+/* 顶部搜索框 */
+.search-box .search-box__input {
+	border-color: #AE1023;
+	border-left: none;
+}
+.select_sel {
+	border-color: #AE1023;
+}
+.search-box .search-box__button, .search-box .search-box__button:hover {
+	background: #AE1023;
+}
+/* 主导航 */
+.nav_bar {
+	background: #ae1023;
+	border-color: #ae1023;
+}
+.site-mast__site-nav a:hover, .site-mast__site-nav .current, .site-mast__site-nav .current:hover {
+	background-color: #991313;
+}
+.site-mast__site-nav a:hover{ color:#fff;}
+.site-mast_recentlist {
+	border: none;
+}
+.site-mast_recentlist a.recent_active {
+	background: #fff;
+}
+.recentlist {
+	border-color: #ae1023
+}
+/* 分类筛选 */
+.site-fs__cell a {
+	color: #AE1023;
+}
+.site-fs__cell .selected {
+	background-color: #AE1023;
+}
+
+.commitment {
+	width: 143px;
+	height: 68px;
+	background: url(../commitment.png) no-repeat;
+	margin-top: 0;
+	margin-left: 40px;
+}
+/* 内容主体*/
+/* 左侧 */
+.site-ms__left h1 {
+	color: #ef5602;
+}
+/* 产品列表 */
+.deal-tile__title a:hover {
+	color: #E20303;
+	text-decoration: underline;
+}
+.deal-tile__title td span {
+	color: #C70D13;
+}
+.product_item_a:hover{border-color: #ae1023;}
+/* 产品详情 */
+.content-navbar ul li a {
+	color: #C70D13;
+}
+.content-navbar__item--current {
+	border-top-color: #C70D13;
+}
+
+.main h4 {
+	background: none;
+	background-color: #AE1023;
+	color: #fff;
+	border-radius: 3px;
+	height: 27px;
+	line-height: 27px;
+}
+/* 右侧 */
+/* 分页 */
+.product_list_pager a {
+	color: #AE1023;
+}
+.product_list_pager a:hover {
+	border-color: #AE1023;
+}
+.product_list_pager .page_current {
+	background: #AE1023;
+	border: 1px solid #AE1023;
+}
+/* 右侧栏 */
+/* 侧_邀请返利 */
+.at_invite {
+	background: url(../images/cmb.png) -105px -106px no-repeat;
+}
+/* 侧_其他团购 */
+.product_list .name a:hover {
+	color: #E20303;
+}
+.product_list .b_btn {
+	background: url(../images/cmb.png)0 -132px no-repeat;
+}
+/*返回顶部*/
+a.goTop {
+	width: 52px;
+	height: 52px;
+	background: url(../images/cmb.png) 0 -298px no-repeat;
+}
+a.goTop:hover {
+	width: 52px;
+	height: 52px;
+	background: url(../images/cmb.png) -70px -298px no-repeat;
+}
+/*我的团购*/
+#report td {
+	background: #fff;
+}
+/* 收获地址 */
+.address .lrf a {
+	background: #e20303;
+	border-color: #ffdecf #ccc #ccc #ffdecf;
+	color: #fff;
+	text-shadow: none;
+}
+.addressbox .hd {
+	background: #FFEDDC;
+}
+/* 邮件+短信订阅 */
+.enter_address {
+	background: #FEF9F2;
+	border: 1px solid #FFD3C6;
+}
+/* 往期团购 */
+.time_normal {
+	background: url(../images/cmb.png) -158px 0 no-repeat;
+}
+/* 文章详情 */
+.site-ms__left .cur_top {
+	background-color: #FFEDDC;
+}
+/**/
+.exp .at_shuzi .R, .exp .quan .ql span, .exp .at_shuzi .red, .exp .sp_member {
+	color: #E20303;
+}
+.exp .site-mast__site-cla-main, .exp .pop-panel, .exp .pp_channels .sub-list {
+	border-color: #ae1023;
+}
+.b_btn, .btn-primary {
+	background: #ae1023;
+	border-color: #ae1023;
+	border-bottom: solid 1px #ae1023;
+}
+.b_btn:hover, .btn-primary:hover {
+	background: #ae1023;
+	border-color: #ae1023;
+	border-bottom: solid 1px #ae1023;
+	opacity: 0.8
+}
+.btn-primary.disabled, .btn-primary[disabled] {
+	background: #ae1023;
+	border-color: #ae1023;
+	border-bottom: solid 1px #ae1023;
+	opacity: 0.8
+}
+.btn-primary:active, .btn-primary.active {
+	background: #ae1023;
+	border-color: #ae1023;
+	border-bottom: solid 1px #ae1023;
+	opacity: 0.8
+}
+.countdown_goods .deal-tile__title dl dd, .trailer-img-txt .mr {
+	color: #f76120
+}
+.rating-area .total-score span, .deal-buy-bottom .price, .product_list .price, .time_normal .time_underway, .listInfo p i, .listInfo p .pro_noprice, .consult_list .reply {
+	color: #E20303;
+}
+.site-fs__cell .selected{
+	background-color: #AE1023;
+	color: #fff;
+}
+
+.exp .rating-area .total-score span, .exp .deal-buy-bottom .price, .exp .product_list .price, .exp .time_normal .time_underway, .exp .listInfo p i, .exp .listInfo p .pro_noprice, .exp .consult_list .reply{ color:#E20303}

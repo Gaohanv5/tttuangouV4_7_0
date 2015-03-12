@@ -1,0 +1,39 @@
+<!--{if $meituannav}-->
+{loop $catalog $i $topclass}
+<li class="root-item"> 
+<a href="{$topclass['url']}" class="root-name"><span>{if $topclass['icon']}<i><img src="{$topclass['icon']}"></i>{/if}{$topclass['name']}</span></a>
+{if $topclass['icon']}<p class="sub-ico">{else}<p>{/if}<a href="$topclass['subclass']['0']['url']">$topclass['subclass']['0']['name']</a><a href="$topclass['subclass']['1']['url']">$topclass['subclass']['1']['name']</a><a href="$topclass['subclass']['2']['url']">$topclass['subclass']['2']['name']</a><a href="$topclass['subclass']['3']['url']">$topclass['subclass']['3']['name']</a></p>
+<ul class="pop-panel Fix sub-list">
+<a href="{$topclass['url']}" class="root-name" style="border:none;"><b style=" font-size:14px; color:#333;height: 25px;">{$topclass['name']}</b></a>
+{loop $topclass['subclass'] $n $subclass}
+<li><a href="{$subclass['url']}">{$subclass['name']}</a></li>
+{/loop}
+{if $topclass['script']}<div class="pop-panel-img">$topclass['script']</div>{/if}
+</ul>
+</li>
+{/loop}
+<!--{else}-->          
+<div class="site-fs__cell">
+<div class="site-fs__cell-title">全部分类：</div>
+<div class="site-fs__cell-son1">
+{loop $catalog $i $topclass}
+<a href="{$topclass['url']}" class="topclass-name {if $topclass['selected']}selected{/if}">{$topclass['name']}</a>
+{if $topclass['selected']}
+{eval $subclasses = $topclass['subclass']}
+{/if}
+{/loop}
+<div style="clear: both;"></div>
+</div>
+{if $subclasses}
+<div class="site-fs__cell-son2">
+{loop $subclasses $ii $subclass}
+<a href="{$subclass['url']}" class="topclass-name {if $subclass['selected']}selected{/if}">
+{$subclass['name']}<!-- {if isset($subclass['oslcount'])}<font class="subclass-count">({$subclass['oslcount']})</font>{/if}-->
+</a>
+{/loop}
+<div style="clear: both;"></div>
+</div>
+{/if}
+<div style="clear: both; height:0px; overflow:hidden;"></div>
+</div>
+<!--{/if}-->

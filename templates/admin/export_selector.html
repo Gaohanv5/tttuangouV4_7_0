@@ -1,0 +1,9 @@
+<!--{template @admin/header}--> <div class="header">
+导出设置 / <a href="javascript:history.go(-1);">[ 返回 ]</a> </div> <table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tbody> <tr> <td class="td_title">导出全部数据？</td> <td class="td_content"> <label><input name="export_all" type="radio" value="yes" /> 是</label>
+&nbsp;&nbsp;&nbsp;
+<label><input name="export_all" type="radio" value="no" checked="checked" /> 否</label>
+&nbsp;&nbsp;&nbsp;
+(选择“是”会导出全部记录，包含其他分页中的数据)
+</td> </tr> <tr> <td class="td_title">导出格式：</td> <td class="td_content"> <select id="export_format"> <option value="csv" selected="selected">CSV文件</option> </select> </td> </tr> </tbody> <tfoot> <tr> <td class="td_title">确认</td> <td class="td_content"> <input id="export_filter" type="hidden" value="{$filter}" /> <input id="export_action" type="hidden" value="{$action}" /> <input id="export_submit" type="button" value="开始导出"  class="is_submit_button"/> <font id="export_result"></font> </td> </tr> </tfoot> </table>
+{~ui('loader')->js('#admin/js/export.selector')}
+<!--{template @admin/footer}-->

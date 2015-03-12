@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+{~'<base h'.'ref="'.ini('settings.site_url').'/" />'}
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{echo ($this->Title != '') ? $this->Title.' - ' : (ini('cplace.cnpre.enabled') ? (logic('misc')->City('name').ini('settings.tuangou_str').' - ') : '')}{ini:settings.site_name}{conf page_title}</title>
+<meta name="description" content="">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<style>
+html, button, input, select, textarea { color: #4a4f54;  }
+body { font: 16px/26px Helvetica, Helvetica Neue, Arial; line-height: 160%; overflow-x: hidden; background:#F0EFED;margin: 0;}
+h2{ color: #141414; line-height: 120%;	 font-size: 1.2em; padding: 0 10px; text-align:center;}
+.wrapper { width: 100%; margin: 0; }
+.wrapper ul{ display:block; background:#fff; border-top:1px solid #dcd8cd; border-bottom:1px solid #dcd8cd;line-height: 160%;clear: both;padding: 10px;}
+.wrapper ul li{ list-style-type: none;border-bottom:1px dotted #dcd8cd;padding: 5px 0; position:relative; text-align:center;}
+.go_order_btn{background: #34caa2;color: #fff;text-align: center;line-height: 200%;font-size: 1.6em;display: block;margin: 20px auto;border-radius: 2px; border:none; width:95%;}
+</style>
+</head>
+<body>
+<div id="error_msg" class="top_tips"></div>
+<div class="payback_msg">
+<div class="wrapper">
+<h2>系统提示</h2>
+<ul>
+<li>{$message}</li>
+</ul>
+</div>
+<div id='b'><input type="button" class="go_order_btn" onclick="window.demo.clickOnAndroid()" value="查看订单"></div>
+</div>
+</body>
+</html>

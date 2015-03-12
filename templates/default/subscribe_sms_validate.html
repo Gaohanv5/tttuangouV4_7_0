@@ -1,0 +1,26 @@
+<!--{template header}-->
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in" style="overflow:hidden;_width:695px; _height:100%">
+<p class="cur_title">{$this->Title}</p>
+<div class="sect">
+<p class="B14">短信预定每日最新{TUANGOU_STR}信息，了解{TUANGOU_STR}第一手资讯。</p>
+<div class="enter_address">
+我们已经向您的手机（{$sub['target']}）发送了一条包含验证码的短信，请收到后在下方输入验证码：
+<form action="?mod=subscribe&code=validate&op=verify" method="post">
+<input name="action" type="hidden" value="{$action}" />
+<input name="vcode" type="text" class="f_input" /> <input type="submit" value="验证" class="formbutton" />
+</form>
+<p>
+<a href="?mod=subscribe&code=validate&op=resend&sid={$sid}&action={$action}">点此重新发送</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

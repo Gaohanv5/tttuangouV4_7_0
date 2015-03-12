@@ -1,0 +1,8 @@
+<!--{template @admin/header}--> <form action="?mod=fund&code=config&op=save" method="post"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">商家结算设置</td> </tr> <tr> <td width="20%"></td> <td width=""></td> </tr> <tr class="header"> <td colspan="2"><b>说明：</b><br>
+比如：最小结算金额设置是1000，结算金额要求设置是100，假设：商家一可结算金额是1253元，商家二可结算金额是879元。<br>
+则：商家二不可结算，因其结算金额小于1000元。<br>
+商家一可以结算，可提现金额只能是：1000元、1100元、1200元</td> </tr> <tr> <td class="td_title">最小结算金额：</td> <td> <input type="text" name="least" value="{$upcfg['least']}" />&nbsp;（0表示不限制）
+<br>最小结算金额是指，商家前台“可结算金额”必须大于该设置值才可以申请结算；
+</td> </tr> <tr> <td class="td_title">结算金额要求：</td> <td> <input type="text" name="per" value="{$upcfg['per']}" />&nbsp;（0表示不限制）
+<br>结算金额要求是指商家前台结算时，申请的结算金额必须是该设置值的整数倍；
+</td> </tr> <tr class="header"> <td colspan="2"><b>备注：</b>此条件设置只适应于前台商家自行申请的结算，后台管理员直接对商家进行的结算不受此设置限制，只要结算金额不大于商家的可结算金额，就可进行结算。</td> </tr> <tr> <td colspan="2" class="tr_center"> <input type="submit" class="button" value="保存" /> </td> </tr> </table> </form> <!--{template @admin/footer}-->

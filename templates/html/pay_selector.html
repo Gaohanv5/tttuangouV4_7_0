@@ -1,0 +1,84 @@
+{~ui('loader')->css('@pay.selector')}
+{eval
+$me_money = round(user()->get('money')*1, 2);
+$allowSelfPay = false;
+$pay_money = round($pay_money, 2);
+$remain_money = round(($pay_money - $me_money),2);
+$dspSelfPay = $product_type == 'recharge' ? false : true;
+}
+<div id="paytype_list" class="paytype_list">
+<p class="title">请选择支付方式</p>
+<table width="100%" border="0" class="P_diso">
+<tr>
+<td colspan="3">
+<p class="P_diso_1">
+您当前账户余额：{$me_money} 元
+{if $dspSelfPay}
+{if $me_money > 0 && $me_money < $pay_money && false == logic('order')->is_virtual_order($data['orderid'])}
+，<label><input type="checkbox" id="payment_use_surplus" value="true" /> 使用余额支付</label>
+{elseif $me_money >= $pay_money}
+{eval $allowSelfPay = true}
+，可以使用余额付款
+{/if}
+{/if}
+</p>
+{if $dspSelfPay}
+<p class="P_diso_2">
+<font id="payment_total_money">您总共需要支付<span id="totalmoney2">{$pay_money}</span>元</font>
+<input type="hidden" id="totalmoney_2" value="{$pay_money}">
+<font id="payment_remain_money">扣除您帐户的{$me_money}元后，您还需要支付{$remain_money}元</font>
+<div id="payment_clear"></div>
+</p>
+{/if}
+</td>
+</tr>
+</table>
+{if $product_type == 'recharge'}{eval $allowSelfPay = false}{/if}
+{if $product_id}
+{eval $listString = meta('paymentlist_of_'.$product_id)}
+{else}
+{eval $listString = false}
+{/if}
+{loop logic('pay')->GetList() $i $pay}
+{if !$allowSelfPay && $pay['code'] == 'self'}
+{eval continue}
+{/if}
+{if $pay['code'] == 'cod' && $product_type != 'stuff'}
+{eval continue}
+{/if}
+{if $pay_money <=0 && $pay['code'] != 'self'}
+{eval continue}
+{/if}
+{if $product_type == 'recharge' && $pay['code'] == 'bank'}
+{eval continue}
+{/if}
+{if $product_type != 'recharge' && $pay['code'] == 'recharge'}
+{eval continue}
+{/if}
+{if $listString}
+{if !stristr($listString, $pay['code'].',')}
+{eval continue}
+{/if}
+{/if}
+{if $pay['code'] == 'yeepay' && $pay['config']['yeepayType'] == '1'}
+{eval continue}
+{/if}
+{if logic('pay')->plugin_has_ext_html($pay['code'])}
+<table width="100%" border="0" class="PayTypeList">
+<tr class="pay_tr" onclick="pay_tr_click('{$pay['id']}')">
+<td colspan="3">{$pay['detail']}<input id="payment_id_{$pay['id']}" name="payment_id" type="radio" value="{$pay['id']}" /></td>
+</tr>
+{echo logic('pay')->plugin_ouput_ext_html($pay['code'])}
+</table>
+{else}
+<table width="100%" border="0" class="PayTypeList">
+<tr class="pay_tr" style="cursor: pointer;" onmouseover="pay_tr_mouseover(this)" onmouseout="pay_tr_mouseout(this)" onclick="pay_tr_click('{$pay['id']}')">
+<td width="15"><input id="payment_id_{$pay['id']}" name="payment_id" type="radio" value="{$pay['id']}" /></td>
+<td width="100"><em><img src="static/images/pay/{$pay['code']}.gif" /></em></td>
+<td width="400">{$pay['detail']}</td>
+</tr>
+</table>
+{/if}
+{/loop}
+</div>
+{~ui('loader')->js('@pay.selector')}

@@ -1,0 +1,47 @@
+<!--{template header}-->
+{~ui('loader')->js('@jquery.hook')}
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title" >支付页面</p>
+<div class="sect">
+<div id="zf_cont" class="cont">
+<div class="field" >
+<label>订单编号：</label>
+<span>{$order['orderid']}</span>
+</div>
+<div class="field">
+<label>充值金额：</label>
+<span>{$order['money']}</span>
+</div>
+<div>
+{$payment_linker}
+</div>
+<p id="pay_masker" style="display:none;">
+<b>
+<br/>
+请在新打开窗口进行付款操作！
+<br/><br/>
+如果您已经完成付款，可以 <a href="?mod=recharge&code=order">点击这里查看订单</a>
+</b>
+</p>
+<div class="field" >
+<label>&nbsp;</label>
+<span><a href="?mod=recharge&code=order&id={$order['orderid']}" class="R14N">点此选择其他支付方式</a></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$.hook.add('pay.button.click', function(){
+$('#pay_submit').slideUp();
+$('#pay_masker').slideDown();
+});
+</script>
+<!--{template footer}-->

@@ -1,0 +1,41 @@
+<!--{template @admin/header}--> <style type="text/css">
+#channel-area{padding: 5px 10px 0;}
+.a-cs {
+border-color: #DDDDDD;
+border-radius: 5px 5px 0 0;
+border-style: solid solid none;
+border-width: 1px 1px medium;
+float: left;
+height: 35px;
+line-height: 35px;
+margin: 10px 3px 0;
+padding: 0 10px;
+}
+.selected {
+border-color: #DDDDDD;
+background:#f2f2f2;
+border-radius: 5px 5px 0 0;
+border-style: solid solid none;
+border-width: 1px 1px medium;
+float: left;
+height: 35px;
+line-height: 35px;
+margin-top: 10px;
+padding: 0 10px;
+}
+</style> <div class="header"> <a href="?mod=reports">报表首页</a> </div> <table id="orderTable" cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tbody> <tr> <td id="updating-area"></td> </tr> <tr> <td id="charting-area"></td> </tr> <tr> <td id="channel-area"></td> </tr> <tr> <td id="datepicker-area">
+开始：<input id="datebegin" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" size="11" class="Wdate" value="" />
+结束：<input id="datefinish" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd'})" size="11" class="Wdate" value="" /> <input type="button" onclick="reports_load()" value="确认" /> </td> </tr> <tr> <td id="table-area" style="display: none;"></td> </tr> </tbody> </table>
+{~ui('loader')->addon('picker.date')}
+{~ui('loader')->js('#admin/js/reports.mgr')}
+{~ui('loader')->js('#admin/js/highcharts')}
+{~ui('loader')->js('#admin/js/jquery.highchartTable')}
+<script type="text/javascript">
+var report_source = {
+service : '{$service}',
+hoster : '{$hoster}',
+newest : {echo $is_newest ? 'true' : 'false'}
+};
+$(document).ready(reports_load());
+</script>
+{template @admin/footer}

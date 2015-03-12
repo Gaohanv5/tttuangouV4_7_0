@@ -1,0 +1,107 @@
+<!--{template header}-->
+{~ui('loader')->css('@jquery.tipTip')}
+{~ui('loader')->js('@jquery.tipTip')}
+{~ui('loader')->js('@jquery.hook')}
+{~ui('loader')->js('@jquery.form')}
+<script type="text/javascript">
+function order_finish(url)
+{
+	window.location.href = url;
+}
+</script>
+<div class="site-ms__left">    
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">请确认订单</p>
+<div class="sect">
+<table id="report" style="border:1px solid #eee;">
+<tr>
+<th style="text-align:left">{TUANGOU_STR}项目</th>
+<th>价格</th>
+<th>&nbsp;</th>
+<th>数量</th>
+<th>&nbsp;</th>
+<th>总价</th>
+</tr>
+{loop $orders $i $od}
+<tr>
+<td width="35%" style="padding-left: 10px;">{$od['product']['flag']}</td>
+<td width="12%" style="text-align:center;">&yen; {$od['productprice']}</td>
+<td width="4%" style="text-align:center;">&nbsp;</td>
+<td width="10%" style="text-align:center;">{$od['productnum']}</td>
+<td width="4%" style="text-align:center;">&nbsp;</td>
+<td width="15%" style="text-align:center;"><span class="B">&yen; {eval echo $od['productprice']*$od['productnum'];}</span>
+<p style="color:#999;">{$od['product']['weight']} {$od['product']['weightunit']}</p>
+</td>
+</tr>
+{/loop}
+</table>
+<div class="wig_box">
+<!--{eval logic('address')->html($order)}-->
+<!--{eval logic('express')->html($order)}-->
+<!--{eval logic('attrs')->html($orders)}-->
+<div class="cont" style="width:100%; padding:20px 0 10px; margin:0;">
+	<!--{eval logic('card')->html($product)}-->
+	<p class="P_disa" style="padding-bottom:10px;">优惠减免:
+		<span class="R" style="margin-left:10px;">-&yen;</span><span id="card_price" class="R">0.00</span>
+	</p>
+	<p class="P_disa" style="padding:0;">应付总额: <span class="R" style="margin-left:10px;">&yen;</span><span id="totalmoney1" class="R">{$order['price_of_total']}</span></p>
+	<input type="hidden" id="totalmoney_1" value="{$order['price_of_total']}">
+</div>
+<!--{eval logic('pay')->html($order)}-->
+<div class="submit_div">
+<form id="order_submit" action="?mod=buy&code=order&op=save" method="post">
+<input id="order_id" name="order_id" type="hidden" value="{$order['orderid']}" />
+{if $order['is_countdown'] == 1}
+{if $order['timelimit']>0}
+<span id="timeLimit"></span>
+<input id="order_submit_button" type="submit" class="btn btn-primary" value="确认订单，并支付" />
+<p class="back_rem"><a href="javascript:history.go(-1);">返回修改订单</a></p>
+{else}
+<span id="timeLimit">支付超时导致订单失效</span>
+<input id="order_submit_button" type="submit" class="btn btn-primary" value="抢购失败" disabled="disabled" />
+{/if}
+{else}
+<input id="order_submit_button" type="submit" class="btn btn-primary" value="确认订单，并支付" />
+<p class="back_rem"><a href="javascript:history.go(-1);">返回修改订单</a></p>
+{/if}
+<font id="submit_status"></font>
+<!--{if $order['product']['type'] == 'stuff'}-->
+<input id="express_id" name="express_id" type="hidden" value="{$order['expresstype']}">
+<!--{/if}-->
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>      
+</div>
+{~ui('loader')->js('@buy.order', UI_LOADER_ONCE)}
+<script type="text/javascript">fizinit();selectors();</script>
+<div class="site-ms__right">
+<!--{~ui('widget')->load()}-->
+</div>
+</div>
+<!--{if $order['is_countdown'] == 1}-->
+<script type="text/javascript">
+var timeLimit0 = parseInt("0{$order['timelimit']}");
+function timeLimit_refresh(){
+timeStr = "";
+if(timeLimit0 >= 60){
+minute = Math.floor(timeLimit0 / 60);
+}else if(timeLimit0 >0){
+minute = 0;
+}else{
+document.getElementById("timeLimit").innerHTML = "支付超时导致订单失效";
+document.getElementById("order_submit_button").disabled = "disabled";
+document.getElementById("order_submit_button").value = "抢购失败";
+return false;
+}
+timeStr = "剩余时间：" + minute +":"+ Math.floor(timeLimit0 - minute*60) + "（过时后将禁止支付，并将商品重新开放给其他人购买）";
+document.getElementById("timeLimit").innerHTML = timeStr;
+timeLimit0 = timeLimit0 - 0.25;
+}
+setInterval(timeLimit_refresh,250);
+</script>
+<!--{/if}-->
+<!--{template footer}-->

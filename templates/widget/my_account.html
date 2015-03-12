@@ -1,0 +1,19 @@
+<div class="t_area_out ">
+<!--{if MEMBER_ID < 1}-->
+<h1>会员登录</h1>
+<div class="t_area_in" style="color:#666">
+<a href="?mod=account&code=login">我要登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?mod=account&code=register">我要注册</a>
+</div>
+<!--{else}-->
+<!--{eval $forbidmoney = intval(user()->get('forbid_money'));}-->
+<h1>账户信息</h1>
+<div class="t_area_in" style="color:#666">
+{~user()->get('name')}<font class="R12">{eval logic('me')->growth(1);}</font><br>
+账户余额： <font class="R12">{~user()->get('money')}</font><br>
+<!--{if $forbidmoney > 0}-->
+冻结资金： <font class="B12">{~user()->get('forbid_money')}</font><br>
+<!--{/if}-->
+<p style="padding:10px 0px 0px 0;"><a href="?mod=recharge">我要充值</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?mod=cash">我要提现</a></p>
+</div>
+<!--{/if}-->
+</div>

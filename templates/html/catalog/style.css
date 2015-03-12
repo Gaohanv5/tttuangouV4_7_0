@@ -1,0 +1,60 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name style.css * @date 2013-07-31 16:18:09 */ .catalog {
+    padding: 10px 15px;
+	font-size:14px;
+}
+.catalog a{color:#506EAA;}
+.catalog .fq_this_bg_c{ 
+	background: none;
+	color: #666;
+	font-weight: 600;
+	text-align: left;
+	padding: 0;
+	margin-right: 8px;
+	float:left;
+	font-size:12px;
+	font-weight:500;
+}
+.catalog-nav {
+    float: left;
+	font-size:12px;
+}
+.catalog-data {
+    float: left;
+	position:relative;
+}
+.catalog .topclass-name {
+    cursor: pointer;
+	padding:0px 3px;
+    text-decoration: none; 
+}
+.catalog .subclass-name,.catalog .topclass-name {
+    cursor: pointer;
+/*     padding:0 0px 3px 10px;  */
+margin:0 0 3px 10px;
+    text-decoration: none;
+	font-size:12px;
+	float:left;
+
+}
+.catalog .subclass-count {
+    color: #999;
+    margin-left: 3px;
+}
+.catalog .selected .subclass-count{
+	color:#fff; 
+}
+.catalog .subclass-name:hover{
+   text-decoration:none;
+}
+.catalog .selected{
+	background: #6486CA;
+	color: #FFF;
+	padding:3px;
+	line-height:12px;
+/*    height: 20px;
+	float: left;
+	width: auto;
+	line-height: 20px;
+	padding: 0 5px;
+	margin:0 5px;*/
+} 

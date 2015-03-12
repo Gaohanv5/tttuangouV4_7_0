@@ -1,0 +1,37 @@
+<!--{template @admin/header}--> <script>
+$(document).ready(function(){
+$("#delImage").click(
+function () {
+$.ajax({
+url:"./admin.php?mod=catalog&code=delImages&id={$id}", 
+type:"POST",
+data:{FORMHASH:'{FORMHASH}'},
+dataType:'json',
+beforeSend:function()
+{
+$("#delImage").html('删除中...');
+},
+success:function(result)
+{
+if(result.error == 0)
+{
+$("#delImage").html('删除成功');
+$("#img_icon_div").html('');
+}
+else
+{
+alert(result.reason);
+$("#delImage").html('删除失败，请点击重新删除');
+}
+}
+});
+}
+);
+});
+</script> <form action="?mod=catalog&code=edit" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2"> <a href="?mod=catalog">返回分类列表</a> </td> </tr> <tr> <td width="10%" class="td_title">分类图标：</td> <td> <input name="id" type="hidden" value="{$id}"/> <input name="catalog_image" type="file" />
+{if isset($data[$id])}
+<font id="img_icon_div"> <img id="img_icon" alt="" src="$data[$id]['icon']" width="18" height="18"> <a href="javascript:void(0);" id="delImage">删除图片</a> </font>
+{/if}
+* 图片分辨率为 18 x 18，不替换请留空
+</td> </tr> <tr> <td class="td_title">广告代码：</td> <td> <textarea name="script" style="width:399px"  title="可使用img标签和src地址索引广告图片">{$data[$id]['script']}</textarea> 此处为美团模板子分类悬浮框广告代码，推荐尺寸320*150
+</td> </tr> <tr> <td></td> <td> <input type="submit" value="保存" class="button" /> </td> </tr> </table> </form> <!--{template @admin/footer}-->

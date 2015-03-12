@@ -1,0 +1,11 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="5">默认风格设置</td> </tr> <tr> <td colspan="5">
+是否禁用多风格切换功能？ <font class="ini" src="styles.multi_support"></font> </td> </tr> <tr class="tr_nav"> <td width="10%">标记</td> <td width="20%">预览图</td> <td width="12%">名称</td> <td width="15%">启用状态</td> <td width="15%">默认风格</td> </tr> <!--{loop $styles $sign $style}--> <tr> <td>{$sign}</td> <td> <img src="./templates/themes/{$sign}/preview.gif" style="margin:5px 0;"/> </td> <td> <font class="ini" src="styles.local.{$sign}.name">{$style['name']}</font> </td> <td> <font class="ini" src="styles.local.{$sign}.enabled">{echo $style['enabled']?'true':'false'}</font> </td> <td>
+{if $sign == $default}
+<font class="fred">当前默认风格</font>
+{else}
+<a href="admin.php?mod=styles&code=setdefault&id={$sign}">设为默认</a>
+{/if}
+</td> </tr> <!--{/loop}--> </table>
+{template @admin/footer}

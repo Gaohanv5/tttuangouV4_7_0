@@ -1,0 +1,36 @@
+<div class="pro-phone">
+<p class="title">手机号：</p>
+<div class="field">
+<input type="text" name="phone" id="sms_phone" value="{~logic('phone')->view()}" class="f_input input_h" size="30" readonly="true" disabled="true">
+<font id="phone_result"></font>
+&nbsp;&nbsp;
+{if user()->get('phone_validate')}
+该手机号已经通过验证，如需更换，<a target="_blank" href="index.php?mod=me&code=phone&act=rebind">请点此进行操作</a>
+{else}
+该手机号还未通过验证，<a target="_blank" href="index.php?mod=me&code=phone&act=bind">请先点此进行验证绑定操作</a>
+{/if}
+</span>	
+</div>  
+</div>
+<script type="text/javascript">
+//$(document).ready(function(){
+$.hook.add('checkout_submit', function() {
+var phone = $('#sms_phone').val();
+{if false == user()->get('phone_validate')}
+$('#sms_phone').tipTip({
+content:"您的手机号还未通过验证，请先进行验证绑定操作",
+keepAlive:true,
+activation:"focus",
+defaultPosition:"top",
+edgeOffset:8,
+maxWidth:"300px"
+});
+$('#sms_phone').focus();
+df_allow_to_submit('sms.inputer', false);
+{else}
+checkout_field_append('phone', phone);
+df_allow_to_submit('sms.inputer', true);
+{/if}
+});
+//});
+</script>

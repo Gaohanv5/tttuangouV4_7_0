@@ -1,0 +1,6 @@
+<!--{template @admin/header}--> <form method="post" id="config_setting" action="{$action}" method="post"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">返利设置</td> </tr> <tr> <td width="30%"></td> <td width=""></td> </tr> <tr class="header"> <td colspan="2">说明：每个用户可以通过自己的邀请链接，邀请好友来网站注册。一旦通过邀请链接注册成功，被邀请人会成为邀请人的下家。<br>
+如果设置相应返利比例，被邀请人的消费或销售行为会给邀请人以返利。返利金额，按返利比率计算。<br>
+邀请人未设置与被邀请人的返利比例时，将按照该设置比例值进行返利结算。
+</td> </tr> <tr> <td class="td_title">普通用户消费时，给予邀请人的返利：</td> <td> <input type="text" name="buy_pre" value="{$buy_pre}" /> %
+</td> </tr> <tr> <td class="td_title">商户卖出商品时，给予邀请人的返利：</td> <td> <input type="text" name="sell_pre" value="{$sell_pre}" /> %
+</td> </tr> <tr> <td colspan="2" class="tr_center"> <input type="submit" class="button" value="保存" /> </td> </tr> </table> </form> <!--{template @admin/footer}-->

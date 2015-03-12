@@ -1,0 +1,7 @@
+.td-input-w100 input {
+	width: 80%;
+}
+.td-input-w100 textarea {
+	width: 80%;
+	height: 50px;
+}

@@ -1,0 +1,48 @@
+<!--{template header}-->
+<div class="site-ms__left">  
+<div class="t_area_out" >
+<div class="t_area_in">
+<p class="cur_title" >往期{TUANGOU_STR}</p>
+<ul class="deal_list">
+{loop $product $i $value}
+<li>
+<div class="pic2"> 
+<a target="_blank" href="?view={$value['id']}">
+<img src="{echo imager($value['imgs'][0], IMG_Small)}" width="160" height="115" title="{echo logic('upload')->Field($value['imgs'][0], 'intro')}" />
+</a> 
+</div>
+<div class="listInfo">
+<p><a target="_blank" href="?view={$value['id']}" title="{$value['name']}">{$value['flag']}</a></p>
+<p class="info2">
+{if $value['type'] == 'prize'}
+抽奖人数：{echo logic('prize')->allCount($value['id'])}
+{else}
+<span><i>{$value['succ_buyers']}</i>人购买</span>
+<span>&nbsp;&nbsp;&nbsp;售出&nbsp;&nbsp;<i>{$value['sells_count']}</i>份</span> <span class="jiesheng">共为用户节省 <font class="scMoney">&yen;{eval echo ($value['price']-$value['nowprice'])*$value['sells_count'];}</font></span>
+{/if}
+</p>
+<p>
+原价：<em>&yen;{$value['price']}</em>
+现价：<em class="pro_noprice">&yen; {$value['nowprice']}</em>
+折扣：<em>{$value['discount']}折</em>
+节省：<em>&yen;{eval echo ($value['price']-$value['nowprice'])}</em>
+</p>
+</div>
+<div class="time_normal">
+<p>{echo date('Y-m-d', $value['overtime']);}</p>
+<p class="time_underway">已结束</p>
+</div>
+</li>
+{/loop}
+</ul>
+<div class="pagem product_list_pager">
+{~page_moyo()}
+</div>
+</div>
+</div>	
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

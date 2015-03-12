@@ -1,0 +1,24 @@
+<!--{template @admin/header}--> <div class="export_link"> <a class="button back1 back2 fr" href="{~ihelper('tg.help.express')}" target="_blank">使用帮助</a> </div>
+{~ui('loader')->css('me.address')}
+<style type="text/css">
+.address_new {background:#fff;border:2px solid #ccc;top:90px;}
+.address_new input {height:auto;}
+</style> <div id="address_new" class="address_new"> <form id="address_new_form" method="post" action="address.save"> <table width="100%"> <tr> <td width="100"></td><td><input id="addr_id" name="id" type="hidden" value="0" class="validate[required,custom[number]]" /></td> </tr> <tr> <td class="left">省市区：</td> <td> <select id="addr_province" name="province" class="validate[required]"></select> <select id="addr_city" name="city" class="validate[required]"></select> <select id="addr_country" name="country" class=""></select> </td> </tr> <tr> <td class="left">街道地址：</td> <td> <input id="addr_address" name="address" type="text" class="validate[required,minSize[5],maxSize[30]]" /> </td> </tr> <tr> <td class="left">邮政编码：</td> <td> <input id="addr_zip" name="zip" type="text" class="validate[optional,custom[number],minSize[6],maxSize[6]]" /> </td> </tr> <tr> <td class="left">寄件人姓名：</td> <td> <input id="addr_name" name="name" type="text" class="validate[required,minSize[2],maxSize[8]]]" /> </td> </tr> <tr> <td class="left">电话号码：</td> <td> <input id="addr_phone" name="phone" type="text" class="validate[required,custom[phone]]" /> </td> </tr> <tr> <td></td> <td> <input id="address_submit_button" class="btn btn-primary btn-small" type="button" value=" 保存 " /> <input id="address_cancel_button" class="btn btn-small" type="button" value=" 取消 " /> <font id="address_submit_result"></font> </td> </tr> </table> </form> </div> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr> <td colspan="5"> <div class="is_button"><a href="?mod=express">配送方式列表</a></div> <div class="is_button"><a href="?mod=express&code=corp&op=list">快递公司及快递单模板</a></div> <div class="is_current">寄件人信息管理</div> </td> </tr> <tr class="tr_nav"> <td width="10%">寄件人</td> <td width="10%">所在地区</td> <td width="20%">街道地址</td> <td width="10%">电话</td> <td width="20%">管理</td> </tr> <!--{if empty($list)}--> <tr><td colspan="5">暂无寄件人信息！<BR>
+寄件人信息用于在线<A HREF="admin.php?mod=print&code=delivery&op=queue">打印快递单</A>时，自动调用寄件人的相关信息。</td></tr> <!--{else}--> <!--{loop $list $i $value}--> <tr> <td>{$value['name']}</td> <td>{$value['region']}</td> <td>{$value['address']}</td> <td>{$value['phone']}</td> <td> <a href="#address_edit" onclick="javascript:address_edit({$value['id']});address_div_reloc();return false;">编辑</a>
+&nbsp;&nbsp;-&nbsp;&nbsp;
+<a href="#address_del" onclick="javascript:address_del({$value['id']});return false;">删除</a> </td> </tr> <!--{/loop}--> <!--{/if}--> <tr> <td colspan="5"><a href="#address_add" onclick="javascript:address_add();address_div_reloc();return false;" class="back1 back2">添加</a></td> </tr> </table>
+{~ui('loader')->css('@jquery.validationEngine')}
+{~ui('loader')->js('@jquery.validationEngine')}
+{~ui('loader')->js('@jquery.validationEngine.cn')}
+{~ui('loader')->js('@jquery.form')}
+{~ui('loader')->js('@me.address')}
+<script type="text/javascript">
+var {echo '$__EXPRESS_ADDRESS_MODE'} = true;
+function address_div_reloc()
+{
+var vWdith = $(document).width();
+var adv = $('#address_new');
+adv.css('left', Math.ceil((vWdith-630)/2));
+}
+</script>
+{template @admin/footer}

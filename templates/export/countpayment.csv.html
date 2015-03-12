@@ -1,0 +1,5 @@
+支付时间:{$ltime}{echo "\n"}
+支付ID,标记符,支付名称,交易总额{echo "\n"}
+{loop $list $i $data}
+{$data['id']},{$data['paycode']},{$data['payname']},￥{$data['paymoneys']}{echo "\n"}
+{/loop}

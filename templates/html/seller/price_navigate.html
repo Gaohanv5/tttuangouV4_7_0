@@ -1,0 +1,10 @@
+<div class="site-fs__cell">
+<div class="site-fs__cell-title">人均消费：</div>
+<div class="site-fs__cell-son1">
+{loop $price_navs $pn}
+<a href="{$pn['url']}" title="{$pn[title]}" class="topclass-name {if $pn['selected']}selected{/if}">{$pn['name']}</a>
+{/loop}
+<div style="clear: both;"></div>
+</div>
+<div style="clear: both; height:0px; overflow:hidden;"></div>
+</div>

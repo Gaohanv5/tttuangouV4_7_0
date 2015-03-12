@@ -1,0 +1,10 @@
+{if $list}
+<div class="login_union">
+<p>合作网站账号登录！</p>
+<p>
+{loop $list $flag $name}
+<a href="?mod=account&code=login&op=union&flag={$flag}" title="{$name}"><img src="templates/account/login/images/union_{$flag}.gif" width="120px" height="24px"/></a>
+{/loop}
+</p>
+</div>
+{/if}

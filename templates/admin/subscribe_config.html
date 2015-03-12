@@ -1,0 +1,9 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr> <td colspan="2" style="padding-left:0"> <div class="is_current">订阅验证设置</div>
+{loop $typeDfs $flag $name}
+<div class="is_button"><a href="?mod=subscribe&class={$flag}">$name</a></div>
+{/loop}
+<div class="is_current"><a href="?mod=subscribe&code=config">设置</a></div> </td> </tr> <tr class="tips"> <td colspan="2">
+为了您的邮箱帐号不被用户列入黑名单，请开启适量的验证以免给用户造成干扰！
+</td> </tr> <tr> <td width="30%"></td> <td width=""></td> </tr> <tr> <td class="td_title">邮件 订阅 验证？</td> <td><font class="ini" src="subscribe.validate.do.mail"></font></td> </tr> <tr> <td class="td_title">短信 订阅 验证？</td> <td><font class="ini" src="subscribe.validate.do.sms"></font></td> </tr> <tr> <td class="td_title">邮件 取消 验证？</td> <td><font class="ini" src="subscribe.validate.undo.mail"></font></td> </tr> <tr> <td class="td_title">短信 取消 验证？</td> <td><font class="ini" src="subscribe.validate.undo.sms"></font></td> </tr> </table>
+{~ui('loader')->js('#admin/js/sdb.parser')}
+{template @admin/footer}

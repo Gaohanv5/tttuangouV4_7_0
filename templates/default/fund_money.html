@@ -1,0 +1,45 @@
+<!--{template header}-->
+{~ui('loader')->js('@jquery.hook')}
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">结算金额明细</p>
+<div class="cont">
+<style>th{text-align:center;background: #f9f9f9;font-size: 14px;color:#333;padding:7px 0px;}td.line{text-align:center;border-bottom:1px solid #eee;height:69px;}</style>
+<table style="width:100%">
+<tr>
+<th>资金到帐日期</th>
+<th>订单号</th>
+<th>商品信息</th>
+<th>{TUANGOU_STR}券号码</th>
+<th>包含份数</th>
+<th>消费金额</th>
+<th>分成比例</th>
+<th>结算金额</th>
+</tr>
+<!--{loop $list $one}-->
+<tr>
+<td class="line">{echo date('Y-m-d H:i:s', $one['addtime'])}</td>
+<td class="line"><a href="?mod=seller&code=order&op=list&search=wd:{$one['orderid']}&ssrc=order_id&sstr={$one['orderid']}">{$one['orderid']}</a></td>
+<td class="line">{$one['flag']}</td>
+<td class="line">
+<!--{if $one['number']}-->
+<a href="?mod=seller&code=ticket&op=list&search=wd:{$one['number']}&ssrc=coupon_no&sstr={$one['number']}">{$one['number']}</a>
+<!--{/if}-->
+</td>
+<td class="line">{$one['mutis']}份</td>
+<td class="line">{$one['deal_money']}元</td>
+<td class="line">{$one['salary_pre']}</td>
+<td class="line">{$one['salary_money']}元</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

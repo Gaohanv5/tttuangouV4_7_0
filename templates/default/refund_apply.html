@@ -1,0 +1,136 @@
+<!--{template header}-->
+<script type="text/javascript">
+function trim(str){
+var re=/\s*(\S[^\0]*\S)\s*/;
+re.exec(str);
+return RegExp.$1;
+}
+function check()
+{
+var money = Math.round($('#money').val()*100)/100;
+var maxmoney = {$info['paymoney']};
+if (isNaN(money) || money <= 0)
+{
+Error('money','退款金额必须是一个有效数字！');
+return false;
+}
+if (money > maxmoney)
+{
+Error('money','退款金额过大，您最大可退款金额为' + maxmoney + '元');
+return false;
+}
+var ci = 0;
+$(":checkbox").each(function(){
+if($(this).attr("checked") == "checked"){ci++;}
+});
+if (ci == 0)
+{
+Error('reason','请输入退款理由');
+return false;
+}
+return true;
+}
+function Error(id,msg){$('#error_msg').html(msg);$('#'+id).focus();}
+$(document).ready(function() {$("#money").focus();});
+</script>
+<style>
+.field table td{padding:5px 10px;}
+</style>
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">退款申请<font style="font-size:14px;font-weight:normal">（注意：退款后整个订单将失效，如果需要退部分款项，请先消费后再将剩余的款项进行退款操作）</font></p>
+<div class="sect">						
+<div class="cont">
+<form action="index.php?mod=refund&code=refundsave" method="post" onsubmit="return check();">
+<input type="hidden" name="orderid" value="{$order_id}"/>
+<div class="field">
+<label>订单 ID：</label>
+{$order_id}
+</div>
+<div class="field">
+<label>产品名称：</label>
+{$info['product']['flag']}
+</div>
+<div class="field">
+<label>退款金额：</label>
+<input type="text" id="money" name="money" value="{$info['paymoney']}" class="f_input input_h" style="width:150px;margin-right:5px;">元
+<span id="status" class="hint">（最大可退款金额:{$info['paymoney']}元）
+<!--{if $info['expressprice']}-->（含运费：{$info['expressprice']}元）<!--{/if}-->
+<!--{if $info['tmsg']}--><br>【备注】订单总金额：{$info['tmsg']['money']}元，共<font color="green">{$info['tmsg']['tnum']}</font>张{TUANGOU_STR}券；您已消费<font color="red">{$info['tmsg']['num']}</font>张{TUANGOU_STR}券<!--{/if}-->
+</span>
+</div>
+<!--{if true == logic('refund')->can_cash($order_id)}-->
+<div class="field">
+<label>退款方式：</label>
+<label><input type="radio" name="cash_type" value="" onclick="getpay('')">退至余额</label>
+<label><input type="radio" name="cash_type" value="alipay" onclick="getpay('alipay')">原路退回</label>
+<span id="status" class="hint" style="width:450px; margin-left:105px;">	
+<div id="p_alipay" class="paystatus" style="display:none;">								  
+{if false != ($__this_payfrom = logic('paylog')->payfrom($order_id))}
+<div class="field">
+该订单使用的支付帐号为 {$__this_payfrom}，支持原路退回；请补充以下帐号的信息
+</div>
+<div class="field">
+<label style=" overflow:hidden;">支付宝帐号</label> {$__this_payfrom} <input id="alipaynumber" name="cash_data[alipaynumber]" value="{$__this_payfrom}" type="hidden"/>
+</div>
+{else}
+<div class="field">
+<label style=" overflow:hidden;">支付宝帐号</label><input id="alipaynumber" name="cash_data[alipaynumber]" type="text"/>
+</div>
+{/if}
+<div class="field">
+<label style=" overflow:hidden;">收款人姓名</label><input id="aliusername" name="cash_data[aliusername]" type="text"/>
+</div>
+<!--{~logic('payfrom')->html(MEMBER_ID, 'index')}-->
+</div>
+</span>
+</div>
+<script type="text/javascript">
+function getpay(type) {
+$('.paystatus').hide();$('#p_'+type).show();
+}
+</script>
+<!--{/if}-->							
+<div class="field">
+<label>退款理由：</label><font>为了帮我们做的更好，请提交您的退款原因</font>（至少选一项）
+<table class="field-auto" style="padding-left:93px;">
+<tr>
+<td><label><input type='checkbox' name='reason[]' value='买多了/买错了'> 买多了/买错了</label></td>
+<td><label><input type='checkbox' name='reason[]' value='计划有变，没时间消费'> 计划有变，没时间消费</label></td>
+</tr>
+<tr>
+<td><label><input type='checkbox' name='reason[]' value='预约不上'> 预约不上</label></td>
+<td><label><input type='checkbox' name='reason[]' value='去过了，不太满意'> 去过了，不太满意</label></td>
+</tr>
+<tr>
+<td><label><input type='checkbox' name='reason[]' value='朋友/网上评价不好'> 朋友/网上评价</label>不好</td>
+<td><label><input type='checkbox' name='reason[]' value='后悔了，不想要了'> 后悔了，不想要了</label></td>
+</tr>
+<tr>
+<td><label><input type='checkbox' name='reason[]' value='商家说可以直接团购价到店消费'> 商家说可以直接{TUANGOU_STR}价到店消费</label></td>
+<td><label><input type='checkbox' name='reason[]' value='其它原因'> 其它原因 </label></td>
+</tr>
+<tr><td colspan="2">
+<textarea class="f_input input_h" style="width:286px;" name="reason[]" maxlength="80"></textarea></td></tr>
+</table>
+</div>
+<div class="actbtn">
+<!--{if $info['paymoney'] > 0}-->
+<input type="submit" id="submit" class="btn btn-primary" name='submit'  value="提交">
+<!--{else}-->
+<input type="button" class="btn btn-primary" value="免费产品不支持退款" disabled>
+<!--{/if}-->
+</div>
+</form>
+<div class="field"><p id="error_msg" style="color:red;margin-left:30px;"></p></div>
+</div>
+</div>
+</div>
+</div>
+</div> 
+</div>
+<!--{template footer}-->

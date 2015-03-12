@@ -1,0 +1,7 @@
+{template @admin/header}
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder"> <tr class="header"> <td><div style="float:left; margin-left:0px; padding-top:8px"> <a href="###" onclick="collapse_change('tip')">技巧提示</a> </div> <div style="float:right; margin-right:4px; padding-bottom:9px"> <a href="###" onclick="collapse_change('tip')"> <img id="menuimg_tip" src="./templates/default/images/admincp/menu_reduce.gif" border="0"/></a> </div></td> </tr> <tbody id="menu_tip" style="display:"> <tr> <td><ul> <li>数据表优化可以去除数据文件中的碎片，使记录排列紧密，提高读写速度。
+</ul></td> </tr> </tbody> </table> <form name="optimize" method="post" action="admin.php?mod=db&code=dooptimize"> <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder"> <tr class="header"> <td><input class="checkbox" type="checkbox" name="chkall" class="header" onclick="checkall(this.form)" checked>
+优化?</td> <td>数据表</td> <td>类型</td> <td>记录数</td> <td>数据</td> <td>索引</td> <td>碎片</td> </tr>
+$table_string
+</table> </div> </table> </form>
+{template @admin/footer}

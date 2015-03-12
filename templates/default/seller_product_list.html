@@ -1,0 +1,66 @@
+<!--{template header}-->
+<script type="text/javascript" src="static/js/jquery.notify.js"></script>
+<script type="text/javascript" src="static/addon/artDialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript" src="static/addon/artDialog/artDialog.iframeTools.js"></script>
+<div class="site-ms__right user_nav">
+{template seller_menu}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont">
+{~ui('isearcher')->load('seller.product_list')}
+<table class="tab_list">
+<tr>
+<th width="30%">产品名称</th>
+<th width="15%">上架时间</th>
+<th width="15%">下架时间</th>
+<th width="18%">购买(人)/售出(份)/库存</th>
+<th width="15%">运行状态</th>
+<th width="7%">管理</th>
+</tr>
+{loop $products $i $product}
+<tr>
+<td title="{$product['name']}">{$product['flag']}</td>
+<td>{echo date('Y-m-d H:i:s', $product['begintime'])}</td>
+<td>{echo date('Y-m-d H:i:s', $product['overtime'])}</td>
+<td>{$product['succ_real']} / {$product['views']['sells_real']} / {echo $product['maxnum'] > 0 ? ($product['surplus'] > 0 ? $product['surplus'] : '售罄') : '无限'}</td>
+<td><b>{echo logic('product')->STA_Name($product['status'])}</b></td>
+<td>
+<a href="?mod=seller&code=order&op=list&search=pid:{$product['id']}&ssrc=product_name&sstr={$product['flag']}">订单</a>
+</td>
+</tr>
+<tr class="extra">
+<td colspan="3">
+{if $product['type'] == 'ticket'}
+{TUANGOU_STR}券 &gt;&gt; 已消费：{$product['views']['tikCount']['TICK_STA_Used']}，未消费：{$product['views']['tikCount']['TICK_STA_Unused']}，已过期：{$product['views']['tikCount']['TICK_STA_Overdue']}，已失效：{$product['views']['tikCount']['TICK_STA_Invalid']} &gt;&gt; <a href="?mod=seller&code=ticket&op=list&search=pid:{$product['id']}&ssrc=product_name&sstr={$product['flag']}">查看</a>
+{elseif $product['type'] == 'stuff'}
+发货区 &gt;&gt; 已经发货：{$product['views']['delivery']['sended']}，等待发货：{$product['views']['delivery']['waiting']}，已确认收货：{$product['views']['delivery']['finished']} &gt;&gt; <a href="?mod=seller&code=delivery&op=list&search=pid:{$product['id']}&ssrc=product_name&sstr={$product['flag']}">查看</a>
+{elseif $product['type'] == 'prize'}
+抽奖人数：{$product['views']['sells_real']}
+{/if}
+</td>
+<td colspan="3">
+{if in_array($product['type'], array('ticket', 'stuff'))}
+销售状况 &gt;&gt; 总交易额：&yen;{$product['views']['money']['all']}元，有效交易额：&yen;{$product['views']['money']['real']}元
+{/if}
+</td>
+</tr>
+{/loop}
+<tr>
+<td colspan="6" style="border:none;">
+{~page_moyo()}
+</td>
+</tr>
+<tr>
+<td colspan="6" style="border:none;">
+<font color="#999999"> *&nbsp;说明：“有效交易额”，指的是所有已消费的{TUANGOU_STR}券的价值（虚拟）或者已经发货的订单的价值（实物，不含运费）</font>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

@@ -1,0 +1,6 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="4">
+入侵检测 &gt;&gt; 模块
+</td> </tr> <tr> <td width="10%" class="td_title">#</td> <td>SQL注入攻击防御</td> <td width="10%"><font class="ini" src="wips.sql.enabled">{echo ini('wips.sql.enabled') ? 'true' : 'false'}</font></td> <td><a href="?mod=wips&code=sql">[ 设置 ]</a></td> </tr> </table>
+{template @admin/footer}

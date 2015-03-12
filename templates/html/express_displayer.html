@@ -1,0 +1,26 @@
+<p class="P_dist">快递方式</p>
+<!--{if $EID}-->
+{loop $EID $one}
+<!--{eval $express = logic('express')->SrcOne($one)}-->
+<p class="P_disl">名称：{$express['name']}</p>
+{/loop}
+<p class="P_disl">费用：{$data['expressprice']} 元</p>
+<!--{else}-->
+<p style="padding:5px;background:#fff7d7;font-size:14px;font-weight:600;">请选择一个配送方式</p>
+<script>
+function add_express(i,p){
+var p1=parseFloat($('#totalmoney_1').val())+p;var p2=parseFloat($('#totalmoney_2').val())+p;
+$('#express_id').val($('#express_'+i).val());$('#totalmoney1').text(p1);$('#totalmoney2').text(p2);
+}
+</script>
+<!--{loop $express_list $val}-->
+<p class="P_disl">
+<label onclick="add_express({$val[id]},{$val[price]});">
+<input type="radio" id="express_{$val[id]}" name="express" value="{$val[id]}">
+{$val[name]} - 首重：{$val[firstunit]} {$val[unit1]}/{$val[firstprice]}元，续重：{$val[continueunit]} {$val[unit2]}/{$val[continueprice]}元</label>
+</p>
+<!--{if $val[detail]}-->
+<p style="padding:3px 20px;background:#fef;">{$val[detail]}</p>
+<!--{/if}-->
+<!--{/loop}-->
+<!--{/if}-->

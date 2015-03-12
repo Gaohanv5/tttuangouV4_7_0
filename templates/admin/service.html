@@ -1,0 +1,4 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="3"><b>通知服务器列表</b></td> </tr> <tr class="tr_nav"> <td width="12%" bgcolor="#F4F8FC">标记</td> <td width="50%" bgcolor="#F4F8FC">名称</td> <td width="22%" align="center" bgcolor="#F4F8FC">管理</td> </tr> <!--{loop $list $flag $name}--> <tr> <td>{$flag}</td> <td>{$name}</td> <td align="center">
+[ <a href="?mod=service&code={$flag}">查看/设置集群列表</a> ]
+</td> </tr> <!--{/loop}--> </table>
+{template @admin/footer}

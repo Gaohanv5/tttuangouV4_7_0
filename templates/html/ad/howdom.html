@@ -1,0 +1,24 @@
+{~ui('loader')->css('@jquery.smallslider')}
+{~ui('loader')->js('@jquery.smallslider')}
+<div id="adImageSlider" class="smallslider">
+<ul>
+{loop $cfg['list'] $id $one}
+<li><a href="{$one['link']}" target="{$one['target']}"><img {echo 'sr'.'c="'.ini('settings.site_url').'/'.$one['image']}" alt="{$one['text']}" width="980" height="60" /></a></li>
+{/loop}
+</ul>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#adImageSlider').smallslider({
+time: {echo intval($cfg["dsp"]["time"])*1500},
+onImageStop: true,
+switchEffect: 'fadeOut',
+switchPath: '{$cfg["dsp"]["switchPath"]}',
+switchEase: 'easeOutSine',
+showText: {$cfg["dsp"]["showText"]},
+showButtons: {$cfg["dsp"]["showButtons"]},
+textSwitch: 2,
+textAlign: 'left'
+});
+});
+</script>

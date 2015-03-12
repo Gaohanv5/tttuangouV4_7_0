@@ -1,0 +1,4 @@
+商品名称,订单编号,下单会员,下单时间,支付方式,支付时间,支付交易号,支付金额,买家留言,订单状态,处理进程,订单备注{echo "\n"}
+{loop $list $i $order}
+{$order['product']['flag']},*{echo $order['orderid']},{echo user($order['userid'])->get('name')},{echo date('Y-m-d H:i:s', $order['buytime'])},{echo logic('pay')->misc()->ID2Name($order['paytype'])},{echo $order['paytime'] ? date('Y-m-d H:i:s', $order['paytime']) : ''},*{echo str_replace('还未支付', '', logic('pay')->misc()->TradeNO($order['orderid']))},￥{$order['paymoney']},{echo str_replace(',', ' ', $order['extmsg'])},{echo logic('order')->STA_Name($order['status'])},{echo logic('order')->PROC_Name($order['process'])},{$order['remark']}{echo "\n"}
+{/loop}

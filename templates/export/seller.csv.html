@@ -1,0 +1,4 @@
+商家名称,用户UID,联系电话,产品数,成功订单,累计销售额,总结算金额,可结算金额,已结算金额{echo "\n"}
+{loop $list $i $seller}
+{$seller['sellername']},{$seller['userid']},{$seller['sellerphone']},{$seller['productnum']},{$seller['successnum']},￥{$seller['money']},￥{$seller['total_money']},￥{$seller['account_money']},￥{echo ($seller['total_money']-$seller['account_money'])}{echo "\n"}
+{/loop}

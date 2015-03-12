@@ -1,0 +1,10 @@
+.dss_block {
+	font-weight: normal;
+	margin-left: 10px;
+}
+.header .dss_view {
+	padding: 4px 6px;
+	background: #336699;
+	color:#fff;
+}
+

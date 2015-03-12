@@ -1,0 +1,42 @@
+<div class="t_area_out ">
+<h1>商家账户</h1>
+<div class="t_area_in">
+累计销售额： <font class="R12" >&yen;{$money}</font><br>
+总结算金额： <font class="R12" >&yen;{$total_money}</font><br>
+可结算金额： <font class="R12" >&yen;{$account_money}</font><br>
+<!--{if $forbid_money > 0}-->
+被冻结资金： <font class="B14" >&yen;{$forbid_money}</font><br>
+<!--{/if}-->
+</div>
+</div>
+<div class="t_area_out ">
+{eval $mecss[$_GET['mod'].$_GET['code']] = ' class="snu_cur"'}
+<h1>我的产品</h1>
+<div class="t_area_in side_nav_ul">
+<li{$mecss['sellerproduct']}><a href="?mod=seller&code=product&op=list">产品列表</a></li>
+<li{$mecss['sellerorder']}><a href="?mod=seller&code=order&op=list">订单列表</a></li>
+<li{$mecss['sellerticket']}><a href="?mod=seller&code=ticket&op=list">{TUANGOU_STR}券列表</a></li>
+<li{$mecss['sellerdelivery']}><a href="?mod=seller&code=delivery&op=list">发货清单</a></li>
+<li{$mecss['fund']}><a href="?mod=fund">我要结算</a></li>
+<li{$mecss['fundorder']}><a href="?mod=fund&code=order">结算记录</a></li>
+<li{$mecss['fundmoney']}><a href="?mod=fund&code=money">结算金额明细</a></li>
+<li{$mecss['listckticket']}><a href="?mod=list&code=ckticket">{TUANGOU_STR}券验证</a></li>
+<li{$mecss['sellercomment']}><a href="?mod=seller&code=comment&op=list">我的评价</a></li>
+</div>
+</div>
+<style>
+.site-ms__left{width:980px;}.t_area_out{margin-bottom: 0;border:none;}
+</style>
+<div class="t_area_out ">
+<h1>常见问题</h1>
+<div class="t_area_in">
+<h3 class="first">什么是累计销售额？</h3>
+<p>是指该商家所有卖出产品的总计销售额=各产品单价*卖出的产品数量的总和；注意因为用户购买了可能没去消费，所以此值>=用户实际确认消费过的金额>=总结算金额。</p>
+<h3 class="first">什么是总结算金额？</h3>
+<p>即商家实际的销售收入=用户实际确认消费过的总金额-“给网站的分成后”（如果有的话）的金额。</p>
+<h3 class="first">什么是可结算金额？</h3>
+<p>即商家剩余的待结算的金额=总结算金额-已结算金额。</p>
+<h3 class="first">什么是冻结资金？</h3>
+<p>已经申请了结算，但没有结算完毕的资金。</p>
+</div>
+</div>

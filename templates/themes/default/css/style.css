@@ -1,0 +1,18 @@
+/**/
+.exp .at_shuzi .R, .exp .quan .ql span, .exp .at_shuzi .red,  .exp .sp_member {
+	color: #08c;
+}
+.exp .site-mast__site-cla-main, .exp .pop-panel, .exp .pp_channels .sub-list {
+	border-color: #ff8400;
+}
+.exp .rating-area .total-score span, .exp .deal-buy-bottom .price, .exp .product_list .price, .exp .time_normal .time_underway, .exp .listInfo p i, .exp .listInfo p .pro_noprice,.exp .consult_list .reply {
+	color: #f76120;
+}
+
+.countdown_goods .deal-tile__title dl dd, .trailer-img-txt .mr {
+	color: #f76120
+}
+.name-cur {
+	border-color: #eb4800;
+}
+.site-fs__cell .selected{ background-color:#ff901a}

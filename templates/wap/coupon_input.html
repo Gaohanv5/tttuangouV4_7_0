@@ -1,0 +1,24 @@
+<!--{template @wap/header}-->
+{if $msg}
+{$msg}<hr/>
+{/if}
+{if $product}
+{$product['flag']} / 份数 {$product['coupon']['mutis']}
+{if isset($product['coupon']['attrs']) && $product['coupon']['attrs']}
+<br/>
+{loop $product['coupon']['attrs']['dsp'] $attr}
+{$attr['name']}<br/>
+{/loop}
+{/if}
+<hr/>
+{/if}
+<form action="?mod=wap&code=coupon&op=verify" method="post">
+号码：<input type="text" name="number" value="{$number}" /><br/>
+密码：<input type="text" name="password" value="{$password}" /><br/>
+<input type="submit" value="验证并消费" />
+</form>
+<hr/>
+<form action="?mod=wap&code=coupon&op=input" method="post">
+<input type="submit" value="清空输入框" />
+</form>
+<!--{template @wap/footer}-->

@@ -1,0 +1,6 @@
+{if ini('ui.igos.lazyimager')}
+{~ui('loader')->js('@jquery.lazyload')}
+<script type="text/javascript">
+$("img.lazy").lazyload({effect:'fadeIn',skip_invisible:false});
+</script>
+{/if}

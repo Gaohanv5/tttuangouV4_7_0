@@ -1,0 +1,31 @@
+<!--{template header}-->
+<style>#report th{ text-align:left;}</style>
+<div class="site-ms__right user_nav">        
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="cont">
+<table id="report">
+<tr><td colspan="3"><b>您当前的总积分是：{$total_credit} 分</b></td></tr>
+<tr>
+<th>时间</th>
+<th>详情</th>
+<th style="min-width: 30px;">积分</th>
+</tr>
+<!--{loop $credit_list $i $value}-->
+<tr>
+<td style="padding-left:10px;">{$value['gettime']}</td>
+<td style="padding-left:10px;">{$value['info']}</td>
+<td style="padding-left:10px;">{$value['score']}</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

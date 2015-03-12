@@ -1,0 +1,19 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author 二次开发 * @package css * @name card.selector.css * @date 2014-12-15 11:22:14 */ .card_price_list {
+	margin: 10px auto;
+}
+.card_price_list .title {
+	padding: 5px 0;
+	/* background: #fff7d7; */
+	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+	color:#333;
+}
+.card_price_list ul {
+	list-style: none;
+}
+.card_price_list ul li {
+	padding: 0 10px;
+	margin: 10px auto;	float:none;
+}

@@ -1,0 +1,3 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">
+图片水印效果预览
+</td> </tr> <tr> <td width="10%" class="td_title">原图：</td> <td> <img src="{$image_test}?{echo time()}" /> </td> </tr> <tr> <td width="10%" class="td_title">水印后：</td> <td> <img src="{$image_wmd}?{echo time()}" /> </td> </tr> <tr> <td></td> <td> <input type="button" value="保存" class="button" onclick="window.location='?mod=image&code=watermark&op=test_save'" /> <input type="button" value="返回" class="button" onclick="history.go(-1)" /> </td> </tr> </table> <!--{template @admin/footer}-->

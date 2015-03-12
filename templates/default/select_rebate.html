@@ -1,0 +1,16 @@
+<script>
+var pre_L = new Array;
+</script>
+{loop $rebate['profit'] $i $v}
+<label>
+<input type="radio" name="profit_id" value="{$i}" onclick="modify_pre_input({$i});"{if $i==$profit_id} checked="checked"{/if}/>
+<span>{$v['pre']} % </span>{$v['text']}
+</label>
+<br/>
+<script>pre_L.push("{$v['pre']}");</script>
+{/loop}
+<script>
+function modify_pre_input(id){
+document.getElementById("profit_pre").value = pre_L[id];
+}
+</script>

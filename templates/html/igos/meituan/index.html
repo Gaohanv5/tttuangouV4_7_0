@@ -1,0 +1,59 @@
+<!--{if true===INDEX_DEFAULT}-->
+<div class="promo_tab">
+<!--{~logic('sort')->product_navigate()}-->
+<!--{~logic('tag')->navigate(6)}-->
+</div>
+<!--{/if}-->
+<div class="product_wrap">  
+<div class="product_item">
+<style type="text/css">
+.deal-tile__title{ padding:10px 15px 0;}
+.deal-tile__detail{ padding:0 15px;height: 35px;}
+</style>
+{loop $product $item}
+{eval $icc++}
+<div class="t_area_out template2">
+<a class="product_item_a" href="?view={$item['id']}" target="_blank" title="{$item['name']}">
+<div class="t_area_in" >
+<div class="deal-tile__cover">
+<div class="deal-tile__cover_img mt">
+{eval ui('iimager')->single($item['id'], $item['imgs'][0])}
+</div>
+<div class="deal-tile__cover_tag">
+{if $item['linkid']}<i><span title="多个套餐">多种套餐</span></i>{/if}
+{eval logic('product_tag')->html($item['id'])}
+</div>
+</div>
+<div class="deal-tile__title">{$item['name']}</div>
+<div class="deal-tile__detail">
+<div class="price">&yen;{$item['nowprice']}</div>
+<div class="at_shuzi">
+<span>原价:</span><b class="prime_cost ">&yen;{$item['price']}</b>
+</div>
+{if $item['presell']}
+<div class="yufu"><span>{TUANGOU_STR}价:</span><b>&yen;{$item['presell']['price_full']}</b></div>
+{/if}
+</div>
+<div class="deal-tile__extra">                  
+{if false != ($summary=logic('comment')->front_get_summary($item['id']))}
+<div class="product-summary">                              
+<ul class="comment-info__rating">
+<li style="z-index:0; display: list-item; width:{echo $summary['average'] * 20}%;"></li>
+</ul>                         
+<em>{$summary['count']}</em>条评价
+</div> 
+{/if}
+<div id="tuanState" class="mb_0626">已售<b>{$item['sells_count']}</b></div>
+</div>	
+</div>
+</a>
+</div>
+{/loop}
+<div class="product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+<!--{~ui('widget')->load('index_home')}-->
+</div>
+</div>

@@ -1,0 +1,16 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">数据库修复详细内容</td> </tr> <tr> <td class="td_title" width="10%">提示：</td> <td> <b>请仔细查看本修复内容是否正确；我们强烈建议：请尽量让专业人士查看并确认修复内容</b> </td> </tr> <tr> <td class="td_title">修复内容：</td> <td>
+{if $cmpResult}
+{loop $cmpResult $i $one}
+<fieldset> <legend>{echo $one['class']=='field'?'修复数据字段':($one['class']=='index'?'修复数据索引':'添加数据表')}： [{$one['cmd']}] {$one['table']} =&gt; {$one['field']}</legend> <pre>{$one['sql']}</pre> </fieldset>
+{/loop}
+{else}
+无
+{/if}
+</td> </tr> <tr> <td class="td_title"></td> <td>
+{if $cmpResult}
+<input type="button" value="确认，开始进行数据修复" class="wbutton" onclick="if(confirm('确认进行数据修复吗？'))window.location='?mod=db&code=repair&op=done';" />
+{else}
+恭喜，您的数据库看起来没有任何差错，无需修复！
+{/if}
+</td> </tr> </table>
+{template @admin/footer}

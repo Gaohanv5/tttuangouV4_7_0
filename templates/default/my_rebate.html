@@ -1,0 +1,44 @@
+<!--{template header}-->
+<style>
+#report tr td.scenter{text-align:center;}
+</style>
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<ul class="cont">
+<div style="float: right;">
+</div>
+</ul>
+<style>td{text-align:center;}</style>
+<div class="cont">
+<table id="report">
+<tr>
+<th>交易订单号</th>
+<th>交易金额</th>
+<th>结算类型</th>
+<th>返利比率(%)</th>
+<th>获得收益</th>
+<th>结算时间</th>
+</tr>
+<!--{loop $rebate_list $i $value}-->
+<tr>
+<td>{$value['orderid']}</td>
+<td class="scenter">{$value['deal_money']}元</td>
+<td class="scenter">{$value['type']}</td>
+<td class="scenter">{$value['salary_pre']}</td>
+<td class="scenter">{$value['salary_money']}元</td>
+<td class="scenter">{$value['addtime']}</td>
+</tr>
+<!--{/loop}-->
+<tr><td colspan="4">详细情况请查看您的<a href="?mod=me&code=bill">收支明细</a></td><td colspan="2"><b>累计返利金额：{$total_m}元</b></td></tr>
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

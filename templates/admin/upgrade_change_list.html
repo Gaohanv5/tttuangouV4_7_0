@@ -1,0 +1,9 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="1">更新文件列表</td> </tr> <tr> <td class="td_content">
+{loop $files $path $rst}
+{$path}<br/>
+{/loop}
+</td> </tr> <tr> <td class="td_content"> <a href="{$backup_url}" class="button back2">确认升级</a> <br/>
+注：系统会自动进行文件备份，升级时覆盖的文件都会在 backup 目录下存档<br/>
+注2：升级配置文件时，系统会自动进行文件合并，之前的配置数据不会被覆盖
+</td> </tr> </table>
+{template @admin/footer}

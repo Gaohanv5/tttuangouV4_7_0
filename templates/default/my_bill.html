@@ -1,0 +1,69 @@
+<!--{template header}-->
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<script type="text/javascript">  
+$(document).ready(function(){
+$("#report tr:odd").addClass("odd");
+$("#report tr:not(.odd)").hide();
+$("#report tr:first-child").show();
+$("#report tr.odd").click(function(){
+$(this).next("tr").toggle();
+$(this).find(".arrow").toggleClass("up");
+});
+});
+//jquery 模拟点击打开新窗口
+$("a[rel=external]").attr('target', '_blank');
+</script>
+<div class="cont">
+<span class="B">您当前的帐户余额是 <em><!--{~user()->get('money')}--></em> 元</span>
+<a href="?mod=recharge">&lt;点此为账户充值&gt;</a>
+</div>
+<div class="cont">
+<table id="report">
+<tr>
+<th style="text-align:left">摘要</th>
+<th style="text-align:left; padding-left:0;">日期</th>
+<th style="text-align:left; padding-left:0;">金额（元）</th>
+<th style="border-right:none;">操作</th>
+</tr>
+{if empty($usermoney)}
+<tr><td colspan="7">您暂时还没有账户信息，您充值购买产品的信息都会在这里显示哦！</td></tr>
+{/if}
+{loop $usermoney $i $value}
+<tr>
+<td width="30%" style="padding-left:7px;">{$value['name']}</td>
+<td width="25%">{eval echo date('Y-m-d H:i:s',$value['time'])}</td>
+<td width="35%">
+{if $value['money']==0}
+<font color="#f76120" size="4" title="0元团！">{$value['money']}</font>
+{elseif $value['type']=='minus' && $value['money']<0}
+<font color="#009999" size="4" title="购物返利！">+{echo abs($value['money'])}</font> 
+{elseif $value['type']=='minus'}
+<font color="#f76120" size="4" title="支出">-{$value['money']}</font> 
+{else}
+<font color="#009900" size="4" title="收入">+{$value['money']}</font> 
+{/if}
+</td>
+<td width="10%" style="text-align: center; cursor:pointer;">查看详情</td>
+</tr>
+<tr>
+<td colspan="4" >
+<span>
+<h4>摘要详情</h4>
+<p style="padding:0 20px;">{$value['intro']}</p>
+</span> 
+</td>
+</tr>
+{/loop}
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

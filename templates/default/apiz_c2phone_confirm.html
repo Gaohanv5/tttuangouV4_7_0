@@ -1,0 +1,29 @@
+<!--{template header}-->
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">手机号码</p>
+<div class="sect">
+<table id="report">
+<tr>
+<td><h2>请输入要发送到的手机号码</h2></td>
+</tr>
+<tr>
+<td>
+<form action="?mod=apiz&code=c2phone&op=done" method="post">
+<input name="cid" type="hidden" value="{$cid}" />
+<input name="phone" type="text" value="{$phone_view}" />
+<input type="submit" class="btn btn-primary btn-small" value="确认发送"  style="float:none"/>
+</form>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+<!--{~ui('widget')->load()}-->
+</div>
+</div>
+<!--{template footer}-->

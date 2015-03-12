@@ -1,0 +1,7 @@
+.idTabs .navs {  padding:5px; margin: 10px; width:auto; height:auto; overflow:hidden;background:#DEEAF7; height:25px; }
+.navs li { list-style:none; float:left; width:100px; height:25px; overflow:hidden; }
+.navs li a{ background:url(../../templates/admin/images/idTabs_nav1.png) no-repeat; display:block; width:100px; height:25px; overflow:hidden; text-align:center; line-height:25px;}
+.idTabs .navs li a.selected {  color:#000;background:url(../../templates/admin/images/idTabs_nav2.png) no-repeat;}
+.items>div { display:none; clear: both; margin:0.1em 0 0 0.5em; }
+/* Moz border */
+.idTabs .navs ul, .idTabs .navs li a { border-radius:4px; -moz-border-radius:4px; }

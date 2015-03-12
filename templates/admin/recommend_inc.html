@@ -1,0 +1,4 @@
+<!--{if is_array($recommend_list_group) && sizeof($recommend_list_group)>0}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"><td colspan="3"> <a href="admin.php?mod=index&code=update_recommend&msg=1" style="float:right">更新</a>
+推荐阅读
+</td></tr> <!--{loop $recommend_list_group $recommend_list}--> <tr> <!--{loop $recommend_list $recommend}--> <td> <!--{if is_array($recommend)}-->
+&nbsp;<a href="{$recommend[url]}" target="_blank">{$recommend[name]}</a> <!--{/if}--> </td> <!--{/loop}--> </tr> <!--{/loop}--> </table> <br> <!--{/if}-->

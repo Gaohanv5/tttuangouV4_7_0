@@ -1,0 +1,33 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name express.selector.css * @date 2014-12-11 14:44:49 */ .express_div {
+	margin: 10px auto;
+}
+.express_div .title {
+	padding: 5px 0;
+	background: none;
+	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+	color:#333;
+}
+.express_div .t_tips {
+	margin: 5px auto;
+	padding: 6px;
+	background: #ffc;
+	text-align: center;
+}
+.express_div ul {
+	list-style: none;
+}
+.express_div ul li {
+	padding: 0 10px;
+	margin: 10px auto;
+}
+.express_div ul li .detail {
+	margin: 5px 0;
+	padding: 0 20px;
+	/* background: #ffc; */
+	color:#f76120;
+	width: 90px;
+	display: inline;
+}

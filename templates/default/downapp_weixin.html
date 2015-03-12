@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="{ini:settings.charset}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>微信--{ini:settings.site_name}客户端下载</title>
+<meta name="description" content="">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<style>
+html, button, input, select, textarea { color: #4a4f54;  }
+body { font: 16px/26px Helvetica, Helvetica Neue, Arial;overflow: hidden;  background:url(images/downapp_mobile.jpg) no-repeat; background-size: 100%;margin: 0;}
+a{ text-decoration: none; }
+.wrapper { width: 100%; overflow:hidden; margin: 0; }
+.wrapper ul{ height:697px; display:block;}
+.btn{ color: #936800; text-align: center;line-height: 200%;font-size: 1.3em; display: block; margin: 20% auto 0;border-radius: 2px; border:none; width:80%;background: #fede4b; border-color: #2ec2b3; border-bottom: solid 1px #018177;cursor:pointer;}
+.tag{ position: absolute;width: 150px;background: #fff;display: block;right: 10px;top: 18px;border: 1px solid #ddd;padding: 15px;box-shadow: 0 0 1px 0px rgba(0,0,0,0.15);border-radius: 5px;}
+.tag b{ color:#F30;}
+.mBs{position: absolute; right: 5px; top: -32px; width: 0; height: 0; font-size: 0; border-width: 16px; border-style: dashed dashed solid dashed; border-color: transparent transparent #ddd transparent;}
+.mBt{position: absolute; right: 5px; top: -31px; width: 0; height: 0; font-size: 0; border-width: 16px; border-style: dashed dashed solid dashed; border-color: transparent transparent #FFF transparent;}
+.a_btn{ margin:20px auto;display: block; font-size:0.8em; width:80%; text-align:center; color:#fff;}
+</style>
+</head>
+<body>
+<div class="tag" style="display:none;"><span class="mBs"></span><span class="mBt"></span>微信不允许下载文件，请点击右上角图标，选择“<b>在浏览器中打开</b>”</div>
+<!--{if $android_url || $iphone_url}-->
+<div class="wrapper">
+<span class="btn">免费下载{ini:settings.site_name}客户端</span>
+<a class="a_btn" title="继续访问电脑版" href="{$referer_url}" target="_blank">继续访问电脑版</a>
+</div>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+<script>$(document).ready(function(){$(".btn").click(function(){$(".tag").show();})})</script>
+<!--{else}-->
+<script>window.location.href='{$referer_url}';</script>
+<!--{/if}-->
+</body>
+</html>

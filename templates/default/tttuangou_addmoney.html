@@ -1,0 +1,59 @@
+<!--{template tttuangou_header}-->
+<div class="main">
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">账户充值</p>
+<div class="sect">
+<form action="{$action}" method="post" enctype="multipart/form-data">
+<table width="116%" id="report">
+<tr>
+<td width="30%">请输入您要充值的金额：</td>
+<td width="70%"><input name="money" type="text" />元</td>
+</tr>
+</table>
+<div class="cont">
+<span>您的账户余额是：<span style="color:#FF0000;">{$money['money']}</span>元</span>		</div>
+<div class="cont">
+<div class="order_check_form ">
+<p class="choose_pay_type">请选择支付方式：</p>
+<table width="100%" border="0" class="orderT">
+{loop $pay $i $value}
+{if $value['pay_id'] == 1}
+<tr>
+<td width="4%"><input name="paytype" type="radio" value="1" {if $order['paytype']==1 ||  $order['paytype']==''}checked="checked"{/if}></td>
+<td width="20%"><img src="images/alipay.gif" /></td>
+<td width="66%">推荐支付宝或者网银用户使用</td>
+</tr>
+{/if}
+{if $value['pay_id'] == 2}
+<tr>
+<td><input name="paytype" type="radio" value="2" {if $order['paytype']==2}checked="checked"{/if} ></td>
+<td><img src="images/tenpay.gif" /></td>
+<td>推荐财付通或腾讯QQ用户使用</td>
+</tr>
+{/if}
+{if $value['pay_id'] == 4}
+<tr>
+<td><input name="paytype" type="radio" value="4" {if $order['paytype']==2}checked="checked"{/if} ></td>
+<td><img src="images/kuaiqian.bmp" /></td>
+<td>推荐快钱或者网银用户使用</td>
+</tr>
+{/if}
+{/loop}
+</table>
+<div class="clear"></div>
+<p class="check_act">
+<input type="submit" class="formbutton" value="确认充值">
+</p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div></div>
+<div class="site-ms__right">
+<!--{template "tttuangou_myfinder"}-->
+</div>
+</div>
+<!--{template tttuangou_footer}-->

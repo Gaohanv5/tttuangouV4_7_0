@@ -1,0 +1,46 @@
+<a class="cart-a" href="?mod=buy&code=checkout&id=-1">
+<em>|</em>
+<i class="ico-cart"></i>
+<span>购物车<i class="R12">
+<? echo count($cartItems); ?>
+</i>件</span>
+<i class="tri tri--dropdown"></i>
+</a>
+<ul class="cart-list">
+<? if(is_array($cartItems)) { foreach($cartItems as $row) { ?>
+<li style="display:none;">
+<div class="image"><a target="_blank" href="index.php?view=<?=$row['id']?>"><img src="
+<? echo imager($row['img']) ?>
+"> </a></div>
+<div class="right">
+<h4><a target="_blank" href="index.php?view=<?=$row['id']?>"><?=$row['name']?></a></h4>
+<em class="price">&yen;<?=$row['nowprice']?></em> <em class="cart-list--del"><a href="
+<? echo $this->Config['site_url'];  ?>
+/index.php?mod=mycart&code=delCart&id=<?=$row['id']?>">删除</a></em>
+</div> 
+</li>
+<? } } ?>
+<? if(count($cartItems)) { ?>
+<li class="cart-list-link"><a class="b_btn s_btn" href='?mod=buy&code=checkout&id=-1' onclick="">查看我的购物车</a></li>
+<? } else { ?><li class="cart-list-link">购物车是空的</li>
+<? } ?>
+</ul>
+<script>
+$(".user-cart").mouseover(function() { 
+var obj = $('.cart-list>li'); 
+obj.each(function(i){ 
+$(this).attr('class',i); 
+if ($(this).attr("class")<5){ $(this).show();}//购物车显示5个
+})
+$(".cart-list").show();
+$(".cart-a").addClass("cart-active");
+$(".cart-list").css("right","-2px");
+$(".user-cart").children().eq(1).css({"display":"block"});
+})
+.mouseout(function() {
+$(".cart-list").hide(); 
+$(".cart-a").removeClass("cart-active");
+$(".cart-list").css("right","-1px");
+$('.cart-list>li').removeAttr("class");
+});
+</script>

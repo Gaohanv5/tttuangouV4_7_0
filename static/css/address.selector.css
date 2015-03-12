@@ -1,0 +1,45 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name address.selector.css * @date 2014-10-30 10:42:14 */ .address_list {
+	margin: 10px auto;
+}
+.address_list .title {
+	padding: 5px 0;
+	/* background: #fff7d7; */
+	font-size: 12px;
+	font-weight: 600;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 15px;
+	color:#333;
+}
+.address_list ul {
+	list-style: none;
+}
+.address_list ul li {
+	padding: 0 10px;
+	margin: 10px auto;
+}
+.address_list .li_address_new {
+/*	background: #EDEDED;*/
+}
+.address_new {
+	background: #f6f6f6;
+	padding: 20px 0;
+	display: none;
+}
+.address_new .left {
+	text-align: right;
+	padding: 3px;
+}
+/*.address_new input {
+	height: 20px;
+}*/
+.address_new select {
+	width: 100px;
+	padding:2px;
+}
+.address_new #addr_address {
+	width: 250px;
+}
+.address_new .button {
+	padding: 3px 6px;
+	height: auto;
+}

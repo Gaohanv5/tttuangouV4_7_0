@@ -1,0 +1,16 @@
+<!--{template @admin/header}--> <form action="admin.php?mod=push&code=manage&op=resend_done&table={$table}&id={$id}" method="post"> <table width="100%"> <tr> <td>
+{if $push['type'] == 'mail'}
+<textarea name="content" style="display:none;"></textarea> <iframe id="piframe" src="admin.php?mod=push&code=manage&op=preview&table={$table}&id={$id}" style="width:450px;height:150px;overflow:scroll;"></iframe>
+{else}
+<textarea name="content" style="width:450px;height:150px;">{$data['content']}【重发：{echo date('Y-m-d H:i:s')}】</textarea>
+{/if}
+</td> </tr> <tr> <td>
+{echo ($push['type'] == 'sms') ? '手机号码' : '邮件地址'}：
+{if strstr($push['target'], ';')}
+<textarea name="target" style="width:100px;height:120px;">{echo str_replace(';', "\n", $push['target'])}</textarea>
+{else}
+<input type="text" name="target" value="{$push['target']}" />
+{/if}
+<input type="submit" value="点此重发" /> <br/>
+（重发任务会新生成一个副本放到队列中执行，<b>也许您需要等待一小会儿才可以收到</b>）
+</td> </tr> </table> </form> <!--{template @admin/footer}-->

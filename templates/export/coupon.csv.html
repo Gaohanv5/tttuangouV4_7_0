@@ -1,0 +1,4 @@
+商品名称,会员名称,联系电话,{TUANGOU_STR}券号码,{TUANGOU_STR}券密码,份数,使用时间,过期时间{echo "\n"}
+{loop $list $i $coupon}
+{$coupon['flag']},{echo user($coupon['uid'])->get('name')},*{echo user($coupon['uid'])->get('phone')},*{$coupon['number']},*{$coupon['password']},{$coupon['mutis']},{echo $coupon['usetime']},{echo date('Y-m-d H:i:s', $coupon['perioddate'])}{echo "\n"}
+{/loop}

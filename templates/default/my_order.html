@@ -1,0 +1,179 @@
+<!--{template header}-->
+<style>
+#report tr td.scenter{text-align:center;}
+#report div.arrow{margin-left:30px;}
+#report h4.c_cae{background: #cae;color: #fff;margin-top: -10px;padding-top: 8px;}
+#report h4.c_ace{background: #ace;color: #fff;margin-top: -10px;padding-top: 8px;margin-bottom: 10px;}
+#report h4.c_eca{background: #eca;color: #fff;margin-top: 10px;padding-top: 8px;}
+</style>
+<div class="site-ms__right user_nav">
+{~ui('widget')->load()}
+</div>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<script type="text/javascript">
+$(document).ready(function(){
+$("#report tr:odd").addClass("odd");
+$("#report tr:not(.odd)").hide();
+$("#report tr:first-child").show();
+$("#report tr.odd .orderdo").click(function(){
+$(this).parent().next("tr").toggle();
+$(this).find(".arrow").toggleClass("up");
+});
+$(".order_info span").removeAttr("style");//清除订单中自定义属性
+});
+//jquery 模拟点击打开新窗口
+$("a[rel=external]").attr('target', '_blank');
+function expressconfirm(url)
+{
+if (confirm('卖家已经发货完毕，请您尽早确认收货！'))
+{
+window.location = url;
+}
+}
+</script>
+<ul class="cont">
+<div style="float: right;">
+<li>分类:</li>
+<li class="liL_{$_s1}"><a href="?mod=me&code=order">全部</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s2}"><a href="?mod=me&code=order&pay=1">已付款</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s3}"><a href="?mod=me&code=order&pay=0">未付款</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s4}"><a href="?mod=me&code=order&refund=1">有退款</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s5}"><a href="?mod=me&code=order&comment=2">已评价</a></li>
+<li class="liLine">|</li>
+<li class="liL_{$_s6}"><a href="?mod=me&code=order&comment=1">待评价</a></li>
+</div>
+</ul>
+<div class="cont">
+<table id="report">
+<tr>
+<th width="45%" style="text-align:left">{TUANGOU_STR}项目</th>
+<th width="10%">数量/类型</th>
+<th width="20%">总价</th>
+<th width="10%">订单状态</th>
+<th width="15%" style="border-right:none;">操作</th>
+</tr>
+<!--{loop $order_all $i $value}-->
+<tr>
+<td>
+<a href="?view=$value['product']['id']" target="_blank">
+<img id="img2" class="order_img2" src="{echo imager($value['product']['imgs'][0], IMG_Small)}" title="{$value['product']['flag']}" /></a>
+<div class="order_name"><b>{$value['product']['flag']}</b>{if 'stuff'!=$value['product']['type']}<br>有效期至：{echo date('Y-m-d', $value['product']['perioddate']);}{/if}<br>订单号：{$value['orderid']}</div></td>
+<td class="scenter">
+数量： {$value['productnum']}<br />
+{if $value['attrs']}
+{loop $value['attrs']['dsp'] $dsp}
+<em style="color:#999">{$dsp['name']}</em> <br/>
+{/loop}
+{/if}
+</td>
+<td class="scenter">&yen; {echo $value['totalprice']}元{if $value['product']['type']=='stuff'}<br/><em style="color:#999">(含运费:{$value['expressprice']}元)</em>{/if}</td>
+<td class="scenter">
+{if $value['refund_process'] == 1}已申请退款
+{elseif $value['refund_process'] == 2}退款成功
+{elseif $value['refund_process'] == 3}申请退款被拒绝
+{elseif $value['status'] != ORD_STA_Normal}
+{if $value['status'] == ORD_STA_Cancel}
+已取消
+{elseif $value['status'] == ORD_STA_Overdue}
+已过期
+{elseif $value['status'] == ORD_STA_Faild}
+失败
+{elseif $value['status'] == ORD_STA_Refund}
+已经退款
+{/if}
+{else}
+{if $value['product']['type'] == 'prize'}
+<a href="?mod=prize&code=view&pid={$value['productid']}">查看抽奖号</a>
+{elseif $value['process'] == 'WAIT_BUYER_PAY'}
+<a href="?mod=buy&code=pay&id={$value['orderid']}">等待付款</a>
+{elseif $value['process'] == 'WAIT_SELLER_SEND_GOODS'}
+等待卖家发货
+{elseif $value['process'] == 'WAIT_BUYER_CONFIRM_GOODS'}
+<a href="{eval echo logic('pay')->ConfirmLinker($value)}">确认收货</a>
+{elseif $value['process'] == 'TRADE_FINISHED'}
+交易完成
+{elseif $value['process'] == '__CREATE__'}
+<a href="?mod=buy&code=order&id={$value['orderid']}">等待确认</a>
+{elseif $value['process'] == '__PAY_YET__'}
+已经付款
+{elseif $value['process'] == '_TimeLimit_'}
+抢购失败
+{/if}
+{/if}
+<td class="scenter orderdo"><a>订单详情</a><div class="arrow" style=""></div>{if $value['comment'] == 1}<a href="index.php?mod=comment&oid={$value['orderid']}">我要评价</a><br>{elseif $value['comment'] == 2}<a href="index.php?mod=comment&coid={$value['orderid']}"><font color="gray">查看评价</font></a><br>{elseif $value['comment'] == 3}评价被删<br>{/if}{if $value['refund_process'] == 0 && $value['pay'] == 1 && $value['status'] != ORD_STA_Refund && !$value['cannot_refund']}<a href="index.php?mod=refund&oid={$value['orderid']}">申请退款</a>{/if}</td>
+</tr>
+<tr>
+<td colspan="6" style="padding:0;">
+<div class="order_info" >
+<!--{if $value['refund']}-->
+<h4 class="c_cae">退款详情</h4>
+<p style="border-bottom:1px solid #eee;">
+<b>用户申请</b><br/>
+申请退款金额：{$value['refund_demand_money']} 元<br/>
+申请退款理由：{$value['refund_demand_reason']}<br/>
+<b>处理结果</b><br/>
+{if $value['refund_op_money'] > 0 || $value['refund_op_reason'] != ''}
+实际退款金额：{$value['refund_op_money']} 元<br/>
+受理意见说明：{$value['refund_op_reason']}
+{else}
+系统已经接收到您提交的退款申请，请耐心等待我们的受理结果......
+{/if}
+</p>
+<!--{/if}-->
+<h4 class="c_ace">订单详情</h4>
+<div class="order_i_con">
+<b>{$value['product']['name']}</b>
+<br/>{$value['product']['intro']}<br/><br/>
+订单编号：{$value['orderid']}
+<span style="padding-left:30px;">下单时间：{echo date('Y-m-d H:i:s', $value['buytime']);}</span>
+{if $value['paytime']>0}
+<span style="padding-left:30px;">付款时间：{echo date('Y-m-d H:i:s', $value['paytime']);}</span>
+{/if}
+{if $value['addressid']>0 && false != ($vaddress = logic('address')->GetOne($value['addressid']))}
+<br>收货人：{$vaddress['name']} | 联系电话：{$vaddress['phone']}
+<br>收货地址：{$vaddress['region']} {$vaddress['address']} | 邮编：{$vaddress['zip']}
+{/if}
+{if $value['expresstime']>0}
+<br>物流公司：<a href="{$value['express']['site']}" target="_blank">{$value['express']['name']}</a>
+<br>运输单号：{$value['invoice']}
+{/if}
+{if $value['extmsg']}
+<br/><b>购买附言：</b>{$value['extmsg']}
+{/if}
+{if ($value['extmsg_reply'] != '')}
+<br/><b>卖家回复：</b>{$value['extmsg_reply']}
+{/if}
+{if $value['attrs']}
+<br/><b>属性参数：</b><br/>
+{loop $value['attrs']['dsp'] $dsp}
+{$dsp['name']} - &yen; {$dsp['price']}元<br/>
+{/loop}
+物流费用 - &yen; {$value['expressprice']}元
+{/if}
+</div>
+<!--{if $value['tickets']}-->
+<h4 class="c_eca">{TUANGOU_STR}券</h4>
+<ul><li>{TUANGOU_STR}券号码</li><li>{TUANGOU_STR}券密码</li><li>过期时间</li><li>使用状态</li></ul>
+<!--{loop $value['tickets'] $vt}-->
+<ul><li>{$vt['number']}</li><li>{$vt['password']}</li><li>{echo date('Y-m-d', $vt['perioddate']);}</li>
+<li>{if $vt['status']==0}未使用{elseif $vt['status']==1}已使用{elseif $vt['status']==3}已作废{else}已过期{/if}</li></ul>
+<!--{/loop}-->
+<!--{/if}-->
+</div> 
+</td>
+</tr>
+<!--{/loop}-->
+</table>
+<div class="pagem product_list_pager">{~page_moyo()}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--{template footer}-->

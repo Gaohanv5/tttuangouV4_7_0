@@ -1,0 +1,52 @@
+<!--{template @admin/header}--> <script language="javascript">
+function getxy(i)
+{
+$('#update').html('商家地点已设置，请提交保存');
+$('#map').val(i);
+}
+function addSellerHelper()
+{
+art.dialog({
+title: '帮助手册',
+icon: 'question',
+lock: true,
+content: document.getElementById('helper_of_addSeller'),
+yesText: '知道了',
+yesFn: true
+});
+}
+function showMapAPI()
+{
+var mapObj = document.getElementById('area');
+var city = mapObj.options[mapObj.selectedIndex].text;
+var url = "?mod=tttuangou&code=addmap&city="+city;
+art.dialog({
+title: '您只需要点击地图上的标签到指定的地方，关闭该窗口即可，系统会自己收集您的坐标！',
+content: '<iframe src="'+url+'" width="600" height="500"></iframe>',
+padding: '0',
+fixed: true,
+resize: false,
+drag: false
+});
+}
+</script> <form action="{$action}" method="post" enctype="multipart/form-data"> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">添加商家（自动审核通过）</td> </tr> <tr> <td width="18%" bgcolor="#F4F8FC">商家登录用户名：</td> <td align="right"> <input name="username" type="text" />
+&nbsp;&nbsp;&nbsp;<a href="#helper" onclick="javascript:addSellerHelper();return false;">帮助</a> <div id="helper_of_addSeller" style="display: none;">
+1. 商家用户指的是商户登录本系统时使用的帐号<br/>
+2. 商家用户是商家产品{TUANGOU_STR}券的管理者，<font color=red>可前台登陆、进入商家管理、查看{TUANGOU_STR}券使用情况、核对和消费</font><br/>
+3. 如果您输入一个不存在的用户，系统会自动注册<br/>
+4. 如果您输入的是一个已经存在的用户名，则此用户必须身份为普通用户<br/>
+5. 对于已经存在的用户，登录密码依然为原密码，并不会修改成您输入的密码
+</div> </td> </tr> <tr> <td width="18%" bgcolor="#F4F8FC">商家登录密码：</td> <td align="right"> <input name="password" type="text" /> </td> </tr> <tr><td width="18%" bgcolor="#F4F8FC">所在城市：</td><td><select name="area" id="area">
+{loop $city $i $value}	  
+<option value="{$value['cityid']}">{$value['cityname']}</option>
+{/loop}
+</select></td></tr> <tr> <td width="18%" bgcolor="#F4F8FC">商家名称：</td> <td align="right"> <input name="sellername" type="text" id="sellername" size="50"></td> </tr> <tr> <td width="18%" bgcolor="#F4F8FC">商家地址：</td> <td align="right"> <input name="selleraddress" type="text" id="selleraddress" size="50"></td> </tr> <tr> <td bgcolor="#F4F8FC">商家电话：</td> <td align="right"><input name="sellerphone" type="text" id="sellerphone" size="50" /></td> </tr> <tr> <td bgcolor="#F4F8FC">给站长分成比例：</td> <td align="right"> <!--{template select_rebate}--> <input type="text" name="profit_pre" value="{$profit_pre}" id="profit_pre" /> %&nbsp;（当在具体的商品中未设置“商家结算价”时，将按此处设置的比例给站长分成。填写0或留空，则按照<a href="?mod=rebate_setting&code=show">默认的结算比例进行结算</a>）
+</td> </tr> <tr> <td bgcolor="#F4F8FC">商家网站：</td> <td align="right"><input name="sellerurl" type="text" id="sellerurl" size="50" /> <br />请以http://开头，例如 <a href="http://www.biniu.com" target="_blank">http://www.biniu.com</a> </td> </tr> <tr> <td bgcolor="#F4F8FC">地图位置：</td> <td align="right"><a href="#" onclick="showMapAPI();return false;"><span id='update'>点此弹出窗口，将标记放到具体的位置，关闭窗口，最后点下面提交按钮保存</span></a><br><font color="red">因地图不支持县（区）级城市按地名初始化，因此如果出现地图空白，则必须在上面的“所在城市”栏选择一个市级以上的城市（没有则先<a href="admin.php?mod=tttuangou&code=city">添加</a>一个）来初始化</font></td> </tr> <tr> <td bgcolor="#F4F8FC">商家图片：：<br/><font style="font-weight:bold;color:red;">图片尺寸：450*268</font></td> <td align="right"><input type="hidden" name="imgs" id="imgs" value="" /> <ul class="img_scroll">
+{loop $p['imgs'] $id}
+<li id="img_li_for_{$id}"> <a href="{echo imager($id, IMG_Original)}" class="thickbox"><img class="pro_image_tiny" src="{echo imager($id, IMG_Tiny)}" /></a> <input type="text" value="{echo logic('upload')->Field($id, 'intro')}" onfocus="introFocus(this)" onblur="introChange({$id}, this)" /> <a href="?#deleteImage" onclick="DeleteImage($id);return false;">[ 删除 ]</a> </li>
+{/loop}
+<li id="img_li_TPL"> <a href="#http://[url]/" target="_blank"><img src="#http://[url]/" width="80" height="80" /></a> <input type="text" value="" onfocus="introFocus(this)" onblur="introChange([id], this)" /> <a href="?#deleteImage" onclick="DeleteImage([id]);return false;">[ 删除 ]</a> </li> </ul>
+{~logic('upload')->html()}
+*点击删除图片时会实时删除服务器上的图片，请慎重
+<br><font color="red">*如果提示 Acces Deined 错误，请检查“全局设置-上传设置”里面对应的图片上传权限是否有打开</font> </td> </tr> <tr> <td bgcolor="#F4F8FC">人均价格：</td> <td align="right"><input name="price_avg" type="text" id="price_avg" size="50" /></td> </tr> <tr> <td bgcolor="#F4F8FC">商家分类：</td> <td align="right"></td> </tr> <tr> <td bgcolor="#F4F8FC">所属商圈：</td> <td align="right"></td> </tr> <tr> <td bgcolor="#F4F8FC">营业时间：</td> <td align="right"><input name="trade_time" type="text" id="trade_time" size="50" /></td> </tr> <tr> <td bgcolor="#F4F8FC">商家介绍：</td> <td align="right"><textarea name="content" id="content"></textarea></td> </tr> </table> <br> <center><input type="hidden" id="map" name="map" /><input type="submit" class="button" name="addsubmit" value="提 交"></center> </form>
+{template @admin/footer}

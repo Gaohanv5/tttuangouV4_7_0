@@ -1,0 +1,581 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 天天团购\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-15 14:12+0800\n"
+"PO-Revision-Date: 2011-04-15 14:13+0800\n"
+"Last-Translator: Moyo <moyo@uuland.org>\n"
+"Language-Team: 杭州神话 <admin@cenwor.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplural=INTEGER; plural=EXPRESSION;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../include/function/common.func.php:12
+msgid "您的位置："
+msgstr "Location:"
+
+#: ../include/function/common.func.php:20
+msgid "首页"
+msgstr "Index"
+
+#: ../include/function/global.func.php:429
+#, php-format
+msgid "第%s页"
+msgstr "Page: %s"
+
+#: ../include/function/global.func.php:524
+msgid "上传图片出错！请检查您的服务器环境！"
+msgstr "Image Upload Error"
+
+#: ../include/function/global.func.php:527
+msgid "您没有选择需要上传的图片！"
+msgstr ""
+
+#: ../include/function/global.func.php:803
+msgid "含有禁止发布的内容"
+msgstr ""
+
+#: ../include/function/global.func.php:1042
+msgid "刚刚"
+msgstr ""
+
+#: ../include/function/global.func.php:1044
+msgid "分钟前"
+msgstr ""
+
+#: ../include/function/global.func.php:1122
+msgid "已结束"
+msgstr ""
+
+#: ../include/function/sms.func.php:27
+msgid "服务器不稳定，发送失败！"
+msgstr ""
+
+#: ../include/lib/error.han.php:47
+msgid "错误"
+msgstr ""
+
+#: ../include/lib/error.han.php:52
+msgid "警告"
+msgstr ""
+
+#: ../include/lib/error.han.php:57
+msgid "注意"
+msgstr ""
+
+#: ../include/lib/error.han.php:61
+msgid "未知错误"
+msgstr "Unknow Error"
+
+#: ../include/lib/error.han.php:105
+msgid "您不是系统管理人员，不能查看错误信息。<br />相关错误信息已经发给系统管理人员，我们将尽快修复错误。"
+msgstr ""
+
+#: ../include/lib/form.han.php:211
+msgid "--请选择--"
+msgstr ""
+
+#: ../include/lib/form.han.php:212
+msgid "最近一天"
+msgstr ""
+
+#: ../include/lib/form.han.php:213
+msgid "最近两天"
+msgstr ""
+
+#: ../include/lib/form.han.php:214
+msgid "最近三天"
+msgstr ""
+
+#: ../include/lib/form.han.php:215
+msgid "最近一周"
+msgstr ""
+
+#: ../include/lib/form.han.php:216
+msgid "最近一个月"
+msgstr ""
+
+#: ../include/lib/form.han.php:217
+msgid "最近两个月"
+msgstr ""
+
+#: ../include/lib/form.han.php:218
+msgid "最近三个月"
+msgstr ""
+
+#: ../include/lib/form.han.php:219
+msgid "最近半年"
+msgstr ""
+
+#: ../include/lib/form.han.php:220
+msgid "最近一年"
+msgstr ""
+
+#: ../include/lib/form.han.php:221
+msgid "最近三年"
+msgstr ""
+
+#: ../include/lib/form.han.php:229
+msgid "是"
+msgstr "Yes"
+
+#: ../include/lib/form.han.php:230
+msgid "否"
+msgstr "No"
+
+#: ../include/lib/member.han.php:287
+msgid "角色编号不能为空,或者该编号在服务器上已经删除"
+msgstr ""
+
+#: ../include/lib/member.han.php:461
+msgid "由于此操作在系统中没有权限控制,您暂时无法执行该操作,请联系网站的超级管理员。"
+msgstr ""
+
+#: ../include/lib/member.han.php:764
+#: ../include/logic/me.logic.php:345
+msgid "游客"
+msgstr "Guest"
+
+#: ../include/lib/upload.han.php:231
+msgid "上传文件太大！[INI]"
+msgstr ""
+
+#: ../include/lib/upload.han.php:232
+msgid "上传文件太大！[FORM]"
+msgstr ""
+
+#: ../include/lib/upload.han.php:233
+msgid "文件没有上传完整！"
+msgstr ""
+
+#: ../include/lib/upload.han.php:234
+msgid "没有选择上传文件！"
+msgstr ""
+
+#: ../include/lib/upload.han.php:235
+msgid "不允许的上传文件类型！"
+msgstr ""
+
+#: ../include/lib/upload.han.php:236
+msgid "上传文件太大！[MAX]"
+msgstr ""
+
+#: ../include/lib/upload.han.php:237
+msgid "上传目录无法写入！"
+msgstr ""
+
+#: ../include/lib/upload.han.php:238
+msgid "处理临时文件时出错！"
+msgstr ""
+
+#: ../include/lib/validate.han.php:262
+msgid "验证成功"
+msgstr "Verify success"
+
+#: ../include/lib/validate.han.php:262
+msgid "验证失败"
+msgstr "Verify Failed"
+
+#: ../include/logic/isearcher.logic.php:62
+msgid "没有找到相关内容！"
+msgstr ""
+
+#: ../include/logic/me.logic.php:226
+msgid "购物券即将到期提示信息"
+msgstr ""
+
+#: ../include/logic/notify.logic.php:180
+#: ../include/logic/notify.logic.php:193
+msgid " (抄送)"
+msgstr ""
+
+#: ../include/logic/order.logic.php:234
+msgid "账户充值"
+msgstr ""
+
+#: ../include/logic/order.logic.php:235
+#, php-format
+msgid "订单号：%s<br/>交易单号：%s"
+msgstr ""
+
+#: ../include/logic/order.logic.php:245
+#, php-format
+msgid "运费：%.2f"
+msgstr ""
+
+#: ../include/logic/order.logic.php:248
+msgid "团购商品"
+msgstr ""
+
+#: ../include/logic/order.logic.php:249
+#, php-format
+msgid "商品名：%s<br/>单价：%.2f<br/>数目：%d<br/>%s"
+msgstr ""
+
+#: ../include/logic/pay.logic.php:256
+msgid "虚拟团购"
+msgstr "Virtual Shops"
+
+#: ../include/logic/pay.logic.php:257
+#, php-format
+msgid "订单号：%s"
+msgstr ""
+
+#: ../include/logic/product.logic.php:214
+msgid "请选择你要购买的产品！"
+msgstr ""
+
+#: ../include/logic/product.logic.php:226
+msgid "没有找到相应的产品！"
+msgstr ""
+
+#: ../include/logic/product.logic.php:229
+msgid "团购还没有开始哦！"
+msgstr ""
+
+#: ../include/logic/product.logic.php:230
+msgid "团购已经结束了哦！"
+msgstr ""
+
+#: ../include/logic/product.logic.php:233
+msgid "该产品已经卖完了！下次请赶早"
+msgstr ""
+
+#: ../include/logic/product.logic.php:237
+msgid "您已经购买过此产品了哦！"
+msgstr ""
+
+#: ../include/logic/push.logic.php:92
+msgid "邮件发送成功！"
+msgstr ""
+
+#: ../include/logic/service.logic.php:204
+msgid "邮件测试！"
+msgstr ""
+
+#: ../include/logic/service.logic.php:204
+msgid "这是一封测试邮件！"
+msgstr ""
+
+#: ../include/logic/task.logic.php:77
+msgid "执行超时，请检查任务脚本。"
+msgstr ""
+
+#: ../include/task/task_core.task.php:14
+msgid "已成功执行"
+msgstr ""
+
+#: ../include/task/task_core.task.php:25
+msgid "<b>SQL查询语句错误</b>"
+msgstr ""
+
+#: ../modules/buy.mod.php:20
+msgid "请先登录！"
+msgstr ""
+
+#: ../modules/buy.mod.php:39
+msgid "提交订单"
+msgstr "Submit Order"
+
+#: ../modules/buy.mod.php:63
+msgid "请填写正确的购买数量！"
+msgstr ""
+
+#: ../modules/buy.mod.php:102
+msgid "确认订单"
+msgstr ""
+
+#: ../modules/buy.mod.php:123
+msgid "您没有权限操作此订单！"
+msgstr ""
+
+#: ../modules/buy.mod.php:127
+msgid "此订单已经不能支付！"
+msgstr ""
+
+#: ../modules/buy.mod.php:159
+msgid "订单支付"
+msgstr ""
+
+#: ../modules/buy.mod.php:169
+msgid "此订单已经支付过了！"
+msgstr ""
+
+#: ../modules/buy.mod.php:200
+msgid "订单号无效！"
+msgstr ""
+
+#: ../modules/buy.mod.php:203
+#: ../modules/callback.mod.php:128
+msgid "本次交易已经完成！"
+msgstr ""
+
+#: ../modules/callback.mod.php:57
+msgid "支付验证失败！"
+msgstr "Pay verify failed"
+
+#: ../modules/callback.mod.php:70
+msgid "订单已经生成，请尽快付款！"
+msgstr ""
+
+#: ../modules/callback.mod.php:97
+msgid "我们已经收到付款，会尽快为您准备发货！"
+msgstr ""
+
+#: ../modules/callback.mod.php:112
+msgid "我们已经发货完毕，请收到货物后尽快确认收货！"
+msgstr ""
+
+#: ../modules/index.mod.php:70
+msgid "错误！"
+msgstr ""
+
+#: ../modules/index.mod.php:75
+msgid "用户不存在或已经通过验证！"
+msgstr ""
+
+#: ../modules/index.mod.php:81
+msgid "邮箱认证成功！"
+msgstr ""
+
+#: ../modules/index.mod.php:89
+msgid "已经确认收货，本次交易完成！"
+msgstr ""
+
+#: ../modules/index.mod.php:93
+msgid "无效的订单号！"
+msgstr ""
+
+#: ../modules/kuaiqian.pay.php:122
+#: ../modules/kuaiqian.pay.php:209
+msgid "支付失败"
+msgstr "Pay failed"
+
+#: ../modules/kuaiqian.pay.php:131
+msgid "无法继续付款，无法找到订单！"
+msgstr ""
+
+#: ../modules/kuaiqian.pay.php:132
+msgid "请勿重复使用已支付的订单！"
+msgstr ""
+
+#: ../modules/kuaiqian.pay.php:170
+#: ../modules/kuaiqian.pay.php:253
+msgid "商户号错误"
+msgstr ""
+
+#: ../modules/kuaiqian.pay.php:180
+#: ../modules/kuaiqian.pay.php:263
+msgid "密钥校对错误"
+msgstr ""
+
+#: ../modules/kuaiqian.pay.php:217
+msgid "您不能重复充值同一订单，充值失败！"
+msgstr ""
+
+#: ../modules/list.mod.php:43
+msgid "常见问题"
+msgstr "Help"
+
+#: ../modules/list.mod.php:48
+msgid "天天问答"
+msgstr "FAQ"
+
+#: ../modules/list.mod.php:55
+msgid "您必须先登录才能发表您的提问！"
+msgstr ""
+
+#: ../modules/list.mod.php:56
+msgid "问题不可以为空哦！"
+msgstr ""
+
+#: ../modules/list.mod.php:63
+msgid "提问成功，请等待管理员的回复！"
+msgstr "Submit success, please wait for replay."
+
+#: ../modules/list.mod.php:68
+msgid "团购指南"
+msgstr "Group Nav"
+
+#: ../modules/list.mod.php:73
+msgid "关于我们"
+msgstr "About"
+
+#: ../modules/list.mod.php:78
+msgid "隐私保护"
+msgstr "Privacy"
+
+#: ../modules/list.mod.php:83
+msgid "联系我们"
+msgstr "Contact"
+
+#: ../modules/list.mod.php:88
+msgid "加入我们"
+msgstr "Join us"
+
+#: ../modules/list.mod.php:93
+msgid "用户协议"
+msgstr "Terms"
+
+#: ../modules/list.mod.php:98
+msgid "商务合作"
+msgstr "Bussiness"
+
+#: ../modules/list.mod.php:110
+msgid "我们已经记录下您的合作信息，我们将尽快给您回复！"
+msgstr ""
+
+#: ../modules/list.mod.php:114
+msgid "意见反馈"
+msgstr "Feedback"
+
+#: ../modules/list.mod.php:126
+msgid "我们已经记录下您的反馈信息，感谢您对本站的支持！"
+msgstr ""
+
+#: ../modules/list.mod.php:130
+msgid "历史团购"
+msgstr "Groupon old"
+
+#: ../modules/list.mod.php:150
+msgid "商品不存在！"
+msgstr "Product not found"
+
+#: ../modules/list.mod.php:159
+msgid "邮箱地址有误！"
+msgstr ""
+
+#: ../modules/list.mod.php:168
+msgid "操作成功！"
+msgstr "Success"
+
+#: ../modules/list.mod.php:172
+msgid "邀请有奖"
+msgstr "Inviters"
+
+#: ../modules/list.mod.php:175
+msgid "请您先注册或登录！"
+msgstr "Please login first"
+
+#: ../modules/list.mod.php:182
+msgid "消费券查询"
+msgstr "My Tickets"
+
+#: ../modules/me.mod.php:44
+msgid "我的优惠券"
+msgstr "My Tickets"
+
+#: ../modules/me.mod.php:71
+msgid "我的订单"
+msgstr "My Orders"
+
+#: ../modules/me.mod.php:97
+msgid "收支明细"
+msgstr "Bills"
+
+#: ../modules/me.mod.php:107
+msgid "账户设置"
+msgstr "Account"
+
+#: ../modules/me.mod.php:117
+msgid "配送地址"
+msgstr "Address"
+
+#: ../modules/me.mod.php:325
+msgid "注册"
+msgstr ""
+
+#: ../modules/misc.mod.php:56
+#: ../modules/misc.mod.php:166
+msgid "请求无效！"
+msgstr "Request Invaild."
+
+#: ../modules/misc.mod.php:72
+msgid "找不到相关地址信息！"
+msgstr ""
+
+#: ../modules/misc.mod.php:129
+#, fuzzy
+msgid "保存失败！"
+msgstr "Pay verify failed"
+
+#: ../modules/misc.mod.php:153
+msgid "删除失败！"
+msgstr ""
+
+#: ../modules/subscribe.mod.php:29
+msgid "邮件订阅"
+msgstr ""
+
+#: ../modules/subscribe.mod.php:34
+msgid "短信订阅"
+msgstr ""
+
+#: ../modules/subscribe.mod.php:52
+msgid "您已经订阅过了，请不要重复提交哦！"
+msgstr ""
+
+#: ../modules/subscribe.mod.php:54
+#, fuzzy
+msgid "订阅成功！"
+msgstr "Success"
+
+#: ../modules/ajax/getseller.mod.php:23
+msgid "暂无商家"
+msgstr "No Sellers"
+
+#: ../modules/ajax/master.mod.php:96
+msgid "您的IP已经被禁止访问。"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:61
+msgid "正在建设中……"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:74
+msgid "用户名长度请控制在3~15"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:80
+msgid "用户名不能包含特殊字符"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:96
+#, php-format
+msgid "用户名<b>%s</b>被保留，禁止注册"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:124
+msgid "请输入正确的Email地址"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:130
+msgid "由于您邮件服务提供商会过滤本站程序发送的有效邮件，请重新填写一个EMAIL地址。"
+msgstr ""
+
+#: ../modules/ajax/member.mod.php:137
+msgid "您输入的EMAIL地址格式无效"
+msgstr "Invaild Email Format"
+
+#: ../modules/ajax/member.mod.php:141
+#, php-format
+msgid "对不起，您输入的EMAIL地址 <b>%s</b> 不能注册或已经被他人使用"
+msgstr ""
+
+#: ../modules/rss/soso.php:33
+msgid "元"
+msgstr "￥"
+
+#: ../modules/rss/soso.php:34
+msgid "折"
+msgstr "Ago"
+
+#~ msgid "订阅邮件"
+#~ msgstr "Mail Feed"

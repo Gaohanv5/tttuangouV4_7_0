@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+{~'<base h'.'ref="'.ini('settings.site_url').'/" />'}
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{echo ($this->Title != '') ? $this->Title.' - ' : (ini('cplace.cnpre.enabled') ? (logic('misc')->City('name').ini('settings.tuangou_str').' - ') : '')}{ini:settings.site_name}{conf page_title}</title>
+<meta name="description" content="">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<style>
+html, button, input, select, textarea { color: #4a4f54;  }
+body { font: 16px/26px Helvetica, Helvetica Neue, Arial; line-height: 160%; overflow-x: hidden; background:#F0EFED;margin: 0;
+}
+img { vertical-align: middle; }
+a{ text-decoration: none; }
+input[type="text"] {border:1px solid #ddd; padding:3px;}
+h1{ color: #141414; line-height: 200%;font-size: 20px;display: block; padding:0 10px 10px 10px;border-bottom:1px solid #dcd8cd;}
+h2{ color: #141414; line-height: 120%;	 font-size: 1.2em; padding: 0 10px;}
+.wrapper { width: 100%; margin: 0; }
+.wrapper ul{ display:block; background:#fff; border-top:1px solid #dcd8cd; border-bottom:1px solid #dcd8cd;line-height: 160%;clear: both;padding: 10px;}
+.wrapper ul li{ list-style-type: none;border-bottom:1px dotted #dcd8cd;padding: 5px 0; position:relative;}
+.wrapper ul li:last-child{ border-bottom:none;}
+.wrapper ul li .check_box{ position:absolute; right:0;}
+.wrapper ul li em{ color:#F60; font-weight:bold; font-style:normal;}
+.wrapper i{ color:#999; font-size:16px; font-weight:500;}
+.other_txt{ display:none;}
+.other_txt textarea{width: 95%;display: block;border: 1px solid #ddd;padding: 3px;}
+.top_tips{ background:#fef6e1; border-bottom:1px solid #ffebc8; color:#d58900; text-align:center;line-height: 160%;
+font-size: 1.2em;padding: 5px 0; display:none; position:fixed; top:0; width:100%; z-index:100;}
+.payback_btn{background: #fb7252;color: #fff;text-align: center;line-height: 200%;font-size: 1.6em;display: block;margin: 20px auto;border-radius: 2px; border:none; width:95%;}
+.payback_btn[disabled]{ background:#ddd; color:#666; opacity:0.8;}
+.go_order_btn{background: #34caa2;color: #fff;text-align: center;line-height: 200%;font-size: 1.6em;display: block;margin: 20px auto;border-radius: 2px; border:none; width:95%;}
+</style>
+<script type="text/javascript">
+var thisSiteURL = '{ini:settings.site_url}/';
+var tuangou_str = '{ini:settings.tuangou_str}';
+</script>
+<!--{~ui('loader')->js('@jquery')}-->
+<!--{~ui('loader')->js('@common')}-->
+</head>
+<body>
+<script type="text/javascript">
+function trim(str){
+var re=/\s*(\S[^\0]*\S)\s*/;
+re.exec(str);
+return RegExp.$1;
+}
+function check()
+{
+var money = Math.round($('#money').val()*100)/100;
+var maxmoney = {$info['paymoney']};
+if (isNaN(money) || money <= 0)
+{   
+$("#error_msg").show();
+Error('money','退款金额必须是一个有效数字！');
+return false;
+}
+if (money > maxmoney)
+{
+$("#error_msg").show();
+Error('money','退款金额过大，您最大可退款金额为' + maxmoney + '元');
+return false;
+}
+var ci = 0;
+$(":checkbox").each(function(){
+if($(this).attr("checked") == "checked"){ci++;}
+});
+if (ci == 0)
+{
+$("#error_msg").show();
+Error('reason','请输入退款理由');
+return false;
+}
+return true;
+}
+function Error(id,msg){$('#error_msg').html(msg);$('#'+id).focus();}
+function show_othertxt(){$(".other_txt").show();}
+</script>
+<div id="error_msg" class="top_tips"></div>
+<form action="index.php?mod=refund&code=refundsave" method="post" onsubmit="return check();">
+<input type="hidden" name="orderid" value="{$order_id}"/>
+<input type="hidden" name="appcode" value="{$appcode}"/>
+<input type="hidden" name="token" value="{$token}"/>
+<div class="wrapper">
+<h1>{$info['product']['flag']}</h1>
+<h2 id="status">
+最大可退款金额:<font color="red">{$info['paymoney']}</font>元
+<!--{if $info['expressprice']}--><i>（含运费：{$info['expressprice']}元）</i><!--{/if}-->
+<!--{if $info['tmsg']}--><i><br>【备注】订单总金额：{$info['tmsg']['money']}元，共<font color="green">{$info['tmsg']['tnum']}</font>张{TUANGOU_STR}券，您已消费<font color="red">{$info['tmsg']['num']}</font>张{TUANGOU_STR}券</i><!--{/if}-->
+</h2>
+<ul>
+<li>退款金额：<input type="text" id="money" name="money" value="{$info['paymoney']}">元</li>
+<li><i>说明：目前客户端，仅支持退款至余额中</i></li>
+</ul>
+<h2>退还原因（至少选一项）</h2>
+<ul>
+<li><label>买多了/买错了<input class="check_box" name="reason[]" type="checkbox" value="买多了/买错了" ></label></li>
+<li><label>计划有变，没时间消费<input class="check_box" name="reason[]" type="checkbox" value="计划有变，没时间消费" ></label></li>
+<li><label>预约不上<input class="check_box" name="reason[]" type="checkbox" value="预约不上" ></label></li>
+<li><label>后悔了，不想要了<input class="check_box" name="reason[]" type="checkbox" value="后悔了，不想要了" ></label></li>
+<li><label>去过了，不太满意<input class="check_box" name="reason[]" type="checkbox" value="去过了，不太满意" ></label></li>
+<li><label>朋友/网上评价不好<input class="check_box" name="reason[]" type="checkbox" value="朋友/网上评价不好" ></label></li>
+<li><label>商家说可以直接{TUANGOU_STR}价到店消费<input class="check_box" name="reason[]" type="checkbox" value="商家说可以直接团购价到店消费" ></label></li>
+<li><label>其他原因<input class="check_box" name="reason[]" type="checkbox" value="其他原因" onClick="show_othertxt()"></label></li>  
+<li class="other_txt"><textarea name="reason[]" maxlength="80"></textarea></li>      
+</ul>	
+</div>
+<!--{if $info['paymoney'] > 0}-->
+<input class="payback_btn" type="submit" id="submit" name='submit'  value="申请退款">
+<!--{else}-->
+<input class="payback_btn" type="button" value="免费产品不支持退款" disabled>
+<!--{/if}-->
+</form>
+</body>
+</html>

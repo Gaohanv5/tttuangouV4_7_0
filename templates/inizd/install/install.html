@@ -1,0 +1,37 @@
+{template @inizd/install/header}
+{~ui('loader')->js('@jquery')}
+<div class="setup step4">
+<h2>开始安装</h2>
+<p>安装天天团购系统</p>
+</div>
+<div class="stepstat">
+<ul>
+<li class="unactivated">1</li>
+<li class="unactivated">2</li>
+<li class="unactivated">3</li>
+<li class="current last">4</li>
+</ul>
+<div class="stepstatbg stepstat4"></div>
+</div>
+</div> 
+<h2 class="title">点击“开始安装”按钮，开启您的团购之旅！</h2>
+<div class="installs">
+<ul>
+<li>数据结构<font title="struct" class="process wait">等待安装</font></li>
+<li>管理账户<font title="admin" class="process wait">等待安装</font></li>
+<li>系统设置<font title="setting" class="process wait">等待安装</font></li>
+{if $test == 'yes'}
+<li>测试数据<font title="test" class="process wait">等待安装</font></li>
+{/if}
+<li>清理缓存<font title="clean" class="process wait">等待安装</font></li>
+<li>结束安装<font title="ends" class="process wait">等待安装</font></li>
+</ul>
+</div>
+<div class="btnbox marginbot">
+<font id="final_result">
+<input type="submit" value="开始安装" onclick="javascript:cc2install(this);" />
+</font>
+</div>
+</div>
+{~ui('loader')->js('#inizd/install/js/step.install')}
+{template @inizd/install/footer}

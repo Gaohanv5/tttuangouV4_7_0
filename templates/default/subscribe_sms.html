@@ -1,0 +1,59 @@
+<!--{template header}-->
+<script language="javascript">
+function checkPhone(phone){
+var phoneRegExp = new RegExp("[0-9]{11}");
+if (!phoneRegExp.test(phone)){
+alert('手机号码格式错误了哦~~');
+$('#phone').val('');
+}else{
+return true;
+}
+}
+function check(){
+if(!checkPhone($('#phone').val())){
+return false;
+}
+return true;
+}
+</script>
+<div class="site-ms__left">  
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">短信订阅</p>
+<div class="sect">
+<p class="B14">短信预定每日最新{TUANGOU_STR}信息，了解{TUANGOU_STR}第一手资讯。</p>
+<div class="enter_address">
+<p class="B14">{conf site_name}运行中，欢迎通过短信订阅每日{TUANGOU_STR}信息！</p>
+<div class="enter_address_c">
+<form action="?mod=subscribe&code=save" enctype="multipart/form-data" method="post" onsubmit="return check()">
+<input name="type" type="hidden" value="sms" />
+<div class="mail">
+<label>手机号码：</label>
+<input name="target" type="text" class="f_input" id="phone" size="20" value="{$target}" />
+<span class="tip">手机号码不会被公开或发垃圾短信。</span> 
+</div>
+<div class="product">
+<label>选择您关注的城市：</label>
+<select name="city" style="text" class="f_product">
+{loop logic('misc')->CityList() $i $value}
+<option value="{$value['cityid']}" {if logic('misc')->City('id')==$value['cityid']}selected{/if}>{$value['cityname']}</option>
+{/loop}
+</select>
+&nbsp;&nbsp;
+<input type="submit" value="订 阅" class="btn btn-primary btn-small">
+</div>
+</form>
+</div>
+</div>
+</div>
+<p style="margin-left:14px;clear:both;">
+<a href="?mod=subscribe&code=undo">如果您不想继续订阅，可以点击此处来取消</a>
+</p>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

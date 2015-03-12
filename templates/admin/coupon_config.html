@@ -1,0 +1,9 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">设置 / <a href="?mod=coupon&code=vlist">[ 返回到{TUANGOU_STR}券列表 ]</a></td> </tr> <tr> <td class="td_title" width="20%">是否启用前台“发送到手机”的功能？</td> <td> <font class="ini" src="coupon.c2phone.enabled"></font>
+&nbsp;&nbsp;&nbsp;&nbsp;
+（启用后用户可以自己在前台重发{TUANGOU_STR}券到手机）
+<br/>
+注：重发的内容格式跟第一次发送的格式一样，具体请到“互动营销 - 事件通知管理”中配置事件“{TUANGOU_STR}券生成”
+</td> </tr> </table>
+{template @admin/footer}

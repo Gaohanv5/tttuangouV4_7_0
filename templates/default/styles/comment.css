@@ -1,0 +1,154 @@
+/** * @copyright (C)2011 Cenwor Inc. * @author Moyo <dev@uuland.org> * @package css * @name comment.css * @date 2014-12-11 14:44:49 */ .overview {
+	border: 1px solid #e7e3e4;
+}
+.user-reviews .overview-head {
+	padding: 0 10px;
+	line-height: 35px;
+	background: #f4f4f4;
+	border-bottom: 1px solid #e7e3e4;
+	height: 35px;
+}
+.user-reviews .overview-title {
+	float: left;
+	font-weight: 700;
+}
+.user-reviews .overview-feedback {
+	float: right;
+	font-size: 12px;
+}
+.user-reviews .rating-area {
+	float: left;
+	width: 221px;
+	height: 40px;
+	padding-top: 20px;
+	white-space: nowrap;
+	text-align: center;
+}
+.user-reviews .total-detail {
+	padding-top: 5px;
+}
+.rating-area .total-score {
+	font-size: 14px;
+	font-weight: 700;
+}
+.rating-area .total-score span {
+	padding: 0 3px;
+	color: #ee5238;
+	font-size: 32px;
+	line-height: 40px;
+}
+.comment-rating, .comment-rating li {
+	background: url(../images/comment_star.png);
+}
+
+.comment-rating {
+	position: relative;
+	margin: 0 auto 10px;
+	width: 109px;
+	background-position: 0 -24px;
+	height: 19px;
+}
+.comment-rating li {
+	height: 19px;
+	width: 109px;
+	background-position: 0 -3px;
+	position: absolute;
+	top: 0;
+	padding: 0;
+}
+.comment-rating-current {
+	float: left;
+}
+.comment-sort {
+	height: 35px;
+	margin-top: 10px;
+}
+.comment-txt {
+	padding: 0;
+}
+.comment-txt dd {
+	border-bottom: 1px solid #e2e2e2;
+	padding: 20px 0;
+}
+.comment-txt dd p {
+	line-height: 160%;
+	margin-bottom: 5px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.comment-txt dd .p-sbox textarea {
+	width: 700px;
+}
+.comment-txt .replybg {
+	background: url(../images/reply.png) no-repeat 10px 15px;
+	margin-top: 10px;
+	border-top: 1px solid #ddd;
+	padding-top: 10px;
+	padding: 10px;
+	background-color: #f9f9f9;
+}
+.comment-txt p.reply {
+	padding: 2px 3px;
+	margin-left: 18px;
+	color: #999;
+}
+.comment-info {
+	height: 20px;
+	margin: 8px 0 0;
+}
+
+.comment-txt dd .comment-info__user-time {
+	float: right;
+	color: #9d9d9d;
+	font-size: 12px;
+}
+/* 快速购买按钮 */
+.btn—wrapper {
+	float: right;
+}
+/* 填写评价 */
+.comment-score-selector {
+	background: none !important;
+}
+.comment-score-block-span {
+	width: 21.8px;
+	height: 20px;
+	float: left;
+	margin: 0;
+}
+.comment-form-loading {
+	background: url(../images/loading2.gif) no-repeat 0 50%;
+	padding: 20px 50px;
+	display: none;
+}
+.comment-form-success {
+	background: url(../images/sue.gif) no-repeat 0 50%;
+	padding: 20px 50px;
+	display: none;
+}
+.comment-form-error {
+	background: url(../images/no2.gif) no-repeat 0 50%;
+	padding: 20px 50px;
+	display: none;
+}
+.p-title {
+	font-size: 14px;
+}
+.p-sbox {
+	padding: 10px 0;
+	font-size: 14px;
+	overflow: hidden;
+}
+.comm_btn_area {
+	margin: 0 auto;
+	display: block;
+	clear: both;
+	width: 200px;
+	overflow: hidden;
+}
+.comm_btn_area label {
+	float: left;
+	line-height: 40px;
+	margin-right: 10px;
+	color: #666;
+}

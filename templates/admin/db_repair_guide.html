@@ -1,0 +1,7 @@
+<!--{template @admin/header}--> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">数据结构修复说明</td> </tr> <tr> <td class="td_title" width="10%">说明：</td> <td>
+本修复程序仅能修复因为系统升级导致的数据表缺失；数据库硬性错误，请使用其他方式修复！
+</td> </tr> <tr> <td class="td_title">前提：</td> <td>
+1，修复之前<b>请先保证您的系统已经升级到最新版本</b>，否则极易可能造成修复后网站不能访问的错误！<br/>
+1，本修复程序需要“/data/install/struct.sql”文件存在，并且为最新版本（不存在，或者非最新版本，请下载官方最新安装包，覆盖此文件）<br/>
+2，执行本操作需要您的MYSQL账户支持“SHOW TABLES”和“SHOW INDEX”和“DESCRIBE”权限<br/> </td> </tr> <tr> <td class="td_title"></td> <td> <input type="button" value="知道了，开始进行结构分析" class="wbutton" onclick="window.location='?mod=db&code=repair&op=analyze'" /> </td> </tr> </table>
+{template @admin/footer}

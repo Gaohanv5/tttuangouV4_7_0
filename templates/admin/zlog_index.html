@@ -1,0 +1,12 @@
+<!--{template @admin/header}--> <form action="admin.php" method="get"> <input type="hidden" name="mod" value="zlog" /> <input type="hidden" name="code" value="search" /> <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="2">
+日志中心 &gt;&gt; 搜索
+</td> </tr> <tr> <td width="10%" class="td_title">日志类型：</td> <td> <select name="type">
+{loop $hooks $hFlag $hName}
+<option value="{$hFlag}"{if $hFlag==$type} selected="selected"{/if}>{$hName}</option>
+{/loop}
+</select> </td> </tr> <tr> <td class="td_title">日志索引：</td> <td> <input type="text" name="index" value="{$index}" /> <font color="#999">* 索引可以是产品编号，订单编号，或者{TUANGOU_STR}券号码等一些具有唯一性的数据</font> </td> </tr> <tr> <td class="td_title">日志标题：</td> <td> <input type="text" name="name" value="{$name}" /> </td> </tr> <tr> <td class="td_title">日志详细：</td> <td> <input type="text" name="extra" value="{$extra}" /> </td> </tr> <tr> <td class="td_title">时间段：</td> <td> <label><input type="radio" name="time" value="all"{if $time=='all'||$time==''} checked="checked"{/if} /> 全部时间</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="time" value="in"{if $time=='in'} checked="checked"{/if} /> 最近一周</label>
+&nbsp;&nbsp;&nbsp;
+<label><input type="radio" name="time" value="out"{if $time=='out'} checked="checked"{/if} /> 一周以前</label> </td> </tr> <tr> <td class="td_title" style="background: #E3E3E3;"> <a href="?mod=zlog&code=clear"><b style="color:#0A5FFF;" title="点此查看如何清理系统日志">清理日志</b></a> </td> <td> <input type="submit" value="搜 索" class="button" /> </td> </tr> </table> </form>
+{template @admin/footer}

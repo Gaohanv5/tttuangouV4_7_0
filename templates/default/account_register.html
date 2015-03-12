@@ -1,0 +1,98 @@
+<!--{template header}-->
+{~ui('loader')->css('@account.register')}
+{~ui('loader')->js('@account.register')}
+<script type="text/javascript"> 
+$(function(){ 
+/*
+$(".s_tel").click(function(){
+$(".s_email").removeClass("reg_switch_sel");$(this).addClass("reg_switch_sel");$(".r_telphone").show();$(".r_email").hide();
+});
+$(".s_email").click(function(){
+$(".s_tel").removeClass("reg_switch_sel");$(this).addClass("reg_switch_sel");$(".r_telphone").hide();$(".r_email").show();
+});
+*/
+$(".r_email").show();
+$("#hometel").focus(function(){$(".hint0").show();}).blur(function(){$(".hint0").hide();});
+$("#email").focus(function(){$(".hint1").show();}).blur(function(){$(".hint1").hide();});
+$("#username").focus(function(){$(".hint2").show();}).blur(function(){$(".hint2").hide();});
+$("#password").focus(function(){$(".hint3").show();}).blur(function(){$(".hint3").hide();});
+$("#repassword").focus(function(){$(".hint3").show();}).blur(function(){$(".hint3").hide();});
+$("#phone").focus(function(){$(".hint4").show();}).blur(function(){$(".hint4").hide();});
+});  
+</script>
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<div class="reg_switch">
+<span class="s_email reg_switch_sel"><a href="index.php?mod=account&code=register&u={$_GET[u]}">邮箱注册</a></span>
+<span class="s_tel"><a href="index.php?mod=account&code=register&op=phone&u={$_GET[u]}">手机号注册</a></span>
+</div>
+<div class="sect" style="border-top: 1px solid #c9c9c9; margin:0 20px;margin-top: -1px; padding-top: 30px;min-height: 550px;">
+<form action="{$action}" method="post" enctype="multipart/form-data" >
+<div class="cont" style=" width:700px;">
+<div class="field r_email" style="display:none;">
+<label>Email</label>
+<input type="text" name="email" id="email"  class="f-l input_h" value="{$email}" size="30">
+<font id="email_result"></font>
+<span class="hint1" style="display:none;">登录及找回密码用</span>
+</div>                            
+<div class="field">
+<label>用户名</label>
+<input type="text" name="truename" id="username" class="f-l input_h" size="30">
+<font id="username_result"></font>
+<span class="hint2" style="display:none;">4-16 个字符，一个汉字为两个字符</span>
+</div> 
+<div class="field">
+<label>密码</label>
+<input name="pwd" type="password" class="f-l input_h" id="password" size="30">
+<font id="password_result"></font>
+<span class="hint3" style="display:none;">最少 4 个字符</span>
+</div>
+<div class="field">
+<label>确认密码</label>
+<input name="ckpwd" type="password" class="f-l input_h" id="repassword" size="30">
+<font id="repassword_result"></font>
+</div> 
+<div class="field">
+<label>推荐人手机</label>
+<input type="text" name="hometel" id="hometel"  class="f-l input_h" value="" size="30">
+<font id="hometel_result"></font>
+<span class="hint0" style="display:none;">选填项，请填写邀请您注册的用户手机号</span>
+</div>
+<div class="field">
+<label>所在城市</label>
+<select name="city" class="f_product" id="city" >
+{loop $city $i $value}
+<option  value="{$value['cityid']}">{$value['cityname']}</option>
+{/loop}
+<option value="0">其他</option>
+</select>
+</div>
+<div class="field autologin">
+<input name="showemail" type="checkbox" id="showemail" value="1" checked="checked" >
+<span>订阅每日最新{TUANGOU_STR}信息 </span>
+</div>
+<div class="clear">
+<input type="hidden" name="home_uid" value="{$home_uid}">
+</div>
+<div id="l_act">
+<input type="submit" class="btn btn-primary"  value="注 册" >
+</div>
+</div>
+</form>
+</div>
+</div>
+</div> 
+</div>
+<div class="site-ms__right">
+<div class="t_area_out">
+<h1>已有本站帐户？</h1>
+<div class="t_area_in">
+<p>请直接 <a href="?mod=account&code=login" class="R12">登录</a>。</p>
+<p>{~account('ulogin')->wlist()}</p>
+</div>
+</div>
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->

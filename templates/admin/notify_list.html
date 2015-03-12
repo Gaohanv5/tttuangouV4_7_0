@@ -1,0 +1,8 @@
+<!--{template @admin/header}-->
+{~ui('loader')->js('#admin/js/sdb.parser')}
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder"> <tr class="header"> <td colspan="4"><b>通知方式设置</b></td> </tr> <tr class="tr_nav"> <td width="12%" bgcolor="#F4F8FC">标记</td> <td width="50%" bgcolor="#F4F8FC">名称</td> <td width="16%" bgcolor="#F4F8FC">启用状态</td> <td width="22%" align="center" bgcolor="#F4F8FC">管理</td> </tr> <!--{loop $list $flag $value}--> <tr> <td>{$flag}</td> <td>{$value['name']}</td> <td> <font class="ini" src="notify.api.{$flag}.enabled">{echo $value['enabled'] ? 'true' : 'false'}</font> </td> <td align="center">
+[ <a href="?mod=notify&code=config&flag={$flag}">设置</a> ]
+</td> </tr> <!--{/loop}--> <tr class="footer"> <td colspan="4"> <form action="?mod=notify&code=adminid&op=save" method="post"> 
+管理员ID：
+<input name="adminid" type="text" value="{~ini('notify.adminid')}" /> <input type="submit" value="保存" class="is_submit_button"/> </form> </td> </tr> </table>
+{template @admin/footer}

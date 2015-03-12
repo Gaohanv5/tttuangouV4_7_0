@@ -1,0 +1,50 @@
+<!--{template header}-->
+<div class="site-ms__left">
+<div class="t_area_out">
+<div class="t_area_in">
+<p class="cur_title">打印{TUANGOU_STR}券</p>
+<div class="cont">
+<div id="printArea">
+<div class="quan">
+<div class="qtitle" >
+<div class="qlogo"><img src="images/logo.png" /></div>
+<div class="qcode">{conf site_url}</div>
+</div>
+<div class="qmt">{$order['name']}</div>
+<div class="qwarp">
+<div class="ql">
+<dl>
+<dt>代金券：</dt>
+<dd>
+{$order['number']} &nbsp; （密码：{$pwd}）
+</dd>
+</dl>
+<dl>
+<dt>特价：</dt>
+<dd><span>{$order['nowprice']}</span> 元/份{if $order['mutis'] > 1}(共{$order['mutis']}份){/if} &nbsp; （有效期：{echo date('Y-m-d', $order['perioddate']);}）</dd>
+</dl>
+<dl>
+<dt>地址：</dt>
+<dd>{$order['selleraddress']}</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function printme()
+{
+document.body.innerHTML=document.getElementById('printArea').innerHTML;
+window.print();
+}
+</script>
+<a href="javascript:printme()" target="_self" style=" font-size:18px; font-weight:bolder; color:#F00;">打印</a> 
+</div>
+</div>
+</div>
+</div>
+<div class="site-ms__right">
+{~ui('widget')->load()}
+</div>
+</div>
+<!--{template footer}-->
